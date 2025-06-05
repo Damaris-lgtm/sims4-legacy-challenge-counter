@@ -1,0 +1,220 @@
+[
+    {
+      "id": "ASTRONAUT",
+      "label": "Astronaut",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "ATHLETE",
+      "label": "Athlet",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "BUSINESS",
+      "label": "Geschäft",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "CRIMINAL",
+      "label": "Krimineller",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "CULINARY",
+      "label": "Kulinarik",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "ENTERTAINER",
+      "label": "Entertainer",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "PAINTER",
+      "label": "Maler",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "SECRET_AGENT",
+      "label": "Geheimagent",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "TECH_GURU",
+      "label": "Technikguru",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "WRITER",
+      "label": "Schriftsteller",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FULL_TIME"
+    },
+    {
+      "id": "DETECTIVE",
+      "label": "Detektiv",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "GET_TO_WORK",
+      "type": "ACTIVE"
+    },
+    {
+      "id": "DOCTOR",
+      "label": "Arzt",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "GET_TO_WORK",
+      "type": "ACTIVE"
+    },
+    {
+      "id": "SCIENTIST",
+      "label": "Wissenschaftler",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "GET_TO_WORK",
+      "type": "ACTIVE"
+    },
+    {
+      "id": "ACTOR",
+      "label": "Schauspieler",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "GET_FAMOUS",
+      "type": "ACTIVE"
+    },
+    {
+      "id": "INTERIOR_DECORATOR",
+      "label": "Innenarchitekt",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "DREAM_HOME_DECORATOR",
+      "type": "ACTIVE"
+    },
+    {
+      "id": "FREELANCER_WRITER",
+      "label": "Freiberuflicher Schriftsteller",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FREELANCER"
+    },
+    {
+      "id": "FREELANCER_ARTIST",
+      "label": "Freiberuflicher Künstler",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FREELANCER"
+    },
+    {
+      "id": "FREELANCER_PROGRAMMER",
+      "label": "Freiberuflicher Programmierer",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "type": "FREELANCER"
+    },
+    {
+      "id": "FREELANCER_PHOTOGRAPHER",
+      "label": "Freiberuflicher Fotograf",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "MOSCHINO_STUFF",
+      "type": "FREELANCER"
+    },
+    {
+      "id": "FREELANCER_MAKER",
+      "label": "Freiberuflicher Hersteller",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "ECO_LIFESTYLE",
+      "type": "FREELANCER"
+    },
+    {
+      "id": "FREELANCER_PARA_INVESTIGATOR",
+      "label": "Paranormaler Ermittler",
+      "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "PARANORMAL_STUFF",
+      "type": "FREELANCER"
+    },
+    {
+      "id": "BARISTA",
+      "label": "Barista",
+      "ages": ["TEENAGER", "YOUNG_ADULT"],
+      "pack": "BASE_GAME",
+      "type": "PART_TIME"
+    },
+    {
+      "id": "FAST_FOOD_EMPLOYEE",
+      "label": "Fast-Food-Mitarbeiter",
+      "ages": ["TEENAGER", "YOUNG_ADULT"],
+      "pack": "BASE_GAME",
+      "type": "PART_TIME"
+    },
+    {
+      "id": "RETAIL_EMPLOYEE",
+      "label": "Einzelhandelsmitarbeiter",
+      "ages": ["TEENAGER", "YOUNG_ADULT"],
+      "pack": "BASE_GAME",
+      "type": "PART_TIME"
+    },
+    {
+      "id": "MANUAL_LABOR",
+      "label": "Manueller Arbeiter",
+      "ages": ["TEENAGER", "YOUNG_ADULT"],
+      "pack": "BASE_GAME",
+      "type": "PART_TIME"
+    },
+    {
+      "id": "BABYSITTER",
+      "label": "Babysitter",
+      "ages": ["TEENAGER", "YOUNG_ADULT"],
+      "pack": "BASE_GAME",
+      "type": "PART_TIME"
+    },
+    {
+      "id": "LIFEGUARD",
+      "label": "Rettungsschwimmer",
+      "ages": ["TEENAGER", "YOUNG_ADULT"],
+      "pack": "ISLAND_LIVING",
+      "type": "PART_TIME"
+    },
+    {
+      "id": "DIVER",
+      "label": "Taucher",
+      "ages": ["TEENAGER", "YOUNG_ADULT"],
+      "pack": "ISLAND_LIVING",
+      "type": "PART_TIME"
+    },
+    {
+      "id": "FISHERMAN",
+      "label": "Fischer",
+      "ages": ["TEENAGER", "YOUNG_ADULT"],
+      "pack": "ISLAND_LIVING",
+      "type": "PART_TIME"
+    },
+    {
+      "id": "SCOUT",
+      "label": "Pfadfinder",
+      "ages": ["CHILD", "TEENAGER"],
+      "pack": "SEASONS",
+      "type": "CLUB"
+    },
+    {
+      "id": "DRAMA_CLUB",
+      "label": "Drama-Club",
+      "ages": ["CHILD", "TEENAGER"],
+      "pack": "GET_FAMOUS",
+      "type": "CLUB"
+    }
+  ]
+  

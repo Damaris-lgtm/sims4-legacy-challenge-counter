@@ -1,0 +1,393 @@
+[
+    {
+      "id": "BODYBUILDER",
+      "label": "Bodybuilder",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "ATHLETIC"
+    },
+    {
+      "id": "EXTREME_SPORTS_ENTHUSIAST",
+      "label": "Extreme Sports Enthusiast",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "SNOWY_ESCAPE",
+      "category": "ATHLETIC"
+    },
+    {
+      "id": "CHAMPIONSHIP_RIDER",
+      "label": "Championship Rider",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "HORSE_RANCH",
+      "category": "ATHLETIC"
+    },
+    {
+      "id": "PAINTER_EXTRAORDINAIRE",
+      "label": "Painter Extraordinaire",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "CREATIVITY"
+    },
+    {
+      "id": "MUSICAL_GENIUS",
+      "label": "Musical Genius",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "CREATIVITY"
+    },
+    {
+      "id": "BESTSELLING_AUTHOR",
+      "label": "Bestselling Author",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "CREATIVITY"
+    },
+    {
+      "id": "MASTER_ACTOR",
+      "label": "Master Actor/Actress",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "GET_FAMOUS",
+      "category": "CREATIVITY"
+    },
+    {
+      "id": "LORD_OF_THE_KNITS",
+      "label": "Lord/Lady of the Knits",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "NIFTY_KNITTING",
+      "category": "CREATIVITY"
+    },
+    {
+      "id": "MASTER_MAKER",
+      "label": "Master Maker",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "ECO_LIFESTYLE",
+      "category": "CREATIVITY"
+    },
+    {
+      "id": "CREATIVE_GENIUS",
+      "label": "Creative Genius",
+      "ages": ["CHILD"],
+      "pack": "GROWING_TOGETHER",
+      "category": "CREATIVITY"
+    },
+    {
+      "id": "SOULMATE",
+      "label": "Soulmate",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "LOVE"
+    },
+    {
+      "id": "SERIAL_ROMANTIC",
+      "label": "Serial Romantic",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "LOVE"
+    },
+    {
+      "id": "VILLAINOUS_VALENTINE",
+      "label": "Villainous Valentine",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "DEVIANCE"
+    },
+    {
+      "id": "CHIEF_OF_MISCHIEF",
+      "label": "Chief of Mischief",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "DEVIANCE"
+    },
+    {
+      "id": "PUBLIC_ENEMY",
+      "label": "Public Enemy",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "DEVIANCE"
+    },
+    {
+      "id": "SEEKER_OF_SECRETS",
+      "label": "Seeker of Secrets",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "FOR_RENT",
+      "category": "DEVIANCE"
+    },
+    {
+      "id": "SUCCESSFUL_LINEAGE",
+      "label": "Successful Lineage",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "FAMILY"
+    },
+    {
+      "id": "BIG_HAPPY_FAMILY",
+      "label": "Big Happy Family",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "FAMILY"
+    },
+    {
+      "id": "SUPER_PARENT",
+      "label": "Super Parent",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "PARENTHOOD",
+      "category": "FAMILY"
+    },
+    {
+      "id": "MASTER_CHEF",
+      "label": "Master Chef",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "FOOD"
+    },
+    {
+      "id": "MASTER_MIXOLOGIST",
+      "label": "Master Mixologist",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "FOOD"
+    },
+    {
+      "id": "GRILLED_CHEESE",
+      "label": "Grilled Cheese",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "FOOD"
+    },
+    {
+      "id": "EXPERT_NECTAR_MAKER",
+      "label": "Expert Nectar Maker",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "HORSE_RANCH",
+      "category": "FOOD"
+    },
+    {
+      "id": "FIVE_STAR_PROPERTY_OWNER",
+      "label": "Five-Star Property Owner",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "FOR_RENT",
+      "category": "WEALTH"
+    },
+    {
+      "id": "FABULOUSLY_WEALTHY",
+      "label": "Fabulously Wealthy",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "WEALTH"
+    },
+    {
+      "id": "MANSION_BARON",
+      "label": "Mansion Baron",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "WEALTH"
+    },
+    {
+      "id": "COMPUTER_WHIZ",
+      "label": "Computer Whiz",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "KNOWLEDGE"
+    },
+    {
+      "id": "NERD_BRAIN",
+      "label": "Nerd Brain",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "KNOWLEDGE"
+    },
+    {
+      "id": "RENAISSANCE_SIM",
+      "label": "Renaissance Sim",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "BASE_GAME",
+      "category": "KNOWLEDGE"
+    },
+    {
+      "id": "ACADEMIC",
+      "label": "Academic",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "DISCOVER_UNIVERSITY",
+      "category": "KNOWLEDGE"
+    },
+    {
+      "id": "SPELLCRAFT_AND_SORCERY",
+      "label": "Spellcraft & Sorcery",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "REALM_OF_MAGIC",
+      "category": "OCCULT"
+    },
+    {
+      "id": "MASTER_VAMPIRE",
+      "label": "Master Vampire",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "VAMPIRES",
+      "category": "OCCULT"
+    },
+    {
+      "id": "GOOD_VAMPIRE",
+      "label": "Good Vampire",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "VAMPIRES",
+      "category": "OCCULT"
+    },
+    {
+      "id": "EMISSARY_OF_THE_COLLECTIVE",
+      "label": "Emissary of the Collective",
+      "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+      "pack": "WEREWOLVES",
+      "category": "OCCULT"
+    },
+
+        {
+          "id": "EMISSARY_OF_THE_COLLECTIVE",
+          "label": "Emissary of the Collective",
+          "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "WEREWOLVES",
+          "category": "OCCULT"
+        },
+        {
+          "id": "WILDFANG_RENEGADE",
+          "label": "Wildfang Renegade",
+          "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "WEREWOLVES",
+          "category": "OCCULT"
+        },
+        {
+          "id": "LONE_WOLF",
+          "label": "Lone Wolf",
+          "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "WEREWOLVES",
+          "category": "OCCULT"
+        },
+        {
+          "id": "CURE_SEEKER",
+          "label": "Cure Seeker",
+          "ages": ["TEENAGER", "YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "WEREWOLVES",
+          "category": "OCCULT"
+        },
+        {
+          "id": "GOOD_ASTRONAUT",
+          "label": "Hope vs. Order – Hopebringer",
+          "ages": ["CHILD"],
+          "pack": "STAR_WARS",
+          "category": "LOCATION"
+        },
+        {
+          "id": "ORDER_DEFENDER",
+          "label": "Hope vs. Order – Enforcer",
+          "ages": ["CHILD"],
+          "pack": "STAR_WARS",
+          "category": "LOCATION"
+        },
+        {
+          "id": "GALACTIC_PRIVATEER",
+          "label": "Galactic Privateer",
+          "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "STAR_WARS",
+          "category": "LOCATION"
+        },
+        {
+          "id": "PURITY_SEEKER",
+          "label": "Zen Guru",
+          "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "SNOWY_ESCAPE",
+          "category": "LOCATION"
+        },
+        {
+          "id": "MT_KOMOREBI_SIGHTSEER",
+          "label": "Mt. Komorebi Sightseer",
+          "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "SNOWY_ESCAPE",
+          "category": "LOCATION"
+        },
+        {
+          "id": "JUNGLE_EXPLORER",
+          "label": "Jungle Explorer",
+          "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "JUNGLE_ADVENTURE",
+          "category": "LOCATION"
+        },
+        {
+          "id": "BEACH_LIFE",
+          "label": "Beach Life",
+          "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "ISLAND_LIVING",
+          "category": "LOCATION"
+        },
+        {
+          "id": "INNER_PEACE",
+          "label": "Inner Peace",
+          "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "SNOWY_ESCAPE",
+          "category": "LOCATION"
+        },
+        {
+          "id": "ZEN_GURU",
+          "label": "Zen Guru",
+          "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "SNOWY_ESCAPE",
+          "category": "LOCATION"
+        },
+        {
+          "id": "GOOFBALL",
+          "label": "Goofy – Childhood Aspiration",
+          "ages": ["CHILD"],
+          "pack": "BASE_GAME",
+          "category": "SOCIAL"
+        },
+        {
+          "id": "CREATIVE_GENIUS_CHILD",
+          "label": "Creative Genius – Childhood Aspiration",
+          "ages": ["CHILD"],
+          "pack": "GROWING_TOGETHER",
+          "category": "CREATIVITY"
+        },
+        {
+          "id": "MIND_AND_BODY",
+          "label": "Mind and Body",
+          "ages": ["YOUNG_ADULT", "ADULT", "ELDER"],
+          "pack": "GROWING_TOGETHER",
+          "category": "KNOWLEDGE"
+        },
+        {
+          "id": "SLUMBER_PARTY_ANIMAL",
+          "label": "Slumber Party Animal",
+          "ages": ["CHILD"],
+          "pack": "GROWING_TOGETHER",
+          "category": "SOCIAL"
+        }
+      ,
+        {
+          "id": "ADMIRED_ICON",
+          "label": "Admired Icon",
+          "ages": ["TEENAGER"],
+          "pack": "HIGH_SCHOOL_YEARS",
+          "category": "TEEN"
+        },
+        {
+          "id": "GOAL_ORIENTED",
+          "label": "Goal Oriented",
+          "ages": ["TEENAGER"],
+          "pack": "HIGH_SCHOOL_YEARS",
+          "category": "TEEN"
+        },
+        {
+          "id": "LIVE_FAST",
+          "label": "Live Fast",
+          "ages": ["TEENAGER"],
+          "pack": "HIGH_SCHOOL_YEARS",
+          "category": "TEEN"
+        },
+        {
+          "id": "RELATIONSHIP_ORIENTED",
+          "label": "Drama Llama",
+          "ages": ["TEENAGER"],
+          "pack": "HIGH_SCHOOL_YEARS",
+          "category": "TEEN"
+        }
+      ]
+      
+      
+   
+        
