@@ -7,8 +7,8 @@ export interface DataSave {
 }
 export interface GenerationData {
     founder: string,
-    spouse?: string[],
-    children?: string[],
+    spouse: string[],
+    children: string[],
     heir?: string,
 }
 
@@ -17,7 +17,7 @@ export interface SimData {
     name: string;
     maidenName?: string;
     traits: Trait[];
-    aspirations: Aspiration
+    aspirations: Aspiration[]
     skills: Skill[];
     carrier: Carrier[];
     medals: Medal[];

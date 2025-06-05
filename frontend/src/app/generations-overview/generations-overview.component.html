@@ -1,9 +1,35 @@
-@for(generation of generations; track $index){
+<input matInput placeholder="Name" [formControl]="formName" />
+
+@for(generation of generations(); track $index){
     <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title> Generation {{$index}} - {{generation.founder.name}} </mat-panel-title>
+          <mat-panel-title> Generation {{$index}} - {{generation.founder?.name}} </mat-panel-title>
           </mat-expansion-panel-header>
-        <p>This is the primary content of the panel.</p>
+          @for(spouse of generation.spouse; track spouse?.id) {
+  spouse {{spouse?.name}}
+            <ng-container *ngTemplateOutlet="simTile; context: {simData: spouse}"></ng-container>
+          }
+          @for(child of generation.children; track child?.id) {
+  child {{child?.name}}
+            <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
+            
+                      }
+          <button mat-raised-button color="primary" (click)="addSpouse($index)">Add Spouse</button>
+          <button mat-raised-button color="primary" (click)="addChild($index)">Add Child</button>
       </mat-expansion-panel>
 }
+@if(generations().length === 0) {
+  <button mat-raised-button color="primary" (click)="addGeneration()">Add Generation</button>
+}
+
+<ng-template #simTile let-simData="simData">
+  <div class="person">
+    <span>{{simData.name}}</span>
+    <button mat-icon-button (click)="editSim(simData)">
+        edit
+    </button>
+  
+  </div>
+</ng-template>
+
 
