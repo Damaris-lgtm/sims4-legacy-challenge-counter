@@ -19,7 +19,10 @@ type DetailGenaration =  {
   styleUrl: './generations-overview.component.scss'
 })
 export class GenerationsOverviewComponent {
+  //TODO create signal store and save in local storage
+  //TODO create option to delete save, create new save, load save
   protected data = signal<DataSave>({
+    id:'base',
     generations: [],
     sims: [],
     customData: {}
