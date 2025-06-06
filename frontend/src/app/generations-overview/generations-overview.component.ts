@@ -12,11 +12,10 @@ type DetailGenaration =  {
 }
 
 @Component({
-  selector: 'app-generations-overview',
-  standalone: true,
-  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule],
-  templateUrl: './generations-overview.component.html',
-  styleUrl: './generations-overview.component.scss'
+    selector: 'app-generations-overview',
+    imports: [MatExpansionModule, ReactiveFormsModule, CommonModule],
+    templateUrl: './generations-overview.component.html',
+    styleUrl: './generations-overview.component.scss'
 })
 export class GenerationsOverviewComponent {
   //TODO create signal store and save in local storage
