@@ -5,6 +5,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataStore } from '../../store/data.store';
 import { SimsViewComponent } from '../sims-view/sims-view.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 type DetailGenaration = {
   founder?: SimData;
@@ -15,7 +17,7 @@ type DetailGenaration = {
 
 @Component({
   selector: 'app-generations-overview',
-  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule, SimsViewComponent],
+  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule, SimsViewComponent, MatButtonModule, MatIconModule],
   templateUrl: './generations-overview.component.html',
   styleUrl: './generations-overview.component.scss'
 })

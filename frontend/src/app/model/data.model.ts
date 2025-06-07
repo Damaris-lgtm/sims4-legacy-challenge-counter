@@ -81,7 +81,8 @@ export enum AspirationCategory {
     DEVIANCE = 'DEVIANCE',
     OCCULT = 'OCCULT',
     ECOLOGY = 'ECOLOGY',
-    LIFESTYLE = 'LIFESTYLE'
+    LIFESTYLE = 'LIFESTYLE',
+    SOCIAL = 'SOCIAL'
   }
 
 export enum Age {
