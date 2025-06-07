@@ -1,4 +1,4 @@
-[
+export const SKILLS = [
     {
       "id": "CHARISMA",
       "label": "Charisma",

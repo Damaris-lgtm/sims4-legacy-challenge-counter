@@ -1,4 +1,4 @@
-[
+export const ASPIRATIONS = [
     {
       "id": "BODYBUILDER",
       "label": "Bodybuilder",

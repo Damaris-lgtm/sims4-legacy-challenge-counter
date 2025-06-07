@@ -1,4 +1,4 @@
-[
+export const CARRIERS = [
     {
       "id": "ASTRONAUT",
       "label": "Astronaut",

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { GenerationsOverviewComponent } from './generations-overview/generations-overview.component';
+import { GenerationsOverviewComponent } from './components/generations-overview/generations-overview.component';
 
 @Component({
     selector: 'app-root',

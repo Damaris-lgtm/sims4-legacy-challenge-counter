@@ -1,4 +1,4 @@
-[
+export const TRAITS = [
     {
       "id": "ACTIVE",
       "label": "Active",
