@@ -1,25 +1,29 @@
-<h1>{{sim().name}}</h1>
-<input matInput placeholder="Name" [(value)]="sim().name" (valueChange)="saveSim()"/>
-    <h2>Traits</h2>
-    <div class="traits">
-      @for(trait of sim().traits; track trait.id) {
-      <div class="trait">
-        <span>{{trait.label}}</span>
-        <button type="button" mat-button (click)="deleteTrait(trait)">
-          delete
-        </button>
-      </div>
-      }
-      <mat-form-field>
-        <mat-label>Select an option</mat-label>
-        <mat-select [formControl]="formTrait">
-          @for(trait of TRAITS; track trait.id) {
-            <mat-option [value]="trait">{{trait.label}}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-      <button type="button" mat-button (click)="addTrait()">
-        add
-      </button>
-
-    </div>
+<mat-form-field>
+  <mat-label>Name</mat-label>
+  <input matInput placeholder="Name" [(ngModel)]="sim().name" (ngModelChange)="saveSim()" />
+</mat-form-field>
+<div class="sim-details">
+  <div>
+    <mat-form-field>
+      <mat-label>Traits</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Trait selection">
+        @for (trait of sim().traits; track trait.id) {
+        <mat-chip-row (removed)="deleteTrait(trait)">
+          {{trait.label}}
+          <button matChipRemove [attr.aria-label]="'remove ' + trait.label">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        }
+      </mat-chip-grid>
+      <input name="currentTrait" placeholder="New Trait..." #traitInput [(ngModel)]="currentTrait"
+        [matChipInputFor]="chipGrid" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addTraitInput($event); traitInput.value = ''" />
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTrait($event); traitInput.value = ''">
+        @for (trait of TRAITS; track trait.id) {
+        <mat-option [value]="trait.id">{{trait.label}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+</div>

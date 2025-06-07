@@ -5,6 +5,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataStore } from '../../store/data.store';
 import { SimsViewComponent } from '../sims-view/sims-view.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 type DetailGenaration = {
   founder?: SimData;
@@ -15,7 +17,7 @@ type DetailGenaration = {
 
 @Component({
   selector: 'app-generations-overview',
-  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule, SimsViewComponent],
+  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule, SimsViewComponent, MatButtonModule, MatIconModule],
   templateUrl: './generations-overview.component.html',
   styleUrl: './generations-overview.component.scss'
 })
@@ -56,14 +58,6 @@ export class GenerationsOverviewComponent {
       generations
     });
   };
-  private updateSims(sims: SimData[]): void {
-    this.store.updateData({
-      id: this.store.id(),
-      sims: sims,
-      customData: this.store.customData(),
-      generations: this.store.generations()
-    });
-  };
 
   constructor() {
     this.store.loadData();
@@ -78,7 +72,7 @@ export class GenerationsOverviewComponent {
     this.formName.reset();
   }
   addSim(id?: string, name?: string): string {
-    const simId = this.getNameFromInput(id);
+    const simId = id || crypto.randomUUID();
     if (!!this.sims().find(sim => sim.id === simId)) {
       return simId; // Sim already exists, return its ID
     }
@@ -91,7 +85,7 @@ export class GenerationsOverviewComponent {
       carrier: [],
       medals: []
     };
-    this.updateSims([...this.sims(), newSim]);
+    this.store.updateSim(newSim);
     return simId;
   }
 
@@ -112,8 +106,5 @@ export class GenerationsOverviewComponent {
 
   editSim(simdata: SimData) {
     this.simToEdit.set(simdata);
-
   }
-
-
 }

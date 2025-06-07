@@ -43,6 +43,7 @@ export const DataStore = signalStore(
             }
             localStorage.setItem(storageKey, JSON.stringify(dataList));
         },
+
         updateSim(sim: SimData) {
             const sims = store.sims();
             const existingIndex = sims.findIndex(s => s.id === sim.id);

@@ -1,50 +1,49 @@
-@if(simToEdit()){
-<app-sims-view [sim]="simToEdit()!"></app-sims-view>
+<div class="content">
+  @if(simToEdit()){
+  <app-sims-view [sim]="simToEdit()!"></app-sims-view>
   }
   <div>
     @for(generation of generations(); track $index){
     <div class="generation">
       <h2>Generation {{$index}} - {{generation.founder?.name}}</h2>
-      <div class="parents" style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="parents">
         <ng-container *ngTemplateOutlet="simTile; context: {simData: generation.founder}"></ng-container>
         @for(spouse of generation.spouse; track spouse?.id) {
-        
-
         <ng-container *ngTemplateOutlet="simTile; context: {simData: spouse}"></ng-container>
         }
-        <button type="button" mat-raised-button color="primary" (click)="addSpouse($index)">Add Spouse</button>
-
+        <button type="button" mat-icon-button color="primary" (click)="addSpouse($index)">
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
-      <div class="children" style="display: flex; flex-direction: column; gap: 10px;">
-        <h3>Children</h3>
+
+      <div class="children">
         @for(child of generation.children; track child?.id) {
-          @if(generation.heir === child?.id) {
-          <div style="background-color: lightcoral;">
-            <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
-          </div>
-          }
-          @else {
-            <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
-          }
-        
+        @if(generation.heir === child?.id) {
+        <div style="background-color: lightcoral;">
+          <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
+        </div>
         }
-        <button type="button" color="primary" (click)="addChild($index)">Add Child</button>
+        @else {
+        <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
+        }
+
+        }
+        <button mat-icon-button type="button" color="primary" (click)="addChild($index)">
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
 
     </div>
     }
+    @if(generations().length === 0) {
+    <button type="button" mat-button color="primary" (click)="addGeneration()">Add Generation</button>
+    }
   </div>
 
-  @if(generations().length === 0) {
-  <button type="button" mat-raised-button color="primary" (click)="addGeneration()">Add Generation</button>
-  }
+</div>
+<ng-template #simTile let-simData="simData">
+  <button type="button" mat-button color="primary" [attr.aria-label]="'Edit '+ simData.name" (click)="editSim(simData)">
+    {{simData.name ?? simData.id}}
+  </button>
 
-  <ng-template #simTile let-simData="simData">
-    <div class="person">
-      <span>{{simData.name}}</span>
-      <button type="button" mat-icon-button (click)="editSim(simData)">
-        edit
-      </button>
-
-    </div>
-  </ng-template>
+</ng-template>
