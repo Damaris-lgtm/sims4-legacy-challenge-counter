@@ -1,5 +1,13 @@
-<h1>{{sim().name}}</h1>
-<input matInput placeholder="Name" [(value)]="sim().name" (valueChange)="saveSim()"/>
+<form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" formControlName="name"/>
+  </mat-form-field>
+  <button type="button" mat-button color="primary" (click)="saveSim()">
+    Save
+  </button>
+</form>
+
     <h2>Traits</h2>
     <div class="traits">
       @for(trait of sim().traits; track trait.id) {
