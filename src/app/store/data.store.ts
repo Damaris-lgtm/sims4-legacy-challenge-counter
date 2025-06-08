@@ -32,6 +32,8 @@ export const DataStore = signalStore(
             this.updateLocalStorage();
         },
         updateLocalStorage() {
+            console.log('update storage');
+            
             const storeData = {id: store.id(), generations: store.generations(), sims: store.sims(), customData: store.customData()};
             const currentData = localStorage.getItem(storageKey);
             const dataList = currentData ? JSON.parse(currentData) as DataSave[] : [];
@@ -39,7 +41,7 @@ export const DataStore = signalStore(
             if (existingIndex !== -1) {
                 dataList[existingIndex] = storeData;
             } else {
-                dataList.push();
+                dataList.push(storeData);
             }
             localStorage.setItem(storageKey, JSON.stringify(dataList));
         },
