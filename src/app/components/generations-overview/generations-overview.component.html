@@ -3,21 +3,21 @@
   <app-sims-view [sim]="simToEdit()!"></app-sims-view>
   }
   <div>
-    @for(generation of generations(); track $index){
+    @for(generation of generations(); track generation.founder.id){
     <div class="generation">
-      <h2>Generation {{$index}} - {{generation.founder?.name}}</h2>
+      <h2>{{$index}} - {{generation.founder.name}}</h2>
       <div class="parents">
         <ng-container *ngTemplateOutlet="simTile; context: {simData: generation.founder}"></ng-container>
-        @for(spouse of generation.spouse; track spouse?.id) {
+        @for(spouse of generation.spouse; track spouse.id) {
         <ng-container *ngTemplateOutlet="simTile; context: {simData: spouse}"></ng-container>
         }
-        <button type="button" mat-icon-button color="primary" (click)="addSpouse($index)">
+        <button type="button" mat-icon-button color="primary" (click)="addSpouse(generation)">
           <mat-icon>add</mat-icon>
         </button>
       </div>
 
       <div class="children">
-        @for(child of generation.children; track child?.id) {
+        @for(child of generation.children; track child.id) {
         @if(generation.heir === child?.id) {
         <div style="background-color: lightcoral;">
           <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
@@ -25,10 +25,13 @@
         }
         @else {
         <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
+        <button mat-icon-button type="button" color="primary" (click)="markHeir(generation, child.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
         }
 
         }
-        <button mat-icon-button type="button" color="primary" (click)="addChild($index)">
+        <button mat-icon-button type="button" color="primary" (click)="addChild(generation)">
           <mat-icon>add</mat-icon>
         </button>
       </div>

@@ -9,9 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 type DetailGenaration = {
-  founder?: SimData;
-  spouse: (SimData | undefined)[];
-  children: (SimData | undefined)[];
+  founder: SimData;
+  spouse: SimData[];
+  children: SimData[];
   heir?: string;
 }
 
@@ -28,9 +28,11 @@ export class GenerationsOverviewComponent {
   protected sims = computed(() => this.store.sims());
   protected generations: Signal<DetailGenaration[]> = computed(() => this.store.generations().map(gen => ({
 
-    founder: this.sims().find(sim => sim.id === gen.founder),
-    spouse: gen.spouse?.map(spouseId => this.sims().find(sim => sim.id === spouseId)),
-    children: gen.children?.map(childId => this.sims().find(sim => sim.id === childId)),
+    founder: this.sims().find(sim => sim.id === gen.founder)!,
+    spouse: gen.spouse?.map(spouseId => this.sims().find(sim => sim.id === spouseId))
+      .filter((spouse): spouse is SimData => spouse !== undefined) ?? [],
+    children: gen.children?.map(childId => this.sims().find(sim => sim.id === childId))
+      .filter((child): child is SimData => child !== undefined) ?? [],
     heir: gen.heir
   }))
   );
@@ -89,22 +91,48 @@ export class GenerationsOverviewComponent {
     return simId;
   }
 
-  addSpouse(generationIndex: number, id?: string) {
+  addSpouse(generation: DetailGenaration, id?: string) {
     const simId = this.addSim();
-
+    
     const generations = [...this.store.generations()];
+    const generationIndex = generations.findIndex(gen => gen.founder === generation.founder.id);
+
     generations[generationIndex].spouse.push(simId);
     this.updateGenerations(generations);
   }
 
-  addChild(generationIndex: number, id?: string) {
+  addChild(generation: DetailGenaration, id?: string) {
     const simId = this.addSim();
     const generations = [...this.store.generations()];
-    generations[generationIndex].children?.push(simId);
+    const generationIndex = generations.findIndex(gen => gen.founder === generation.founder.id);
+    generations[generationIndex].children.push(simId);
     this.updateGenerations(generations);
   }
 
   editSim(simdata: SimData) {
     this.simToEdit.set(simdata);
+  }
+
+  markHeir(generation: DetailGenaration, simId: string) {
+    const generations = [...this.store.generations()];
+
+    const genIndex = generations.findIndex(gen => gen.founder === generation.founder?.id);
+    if (genIndex !== -1) {
+      generations[genIndex].heir = simId;
+    }
+    
+    if (genIndex === generations.length - 1) {
+      // If this is the last generation, add a new generation for the heir
+      const newGeneration: GenerationData = {
+        founder: simId,
+        spouse: [],
+        children: []
+      };
+      this.updateGenerations([...generations, newGeneration]);
+    } else {
+      // Otherwise, just update the existing generation
+      generations[genIndex + 1].founder = simId;
+      this.updateGenerations(generations);
+    }
   }
 }
