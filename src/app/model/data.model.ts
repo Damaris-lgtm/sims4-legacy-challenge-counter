@@ -1,40 +1,38 @@
-export interface CustomAchievement {
+export interface CustomAchievement extends Achievement {
+    description?: string
+    achievementType?: AchievementType,
+    [key: string]: any; // Allows for additional properties
+}
+
+export enum AchievementType {
+    TRAIT = 'TRAIT',
+    ASPIRATION = 'ASPIRATION',
+    SKILL = 'SKILL',
+    CARRIER = 'CARRIER',
+    MEDAL = 'MEDAL'
+}
+export interface Achievement {
     id: string;
     label: string;
     ages?: Age [],
     pack?: ORIGIN,
-    description?: string
 }
 
-export interface Trait {
-    id: string;
-    label: string;
-    ages: Age [],
-    pack: ORIGIN,
+export interface Trait extends Achievement {
     type: TraitType
 }
 
-export interface Aspiration {
-    id: string;
-    label: string;
-    ages: Age [],
-    pack: ORIGIN,
+export interface Aspiration extends Achievement{
     category: AspirationCategory,
     completed?: boolean
 }
 
-export interface Skill {
-    id: string;
-    label: string;
-    ages: Age [],
-    pack: ORIGIN,
+export interface Skill extends Achievement {
+    level?: number,
+    maxLevel: number
 }
 
-export interface Carrier{
-    id: string;
-    label: string;
-    ages: Age [],
-    pack: ORIGIN,
+export interface Carrier extends Achievement {
     type: CarrierType
 }
 
