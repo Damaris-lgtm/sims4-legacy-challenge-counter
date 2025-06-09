@@ -52,14 +52,14 @@ export class AchievementSelectionComponent<T extends Achievement> {
   }
 
   addAchievement(achievementId: string): void {
-    if (this.allowMultiple() || !this.currentAchievements().find(a => a.id === achievementId)) {
-      const achievement = (this.allAchievements().find(a => a.id === achievementId)) ?? this.getNewCustomAchievement(achievementId);
+    const achievement = (this.allAchievements().find(a => a.id === achievementId)) ?? this.getNewCustomAchievement(achievementId);
 
-      if (achievement) {
-        this.achievementChanged.emit([...this.currentAchievements(), {
-          ...achievement, elementId: crypto.randomUUID()
-        }]);
-      }
+    if (this.allowMultiple() || !this.currentAchievements().find(a => a.id === achievement.id)) {
+      this.achievementChanged.emit([...this.currentAchievements(), {
+        ...achievement, elementId: crypto.randomUUID()
+      }]);
+    } else {
+      alert(`${this.label()} with id ${achievementId} already exists in the current ${this.label()}s.`);
     }
   }
   private getNewCustomAchievement(label: string): T {
