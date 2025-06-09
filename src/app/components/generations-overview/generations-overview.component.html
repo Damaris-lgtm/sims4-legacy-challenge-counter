@@ -47,7 +47,7 @@
 </div>
 <ng-template #simTile let-simData="simData">
   <button type="button" mat-button color="primary" [attr.aria-label]="'Edit '+ simData.name" (click)="editSim(simData)">
-    {{simData.name ?? simData.id}}
+    {{simData.name || simData.id}}
   </button>
 
 </ng-template>

@@ -80,7 +80,7 @@ export class GenerationsOverviewComponent {
     }
     const newSim: SimData = {
       id: simId,
-      name: name || simId,
+      name: name ?? '',
       traits: [],
       aspirations: [],
       skills: [],
