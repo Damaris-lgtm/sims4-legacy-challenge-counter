@@ -1,14 +1,29 @@
-<mat-form-field>
-  <mat-label>Name</mat-label>
-  <input matInput placeholder="Name" [(ngModel)]="sim().name" (ngModelChange)="saveSim()" />
-</mat-form-field>
-<button mat-icon-button color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
-<div class="sim-details">
-  <div>
+<div class="sims-view">
+  <div class="row">
+    <div class="col">
+  <mat-form-field >
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" [(ngModel)]="sim().name" (ngModelChange)="saveSim()" />
+   <button mat-icon-button matSuffix color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
+  </mat-form-field>
+ </div>  
+</div>
+  <div class="row">
     <app-achievement-selection
-      [label]="'Traits'"
-      [currentAchievements]="sim().traits"
-      [allAchievements]="traits()"
-      (achievementChanged)="changeTraits($event)"/>
+    class="col"
+    [label]="'Traits'"
+    [currentAchievements]="sim().traits"
+    [allAchievements]="traits()"
+    (achievementChanged)="changeTraits($event)"
+    />
+
+    <app-achievement-selection
+    class="col"
+    [label]="'Skills'"
+    [currentAchievements]="sim().skills"
+    [allAchievements]="skills()"
+    (achievementChanged)="changeSkills($event)"
+    />
+
   </div>
 </div>
