@@ -13,6 +13,7 @@ export enum AchievementType {
 }
 export interface Achievement {
     id: string;
+    elementId?: string;
     label: string;
     ages?: Age [],
     pack?: ORIGIN,
@@ -38,7 +39,7 @@ export interface Carrier extends Achievement {
     level?: number
 }
 
-export type ORIGIN = 'BASE_GAME' | Expansion_Pack | Game_Pack| Stuff_Pack | Kit | string;
+export type ORIGIN = 'BASE_GAME' | Expansion_Pack | Game_Pack| Stuff_Pack | Kit | 'CUSTOM' | string;
 
 export enum CarrierType {
     FULL_TIME = 'FULL_TIME',
@@ -47,16 +48,14 @@ export enum CarrierType {
     FREELANCER = 'FREELANCER',
     CLUB = 'CLUB',
 }
-export interface Medal {
-    type: string;
-    score: MedalScore
+export interface Medal extends Achievement{
+    score?: MedalScore
 }
 
 export enum MedalScore {
-    Bronze = 1,
-    Silver,
-    Gold
-
+    Bronze = 'BRONZE',
+    Silver = 'SILVER',
+    Gold = 'GOLD'
 }
   
 export enum TraitType {
