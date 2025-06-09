@@ -2,7 +2,7 @@
  <mat-form-field>
       <mat-label>{{label()}}</mat-label>
       <mat-chip-grid #chipGrid [attr.aria-label]="label() + ' selection'">
-        @for (achievement of currentAchievements(); track achievement.id) {
+        @for (achievement of currentAchievements(); track achievement.elementId) {
         <mat-chip-row (removed)="deleteAchievement(achievement)">
           {{achievement.label}}
           <button matChipRemove [attr.aria-label]="'remove ' + achievement.label">

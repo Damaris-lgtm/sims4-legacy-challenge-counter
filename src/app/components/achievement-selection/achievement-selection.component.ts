@@ -1,12 +1,13 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Achievement } from '../../model/data.model';
+import { Achievement, AchievementType, AspirationCategory, CustomAchievement, TraitType } from '../../model/data.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { DataStore } from '../../store/data.store';
 
 @Component({
   selector: 'app-achievement-selection',
@@ -16,24 +17,26 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 })
 export class AchievementSelectionComponent<T extends Achievement> {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  readonly store = inject(DataStore);
 
   readonly label = input.required<string>();
   readonly currentAchievements = input.required<T[]>();
   readonly allAchievements = input.required<T[]>();
+  readonly achievementType = input.required<AchievementType>();
+  readonly allowMultiple = input(false);
   readonly achievementChanged = output<T[]>();
 
   searchTerm = signal<string>('');
 
   readonly allFilteredAchievements = computed(() => {
     const searchTerm = this.searchTerm().toLowerCase();
-    console.log('Filtering achievements with search term:', searchTerm);
     return this.allAchievements()
-    .filter(achievement => {
-      return !this.currentAchievements().some(a => a.id === achievement.id);
-    })
-    .filter(achievement =>
-      achievement.label.toLowerCase().includes(searchTerm)
-    );
+      .filter(achievement => {
+        return !this.currentAchievements().some(a => a.id === achievement.id);
+      })
+      .filter(achievement =>
+        achievement.label.toLowerCase().includes(searchTerm)
+      );
   });
 
   selectAchievement(event: MatAutocompleteSelectedEvent): void {
@@ -49,15 +52,39 @@ export class AchievementSelectionComponent<T extends Achievement> {
   }
 
   addAchievement(achievementId: string): void {
-    if (!this.currentAchievements().find(a => a.id === achievementId)) {
-      const achievement = this.allAchievements().find(a => a.id === achievementId);
+    if (this.allowMultiple() || !this.currentAchievements().find(a => a.id === achievementId)) {
+      const achievement = (this.allAchievements().find(a => a.id === achievementId)) ?? this.getNewCustomAchievement(achievementId);
+
       if (achievement) {
-        this.achievementChanged.emit([...this.currentAchievements(), achievement]);
+        this.achievementChanged.emit([...this.currentAchievements(), {
+          ...achievement, elementId: crypto.randomUUID()
+        }]);
       }
     }
   }
+  private getNewCustomAchievement(label: string): T {
+    const newAchievement: CustomAchievement = {
+      id: label.toLocaleUpperCase().replace(' ', '_'),
+      label: label,
+      pack: 'CUSTOM',
+      achievementType: this.achievementType()
+    }
+    switch (this.achievementType()) {
+      case AchievementType.TRAIT:
+        newAchievement['type'] = TraitType.BASE;
+        break;
+      case AchievementType.SKILL:
+      case AchievementType.CARRIER:
+        newAchievement['maxLevel'] = 10;
+        break;
+      case AchievementType.ASPIRATION:
+        newAchievement['category'] = AspirationCategory.ATHLETIC;
+        break;
+    }
+    return this.store.addCustomAchievement(newAchievement, this.achievementType()) as T;
+  }
 
   deleteAchievement(achievement: T): void {
-    this.achievementChanged.emit(this.currentAchievements().filter(a => a.id !== achievement.id));
+    this.achievementChanged.emit(this.currentAchievements().filter(a => a.elementId !== achievement.elementId));
   }
 }

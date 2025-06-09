@@ -1,43 +1,28 @@
 <div class="sims-view">
   <div class="row">
     <div class="col">
-  <mat-form-field >
-    <mat-label>Name</mat-label>
-    <input matInput placeholder="Name" [(ngModel)]="sim().name" (ngModelChange)="saveSim()" />
-   <button mat-icon-button matSuffix color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
-  </mat-form-field>
- </div>  
-</div>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" [(ngModel)]="sim().name" (ngModelChange)="saveSim()" />
+        <button mat-icon-button matSuffix color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
+      </mat-form-field>
+    </div>
+  </div>
   <div class="row">
-    <app-achievement-selection
-    class="col"
-    [label]="'Traits'"
-    [currentAchievements]="sim().traits"
-    [allAchievements]="traits()"
-    (achievementChanged)="changeTraits($event)"
-    />
-
-    <app-achievement-selection
-    class="col"
-    [label]="'Skills'"
-    [currentAchievements]="sim().skills"
-    [allAchievements]="skills()"
-    (achievementChanged)="changeSkills($event)"
-    />
-    <app-achievement-selection
-    class="col"
-    [label]="'Aspiration'"
-    [currentAchievements]="sim().aspirations"
-    [allAchievements]="aspirations()"
-    (achievementChanged)="changeAspirations($event)"
-    />
-    <app-achievement-selection
-    class="col"
-    [label]="'Carrier'"
-    [currentAchievements]="sim().carrier"
-    [allAchievements]="carriers()"
-    (achievementChanged)="changeCarriers($event)"
-    />
-
+    <app-achievement-selection class="col" [label]="'Traits'" [currentAchievements]="sim().traits"
+      [allAchievements]="traits()" [achievementType]="AchievementType.TRAIT"
+      (achievementChanged)="changeTraits($event)" />
+    <app-achievement-selection class="col" [label]="'Skills'" [currentAchievements]="sim().skills"
+      [allAchievements]="skills()" [achievementType]="AchievementType.SKILL"
+      (achievementChanged)="changeSkills($event)" />
+    <app-achievement-selection class="col" [label]="'Aspiration'" [currentAchievements]="sim().aspirations"
+      [allAchievements]="aspirations()" [achievementType]="AchievementType.ASPIRATION"
+      (achievementChanged)="changeAspirations($event)" />
+    <app-achievement-selection class="col" [label]="'Carrier'" [currentAchievements]="sim().carrier"
+      [allAchievements]="carriers()" [achievementType]="AchievementType.CARRIER"
+      (achievementChanged)="changeCarriers($event)" />
+    <app-achievement-selection class="col" [label]="'Medal'" [currentAchievements]="sim().medals" [allowMultiple]="true"
+      [allAchievements]="medals()" [achievementType]="AchievementType.MEDAL"
+      (achievementChanged)="changeMedals($event)" />
   </div>
 </div>
