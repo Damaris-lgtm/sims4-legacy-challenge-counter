@@ -5,26 +5,10 @@
 <button mat-icon-button color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
 <div class="sim-details">
   <div>
-    <mat-form-field>
-      <mat-label>Traits</mat-label>
-      <mat-chip-grid #chipGrid aria-label="Trait selection">
-        @for (trait of sim().traits; track trait.id) {
-        <mat-chip-row (removed)="deleteTrait(trait)">
-          {{trait.label}}
-          <button matChipRemove [attr.aria-label]="'remove ' + trait.label">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-        }
-      </mat-chip-grid>
-      <input name="currentTrait" placeholder="New Trait..." #traitInput [(ngModel)]="currentTrait"
-        [matChipInputFor]="chipGrid" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="addTraitInput($event); traitInput.value = ''" />
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectTrait($event); traitInput.value = ''">
-        @for (trait of TRAITS; track trait.id) {
-        <mat-option [value]="trait.id">{{trait.label}}</mat-option>
-        }
-      </mat-autocomplete>
-    </mat-form-field>
+    <app-achievement-selection
+      [label]="'Traits'"
+      [currentAchievements]="sim().traits"
+      [allAchievements]="traits()"
+      (achievementChanged)="changeTraits($event)"/>
   </div>
 </div>
