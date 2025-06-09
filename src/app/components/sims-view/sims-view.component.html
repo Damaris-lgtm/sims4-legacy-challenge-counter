@@ -2,6 +2,7 @@
   <mat-label>Name</mat-label>
   <input matInput placeholder="Name" [(ngModel)]="sim().name" (ngModelChange)="saveSim()" />
 </mat-form-field>
+<button mat-icon-button color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
 <div class="sim-details">
   <div>
     <mat-form-field>

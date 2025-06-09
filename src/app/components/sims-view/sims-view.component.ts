@@ -32,6 +32,10 @@ export class SimsViewComponent {
   saveSim() {
     this.store.updateSim(this.sim());
   }
+
+  deleteSim() {
+    this.store.deleteSim(this.sim());
+  }
   deleteTrait(trait: Trait) {
     this.sim().traits = this.sim().traits.filter(t => t !== trait);
     this.saveSim();

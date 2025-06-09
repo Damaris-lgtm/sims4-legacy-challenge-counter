@@ -1,5 +1,6 @@
 <div class="content">
-  @if(simToEdit()){
+  @if(simToEdit() && sims().includes(simToEdit()!)) {
+  
   <app-sims-view [sim]="simToEdit()!"></app-sims-view>
   }
   <div>

@@ -56,6 +56,32 @@ export const DataStore = signalStore(
             }
             patchState(store, { sims });
             this.updateLocalStorage();
+        },
+        deleteSim(sim: SimData) {
+            let generations = store.generations();
+            const founderGeneration = generations.find(generation => generation.founder === sim.id);
+            if( (founderGeneration?.children.length ?? 0) > 0 || (founderGeneration?.spouse.length ?? 0) > 0 || founderGeneration?.heir) {
+                // Cannot delete a sim that is a founder of a generation that includes other sims
+                console.warn('Cannot delete sim that is a founder of a generation');
+                //TODO show a warning to the user
+                alert('Cannot delete sim that is a founder of a generation with other sims. Please remove other sims from the generation first.');
+                return;
+            }
+            if(founderGeneration) {
+                // Remove the founder generation
+                generations = generations.filter(g => g !== founderGeneration);
+                generations.filter(g => g.heir === sim.id).forEach(g => {
+                    g.heir = undefined; // Clear heir if it was the sim being deleted    
+                });
+            }
+
+            generations.forEach(generation => {
+                generation.spouse = generation.spouse.filter(s => s !== sim.id);
+                generation.children = generation.children.filter(c => c !== sim.id);
+            });
+             const sims = store.sims().filter(s => s.id !== sim.id);
+            patchState(store, { sims, generations });
+            this.updateLocalStorage();
         }
     }))
  );
