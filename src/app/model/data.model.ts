@@ -33,7 +33,9 @@ export interface Skill extends Achievement {
 }
 
 export interface Carrier extends Achievement {
-    type: CarrierType
+    type: CarrierType,
+    maxLevel: number,
+    level?: number
 }
 
 export type ORIGIN = 'BASE_GAME' | Expansion_Pack | Game_Pack| Stuff_Pack | Kit | string;

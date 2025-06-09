@@ -24,6 +24,20 @@
     [allAchievements]="skills()"
     (achievementChanged)="changeSkills($event)"
     />
+    <app-achievement-selection
+    class="col"
+    [label]="'Aspiration'"
+    [currentAchievements]="sim().aspirations"
+    [allAchievements]="aspirations()"
+    (achievementChanged)="changeAspirations($event)"
+    />
+    <app-achievement-selection
+    class="col"
+    [label]="'Carrier'"
+    [currentAchievements]="sim().carrier"
+    [allAchievements]="carriers()"
+    (achievementChanged)="changeCarriers($event)"
+    />
 
   </div>
 </div>
