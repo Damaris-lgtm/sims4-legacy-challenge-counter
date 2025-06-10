@@ -5,18 +5,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Achievement, AchievementType, AspirationCategory, CustomAchievement, TraitType } from '../../model/data.model';
+import { Achievement, AchievementType, Aspiration, AspirationCategory, CustomAchievement, TraitType } from '../../model/data.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { DataStore } from '../../store/data.store';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-achievement-selection',
-  imports: [FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule],
+  imports: [FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule],
   templateUrl: './achievement-selection.component.html',
   styleUrl: './achievement-selection.component.scss'
 })
 export class AchievementSelectionComponent<T extends Achievement> {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  protected readonly AchievementType = AchievementType;
   readonly store = inject(DataStore);
 
   readonly label = input.required<string>();
@@ -86,5 +88,15 @@ export class AchievementSelectionComponent<T extends Achievement> {
 
   deleteAchievement(achievement: T): void {
     this.achievementChanged.emit(this.currentAchievements().filter(a => a.elementId !== achievement.elementId));
+  }
+
+  toggleCompleted(achievement: T): void {
+    if (achievement.achievementType === AchievementType.ASPIRATION) {
+      const aspiration = achievement as unknown as Aspiration;
+      aspiration['completed'] = !aspiration['completed'];
+      this.achievementChanged.emit([...this.currentAchievements()]);
+    } else {
+      console.warn('Toggle completed is only applicable for aspirations.');
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Carrier, Age, CarrierType } from "./data.model";
+import { Carrier, Age, CarrierType, AchievementType } from "./data.model";
 
 export const CARRIERS: Carrier[] = [
     {
@@ -7,6 +7,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -15,6 +16,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -23,6 +25,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -31,6 +34,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -39,6 +43,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -47,6 +52,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -55,6 +61,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -63,6 +70,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -71,6 +79,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -79,6 +88,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FULL_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -87,6 +97,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_TO_WORK",
       "type": CarrierType.ACTIVE,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -95,6 +106,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_TO_WORK",
       "type": CarrierType.ACTIVE,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -103,6 +115,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_TO_WORK",
       "type": CarrierType.ACTIVE,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -111,6 +124,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_FAMOUS",
       "type": CarrierType.ACTIVE,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -119,6 +133,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "DREAM_HOME_DECORATOR",
       "type": CarrierType.ACTIVE,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -127,6 +142,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FREELANCER,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -135,6 +151,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FREELANCER,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -143,6 +160,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
       "type": CarrierType.FREELANCER,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -151,6 +169,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "MOSCHINO",
       "type": CarrierType.FREELANCER,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -159,6 +178,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "ECO_LIFESTYLE",
       "type": CarrierType.FREELANCER,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -167,6 +187,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "PARANORMAL",
       "type": CarrierType.FREELANCER,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -175,6 +196,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT],
       "pack": "BASE_GAME",
       "type": CarrierType.PART_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -183,6 +205,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT],
       "pack": "BASE_GAME",
       "type": CarrierType.PART_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -191,6 +214,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT],
       "pack": "BASE_GAME",
       "type": CarrierType.PART_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -199,6 +223,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT],
       "pack": "BASE_GAME",
       "type": CarrierType.PART_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -207,6 +232,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT],
       "pack": "BASE_GAME",
       "type": CarrierType.PART_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -215,6 +241,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT],
       "pack": "ISLAND_LIVING",
       "type": CarrierType.PART_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -223,6 +250,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT],
       "pack": "ISLAND_LIVING",
       "type": CarrierType.PART_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -231,6 +259,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT],
       "pack": "ISLAND_LIVING",
       "type": CarrierType.PART_TIME,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -239,6 +268,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.CHILD, Age.TEENAGER],
       "pack": "SEASONS",
       "type": CarrierType.CLUB,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     },
     {
@@ -247,6 +277,7 @@ export const CARRIERS: Carrier[] = [
       "ages": [Age.CHILD, Age.TEENAGER],
       "pack": "GET_FAMOUS",
       "type": CarrierType.CLUB,
+      achievementType: AchievementType.CARRIER,
       maxLevel: 10
     }
   ]

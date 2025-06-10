@@ -1,7 +1,5 @@
 export interface CustomAchievement extends Achievement {
-    description?: string
-    achievementType?: AchievementType,
-    [key: string]: any; // Allows for additional properties
+    description?: string;
 }
 
 export enum AchievementType {
@@ -13,27 +11,33 @@ export enum AchievementType {
 }
 export interface Achievement {
     id: string;
+    achievementType?: AchievementType,
     elementId?: string;
     label: string;
     ages?: Age [],
     pack?: ORIGIN,
+    [key: string]: any; // Allows for additional properties
 }
 
 export interface Trait extends Achievement {
-    type: TraitType
+    type: TraitType,
+    achievementType: AchievementType.TRAIT,
 }
 
 export interface Aspiration extends Achievement{
+    achievementType: AchievementType.ASPIRATION,
     category: AspirationCategory,
     completed?: boolean
 }
 
 export interface Skill extends Achievement {
+    achievementType: AchievementType.SKILL,
     level?: number,
     maxLevel: number
 }
 
 export interface Carrier extends Achievement {
+    achievementType: AchievementType.CARRIER,
     type: CarrierType,
     maxLevel: number,
     level?: number
@@ -49,6 +53,7 @@ export enum CarrierType {
     CLUB = 'CLUB',
 }
 export interface Medal extends Achievement{
+    achievementType: AchievementType.MEDAL,
     score?: MedalScore
 }
 
@@ -81,7 +86,8 @@ export enum AspirationCategory {
     OCCULT = 'OCCULT',
     ECOLOGY = 'ECOLOGY',
     LIFESTYLE = 'LIFESTYLE',
-    SOCIAL = 'SOCIAL'
+    SOCIAL = 'SOCIAL',
+    CUSTOM = 'CUSTOM'
   }
 
 export enum Age {

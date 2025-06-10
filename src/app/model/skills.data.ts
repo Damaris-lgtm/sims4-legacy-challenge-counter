@@ -1,4 +1,4 @@
-import { Skill, Age } from "./data.model";
+import { Skill, Age, AchievementType } from "./data.model";
 
 export const SKILLS: Skill[] = [
     {
@@ -6,6 +6,7 @@ export const SKILLS: Skill[] = [
       "label": "Charisma",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -13,6 +14,7 @@ export const SKILLS: Skill[] = [
       "label": "Comedy",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -20,6 +22,7 @@ export const SKILLS: Skill[] = [
       "label": "Cooking",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -27,6 +30,7 @@ export const SKILLS: Skill[] = [
       "label": "Fishing",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -34,6 +38,7 @@ export const SKILLS: Skill[] = [
       "label": "Fitness",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -41,6 +46,7 @@ export const SKILLS: Skill[] = [
       "label": "Gardening",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -48,6 +54,7 @@ export const SKILLS: Skill[] = [
       "label": "Gourmet Cooking",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -55,6 +62,7 @@ export const SKILLS: Skill[] = [
       "label": "Guitar",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -62,6 +70,7 @@ export const SKILLS: Skill[] = [
       "label": "Handiness",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -69,6 +78,7 @@ export const SKILLS: Skill[] = [
       "label": "Logic",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -76,6 +86,7 @@ export const SKILLS: Skill[] = [
       "label": "Mischief",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -83,6 +94,7 @@ export const SKILLS: Skill[] = [
       "label": "Mixology",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -90,6 +102,7 @@ export const SKILLS: Skill[] = [
       "label": "Painting",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -97,6 +110,7 @@ export const SKILLS: Skill[] = [
       "label": "Piano",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -104,6 +118,7 @@ export const SKILLS: Skill[] = [
       "label": "Photography",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -111,6 +126,7 @@ export const SKILLS: Skill[] = [
       "label": "Programming",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -118,6 +134,7 @@ export const SKILLS: Skill[] = [
       "label": "Rocket Science",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -125,6 +142,7 @@ export const SKILLS: Skill[] = [
       "label": "Video Gaming",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -132,6 +150,7 @@ export const SKILLS: Skill[] = [
       "label": "Violin",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -139,6 +158,7 @@ export const SKILLS: Skill[] = [
       "label": "Writing",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -146,6 +166,7 @@ export const SKILLS: Skill[] = [
       "label": "Communication",
       "ages": [Age.TODDLER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -153,6 +174,7 @@ export const SKILLS: Skill[] = [
       "label": "Imagination",
       "ages": [Age.TODDLER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -160,6 +182,7 @@ export const SKILLS: Skill[] = [
       "label": "Movement",
       "ages": [Age.TODDLER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -167,6 +190,7 @@ export const SKILLS: Skill[] = [
       "label": "Potty",
       "ages": [Age.TODDLER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 3
     },
     {
@@ -174,6 +198,7 @@ export const SKILLS: Skill[] = [
       "label": "Thinking",
       "ages": [Age.TODDLER],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -181,6 +206,7 @@ export const SKILLS: Skill[] = [
       "label": "Creativity",
       "ages": [Age.CHILD],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -188,6 +214,7 @@ export const SKILLS: Skill[] = [
       "label": "Mental",
       "ages": [Age.CHILD],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -195,6 +222,7 @@ export const SKILLS: Skill[] = [
       "label": "Motor",
       "ages": [Age.CHILD],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -202,6 +230,7 @@ export const SKILLS: Skill[] = [
       "label": "Social",
       "ages": [Age.CHILD],
       "pack": "BASE_GAME",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -209,6 +238,7 @@ export const SKILLS: Skill[] = [
       "label": "Herbalism",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "OUTDOOR_RETREAT",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -216,6 +246,7 @@ export const SKILLS: Skill[] = [
       "label": "Baking",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_TO_WORK",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -223,6 +254,7 @@ export const SKILLS: Skill[] = [
       "label": "Wellness",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "SPA_DAY",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -230,6 +262,7 @@ export const SKILLS: Skill[] = [
       "label": "Dancing",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_TOGETHER",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -237,6 +270,7 @@ export const SKILLS: Skill[] = [
       "label": "DJ Mixing",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_TOGETHER",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -244,6 +278,7 @@ export const SKILLS: Skill[] = [
       "label": "Singing",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "CITY_LIVING",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -251,6 +286,7 @@ export const SKILLS: Skill[] = [
       "label": "Pipe Organ",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "VAMPIRES",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -258,6 +294,7 @@ export const SKILLS: Skill[] = [
       "label": "Vampire Lore",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "VAMPIRES",
+      achievementType: AchievementType.SKILL,
       maxLevel: 15
     },
     {
@@ -265,6 +302,7 @@ export const SKILLS: Skill[] = [
       "label": "Bowling",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BOWLING_NIGHT",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -272,6 +310,7 @@ export const SKILLS: Skill[] = [
       "label": "Parenting",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "PARENTHOOD",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -279,6 +318,7 @@ export const SKILLS: Skill[] = [
       "label": "Pet Training",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "CATS_AND_DOGS",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -286,6 +326,7 @@ export const SKILLS: Skill[] = [
       "label": "Veterinarian",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "CATS_AND_DOGS",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -293,6 +334,7 @@ export const SKILLS: Skill[] = [
       "label": "Archaeology",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "JUNGLE_ADVENTURE",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -300,6 +342,7 @@ export const SKILLS: Skill[] = [
       "label": "Selvadoradian Culture",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "JUNGLE_ADVENTURE",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -307,6 +350,7 @@ export const SKILLS: Skill[] = [
       "label": "Flower Arranging",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "SEASONS",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -314,6 +358,7 @@ export const SKILLS: Skill[] = [
       "label": "Acting",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_FAMOUS",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -321,6 +366,7 @@ export const SKILLS: Skill[] = [
       "label": "Media Production",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GET_FAMOUS",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -328,6 +374,7 @@ export const SKILLS: Skill[] = [
       "label": "Research & Debate",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "DISCOVER_UNIVERSITY",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -335,6 +382,7 @@ export const SKILLS: Skill[] = [
       "label": "Robotics",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "DISCOVER_UNIVERSITY",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -342,6 +390,7 @@ export const SKILLS: Skill[] = [
       "label": "Fabrication",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "ECO_LIFESTYLE",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -349,6 +398,7 @@ export const SKILLS: Skill[] = [
       "label": "Juice Fizzing",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "ECO_LIFESTYLE",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -356,6 +406,7 @@ export const SKILLS: Skill[] = [
       "label": "Knitting",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "NIFTY_KNITTING",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -363,6 +414,7 @@ export const SKILLS: Skill[] = [
       "label": "Rock Climbing",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "SNOWY_ESCAPE",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -370,6 +422,7 @@ export const SKILLS: Skill[] = [
       "label": "Skiing",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "SNOWY_ESCAPE",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -377,6 +430,7 @@ export const SKILLS: Skill[] = [
       "label": "Snowboarding",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "SNOWY_ESCAPE",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -384,6 +438,7 @@ export const SKILLS: Skill[] = [
       "label": "Medium",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "PARANORMAL",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     },
     {
@@ -391,6 +446,7 @@ export const SKILLS: Skill[] = [
       "label": "Cross-stitch",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "COTTAGE_LIVING",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -398,6 +454,7 @@ export const SKILLS: Skill[] = [
       "label": "Tattooing",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BUSINESSES_AND_HOBBIES",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -405,6 +462,7 @@ export const SKILLS: Skill[] = [
       "label": "Pottery",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "BUSINESSES_AND_HOBBIES",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -412,6 +470,7 @@ export const SKILLS: Skill[] = [
       "label": "Riding",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "HORSE_RANCH",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -419,6 +478,7 @@ export const SKILLS: Skill[] = [
       "label": "Gemology",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "CRYSTAL_CREATIONS",
+      achievementType: AchievementType.SKILL,
       maxLevel: 10
     },
     {
@@ -426,6 +486,7 @@ export const SKILLS: Skill[] = [
       "label": "Entrepreneur",
       "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "HIGH_SCHOOL_YEARS",
+      achievementType: AchievementType.SKILL,
       maxLevel: 5
     }
 ];
