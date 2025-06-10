@@ -1,3 +1,21 @@
-.fit-content {
-    width: fit-content;
+@use '@angular/material' as mat;
+
+.chip-row {
+    height: fit-content;
+    padding: 0.5rem;
+}
+
+.achievement-chip {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sm-slider {
+    height: 1.75rem;
+    @include mat.slider-overrides((
+        handle-height: 0.75rem,
+        handle-width: 0.75rem
+    ));
+    
 }

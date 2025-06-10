@@ -8,11 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { Achievement, AchievementType, Aspiration, AspirationCategory, CustomAchievement, TraitType } from '../../model/data.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { DataStore } from '../../store/data.store';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-achievement-selection',
-  imports: [FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule],
+  imports: [FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule, MatSliderModule],
   templateUrl: './achievement-selection.component.html',
   styleUrl: './achievement-selection.component.scss'
 })
@@ -97,6 +98,17 @@ export class AchievementSelectionComponent<T extends Achievement> {
       this.achievementChanged.emit([...this.currentAchievements()]);
     } else {
       console.warn('Toggle completed is only applicable for aspirations.');
+    }
+  }
+  updateLevel(achievement: T, level: number): void {
+    console.log(achievement, level);
+    
+    if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType === AchievementType.CARRIER) {
+      const updatedAchievement = achievement as unknown as { level?: number, maxLevel: number } & Achievement;
+      updatedAchievement.level = level;
+      this.achievementChanged.emit([...this.currentAchievements()]);
+    } else {
+      console.warn('Update level is only applicable for skills and carriers.');
     }
   }
 }
