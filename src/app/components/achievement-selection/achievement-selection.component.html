@@ -2,15 +2,23 @@
   <mat-label>{{label()}}</mat-label>
   <mat-chip-grid #chipGrid [attr.aria-label]="label() + ' selection'">
     @for (achievement of currentAchievements(); track achievement.elementId) {
-    <mat-chip-row (removed)="deleteAchievement(achievement)" removable="true">
-      {{achievement.label}}
-      @switch(achievement.achievementType) {
-        @case(AchievementType.ASPIRATION) {
-          <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['completed']"
-            (change)="toggleCompleted(achievement)">
-          </mat-slide-toggle>
+    <mat-chip-row (removed)="deleteAchievement(achievement)" removable="true" class="chip-row">
+      <div class="achievement-chip">
+        <span class="align-middle">{{achievement.label}}</span>
+        @if( achievement.achievementType === AchievementType.ASPIRATION) {
+        <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['completed']"
+          (change)="toggleCompleted(achievement)">
+        </mat-slide-toggle>
         }
-      }
+        @if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType ===
+        AchievementType.CARRIER) {
+        <mat-slider class="sm-slider" [attr.aria-label]="'Progress ' + achievement.label" [min]="0" [max]="achievement['maxLevel'] || 10"
+          [step]="1" showTickMarks discrete>
+          <input matSliderThumb  class="sm-slider"[ngModel]="achievement['level']" (ngModelChange)="updateLevel(achievement, $event)" />
+        </mat-slider>
+        }
+      </div>
+
       <button matChipRemove [attr.aria-label]="'remove ' + achievement.label">
         <mat-icon>cancel</mat-icon>
       </button>
