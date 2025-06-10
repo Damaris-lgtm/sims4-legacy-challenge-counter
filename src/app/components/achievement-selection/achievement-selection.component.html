@@ -1,24 +1,30 @@
-
- <mat-form-field>
-      <mat-label>{{label()}}</mat-label>
-      <mat-chip-grid #chipGrid [attr.aria-label]="label() + ' selection'">
-        @for (achievement of currentAchievements(); track achievement.elementId) {
-        <mat-chip-row (removed)="deleteAchievement(achievement)">
-          {{achievement.label}}
-          <button matChipRemove [attr.aria-label]="'remove ' + achievement.label">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
+<mat-form-field style="width: 300px;">
+  <mat-label>{{label()}}</mat-label>
+  <mat-chip-grid #chipGrid [attr.aria-label]="label() + ' selection'">
+    @for (achievement of currentAchievements(); track achievement.elementId) {
+    <mat-chip-row (removed)="deleteAchievement(achievement)" removable="true">
+      {{achievement.label}}
+      @switch(achievement.achievementType) {
+        @case(AchievementType.ASPIRATION) {
+          <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['completed']"
+            (change)="toggleCompleted(achievement)">
+          </mat-slide-toggle>
         }
-      </mat-chip-grid>
+      }
+      <button matChipRemove [attr.aria-label]="'remove ' + achievement.label">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip-row>
+    }
+  </mat-chip-grid>
 
 
-      <input name="currentAchievement" placeholder="New Achievement..." #achievementInput [(ngModel)]="searchTerm"
-        [matChipInputFor]="chipGrid" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="addAchievementInput($event); achievementInput.value = ''" />
-      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectAchievement($event); achievementInput.value = ''">
-        @for (achievement of allFilteredAchievements(); track achievement.id) {
-        <mat-option [value]="achievement.id">{{achievement.label}}</mat-option>
-        }
-      </mat-autocomplete>
-    </mat-form-field>
+  <input name="currentAchievement" placeholder="New Achievement..." #achievementInput [(ngModel)]="searchTerm"
+    [matChipInputFor]="chipGrid" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+    (matChipInputTokenEnd)="addAchievementInput($event); achievementInput.value = ''" />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectAchievement($event); achievementInput.value = ''">
+    @for (achievement of allFilteredAchievements(); track achievement.id) {
+    <mat-option [value]="achievement.id">{{achievement.label}}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>
