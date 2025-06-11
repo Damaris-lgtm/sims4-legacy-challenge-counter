@@ -24,10 +24,20 @@
     <app-achievement-selection class="col" [label]="'Medal'" [currentAchievements]="sim().medals" [allowMultiple]="true"
       [allAchievements]="medals()" [achievementType]="AchievementType.MEDAL"
       (achievementChanged)="changeMedals($event)" />
+      <app-achievement-selection class="col" [label]="'GameAchievements'" [currentAchievements]="sim().gameAchievements || []" [allowMultiple]="true"
+      [allAchievements]="gameAchievements()" [achievementType]="AchievementType.Game"
+      (achievementChanged)="changeGameAchievements($event)" />
+
+
     <app-achievement-selection class="col" [label]="'Death'" [currentAchievements]="sim().deaths || []" [allowMultiple]="true"
       [allAchievements]="deaths()" [achievementType]="AchievementType.DEATH"
       (achievementChanged)="changeDeaths($event)" />
+      <app-achievement-selection class="col" [label]="'Punishments'" [currentAchievements]="sim().punishments || []" [allowMultiple]="true"
+      [allAchievements]="punishments()" [achievementType]="AchievementType.PUNISHMENT"
+      (achievementChanged)="changePunishments($event)" />
 
-    
+    <app-achievement-selection class="col" [label]="'Custom'" [currentAchievements]="sim().customAchievements || []" [allowMultiple]="true"
+      [allAchievements]="customAchievements()" [achievementType]="AchievementType.CUSTOM"
+      (achievementChanged)="changeCustomAchievements($event)" />
   </div>
 </div>

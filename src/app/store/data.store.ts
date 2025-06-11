@@ -1,6 +1,6 @@
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
 import { DataSave, SimData } from "../model/generation.model";
-import { Achievement, AchievementType, CustomAchievement } from "../model/data.model";
+import { Achievement, AchievementType } from "../model/data.model";
 
 const storageKey = 'simsave';
 
@@ -91,7 +91,7 @@ export const DataStore = signalStore(
             this.updateLocalStorage();
             return achievement;
         },
-        updateCustomAchievement(achievement: CustomAchievement){
+        updateCustomAchievement(achievement: Achievement){
              const customData = store.customData();
             const existingIndex = customData.findIndex(d => d.id === achievement.id);
             if (existingIndex !== -1) {

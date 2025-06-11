@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Achievement, AchievementType, Aspiration, AspirationCategory, CustomAchievement, Death, TraitType } from '../../model/data.model';
+import { Achievement, AchievementType, Aspiration, AspirationCategory, Death, TraitType } from '../../model/data.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { DataStore } from '../../store/data.store';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -28,6 +28,7 @@ export class AchievementSelectionComponent<T extends Achievement> {
   readonly allAchievements = input.required<T[]>();
   readonly achievementType = input.required<AchievementType>();
   readonly allowMultiple = input(false);
+  readonly allowNewCustom = input(true);
   readonly achievementChanged = output<T[]>();
 
   searchTerm = signal<string>('');
@@ -36,7 +37,7 @@ export class AchievementSelectionComponent<T extends Achievement> {
     const searchTerm = this.searchTerm().toLowerCase();
     return this.allAchievements()
       .filter(achievement => {
-        return !this.currentAchievements().some(a => a.id === achievement.id);
+        return this.allowMultiple() || !this.currentAchievements().some(a => a.id === achievement.id);
       })
       .filter(achievement =>
         achievement.label.toLowerCase().includes(searchTerm)
@@ -56,8 +57,14 @@ export class AchievementSelectionComponent<T extends Achievement> {
   }
 
   addAchievement(achievementId: string): void {
-    const achievement = (this.allAchievements().find(a => a.id === achievementId)) ?? this.getNewCustomAchievement(achievementId);
-
+    let achievement = (this.allAchievements().find(a => a.id === achievementId));
+    if(!this.allowNewCustom() && !achievement) {
+     return alert(`Achievement with id ${achievementId} does not exist in the current ${this.label()}s.`);
+    }
+    if(!achievement) {
+    achievement = this.getNewCustomAchievement(achievementId);
+    }
+    
     if (this.allowMultiple() || !this.currentAchievements().find(a => a.id === achievement.id)) {
       this.achievementChanged.emit([...this.currentAchievements(), {
         ...achievement, elementId: crypto.randomUUID()
@@ -67,7 +74,7 @@ export class AchievementSelectionComponent<T extends Achievement> {
     }
   }
   private getNewCustomAchievement(label: string): T {
-    const newAchievement: CustomAchievement = {
+    const newAchievement: Achievement = {
       id: label.toLocaleUpperCase().replace(' ', '_'),
       label: label,
       pack: 'CUSTOM',
