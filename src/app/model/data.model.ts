@@ -7,14 +7,16 @@ export enum AchievementType {
     ASPIRATION = 'ASPIRATION',
     SKILL = 'SKILL',
     CARRIER = 'CARRIER',
-    MEDAL = 'MEDAL'
+    MEDAL = 'MEDAL',
+    DEATH = 'DEATH',
+    CUSTOM = 'CUSTOM',
 }
 export interface Achievement {
     id: string;
     achievementType?: AchievementType,
     elementId?: string;
     label: string;
-    ages?: Age [],
+    ages?: Age[],
     pack?: ORIGIN,
     [key: string]: any; // Allows for additional properties
 }
@@ -24,7 +26,7 @@ export interface Trait extends Achievement {
     achievementType: AchievementType.TRAIT,
 }
 
-export interface Aspiration extends Achievement{
+export interface Aspiration extends Achievement {
     achievementType: AchievementType.ASPIRATION,
     category: AspirationCategory,
     completed?: boolean
@@ -43,7 +45,14 @@ export interface Carrier extends Achievement {
     level?: number
 }
 
-export type ORIGIN = 'BASE_GAME' | Expansion_Pack | Game_Pack| Stuff_Pack | Kit | 'CUSTOM' | string;
+export interface Death extends Achievement {
+    achievementType: AchievementType.DEATH,
+    revived?: boolean,
+    ageAtDeath?: Age,
+    ageInNumbers?: number,
+}
+
+export type ORIGIN = 'BASE_GAME' | Expansion_Pack | Game_Pack | Stuff_Pack | Kit | 'CUSTOM' | string;
 
 export enum CarrierType {
     FULL_TIME = 'FULL_TIME',
@@ -52,7 +61,7 @@ export enum CarrierType {
     FREELANCER = 'FREELANCER',
     CLUB = 'CLUB',
 }
-export interface Medal extends Achievement{
+export interface Medal extends Achievement {
     achievementType: AchievementType.MEDAL,
     score?: MedalScore
 }
@@ -62,7 +71,7 @@ export enum MedalScore {
     Silver = 'SILVER',
     Gold = 'GOLD'
 }
-  
+
 export enum TraitType {
     BASE = 'BASE',
     ASPIRATION = 'ASPIRATION',
@@ -88,7 +97,7 @@ export enum AspirationCategory {
     LIFESTYLE = 'LIFESTYLE',
     SOCIAL = 'SOCIAL',
     CUSTOM = 'CUSTOM'
-  }
+}
 
 export enum Age {
     NEWBORN = 'NEWBORN',
@@ -120,9 +129,9 @@ export enum Expansion_Pack {
     LOVESTRUCK = 'LOVESTRUCK',
     LIFE_AND_DEATH = 'LIFE_AND_DEATH',
     BUSINESSES_AND_HOBBIES = 'BUSINESSES_AND_HOBBIES',
-  }
-  
-  export enum Game_Pack {
+}
+
+export enum Game_Pack {
     OUTDOOR_RETREAT = 'OUTDOOR_RETREAT',
     SPA_DAY = 'SPA_DAY',
     DINE_OUT = 'DINE_OUT',
@@ -135,9 +144,9 @@ export enum Expansion_Pack {
     DREAM_HOME_DECORATOR = 'DREAM_HOME_DECORATOR',
     MY_WEDDING_STORIES = 'MY_WEDDING_STORIES',
     WEREWOLVES = 'WEREWOLVES',
-  }
-  
-  export enum Stuff_Pack {
+}
+
+export enum Stuff_Pack {
     LUXURY_PARTY = 'LUXURY_PARTY',
     PERFECT_PATIO = 'PERFECT_PATIO',
     COOL_KITCHEN = 'COOL_KITCHEN',
@@ -158,10 +167,10 @@ export enum Expansion_Pack {
     PARANORMAL = 'PARANORMAL',
     HOME_CHEF_HUSTLE = 'HOME_CHEF_HUSTLE',
     CRYSTAL_CREATIONS = 'CRYSTAL_CREATIONS',
-  }
-  
+}
 
-  export enum Kit {
+
+export enum Kit {
     THROWBACK_FIT = 'THROWBACK_FIT',
     COUNTRY_KITCHEN = 'COUNTRY_KITCHEN',
     BUST_THE_DUST = 'BUST_THE_DUST',
@@ -207,5 +216,4 @@ export enum Expansion_Pack {
     KITCHEN_ACCESSORIES = 'KITCHEN_ACCESSORIES',
     GOLDEN_AGE = 'GOLDEN_AGE',
     DIY_WORKSHOP = 'DIY_WORKSHOP'
-  }
-  
+}

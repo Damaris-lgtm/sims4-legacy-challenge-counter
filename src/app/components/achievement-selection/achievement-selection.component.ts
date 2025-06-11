@@ -5,15 +5,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Achievement, AchievementType, Aspiration, AspirationCategory, CustomAchievement, TraitType } from '../../model/data.model';
+import { Achievement, AchievementType, Aspiration, AspirationCategory, CustomAchievement, Death, TraitType } from '../../model/data.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { DataStore } from '../../store/data.store';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-achievement-selection',
-  imports: [FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule, MatSliderModule],
+  imports: [FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule, MatSliderModule, MatTooltipModule],
   templateUrl: './achievement-selection.component.html',
   styleUrl: './achievement-selection.component.scss'
 })
@@ -100,9 +101,18 @@ export class AchievementSelectionComponent<T extends Achievement> {
       console.warn('Toggle completed is only applicable for aspirations.');
     }
   }
+  toggleRevived(achievement: T): void {
+    if (achievement.achievementType === AchievementType.DEATH) {
+      const death = achievement as unknown as Death;
+      death['revived'] = !death['revived'];
+      this.achievementChanged.emit([...this.currentAchievements()]);
+    } else {
+      console.warn('Toggle revived is only applicable for deaths.');
+    }
+  }
   updateLevel(achievement: T, level: number): void {
     console.log(achievement, level);
-    
+
     if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType === AchievementType.CARRIER) {
       const updatedAchievement = achievement as unknown as { level?: number, maxLevel: number } & Achievement;
       updatedAchievement.level = level;
