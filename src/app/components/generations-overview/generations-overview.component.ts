@@ -91,6 +91,7 @@ export class GenerationsOverviewComponent {
       deaths: [],
       punishments: [],
       gameAchievements: [],
+      collections: [],
       customAchievements: []
     };
     this.store.updateSim(newSim);

@@ -5,20 +5,43 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Achievement, AchievementType, Aspiration, AspirationCategory, Death, TraitType } from '../../model/data.model';
+import { Achievement, AchievementType,MedalScore, Aspiration, AspirationCategory, Death, TraitType } from '../../model/data.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { DataStore } from '../../store/data.store';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-achievement-selection',
-  imports: [FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule, MatSliderModule, MatTooltipModule],
+  imports: [NgClass, FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule, MatSliderModule, MatTooltipModule, MatButtonToggleModule],
   templateUrl: './achievement-selection.component.html',
   styleUrl: './achievement-selection.component.scss'
 })
 export class AchievementSelectionComponent<T extends Achievement> {
+  getBackgroundClass<T extends Achievement>(achievement: T): string|string[]|Set<string>|{ [klass: string]: any; }|null|undefined {
+    switch (achievement['score']) {
+      case MedalScore.GOLD:
+        return 'bg-gold';
+      case MedalScore.SILVER:
+        return 'bg-silver';
+      case MedalScore.BRONZE:
+        return 'bg-bronze';
+    }
+    if( achievement['completed']) {
+      return 'bg-success';
+    }
+    if( achievement['maxLevel'] && achievement['level'] && achievement['level'] >= achievement['maxLevel']) {
+      return 'bg-success';
+    }
+    if( achievement['revived']) {
+      return 'bg-primary';
+    }
+    return 'bg-secondary';
+  }
+
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   protected readonly AchievementType = AchievementType;
   readonly store = inject(DataStore);
@@ -30,6 +53,7 @@ export class AchievementSelectionComponent<T extends Achievement> {
   readonly allowMultiple = input(false);
   readonly allowNewCustom = input(true);
   readonly achievementChanged = output<T[]>();
+  MedalScore = MedalScore;
 
   searchTerm = signal<string>('');
 
@@ -100,12 +124,12 @@ export class AchievementSelectionComponent<T extends Achievement> {
   }
 
   toggleCompleted(achievement: T): void {
-    if (achievement.achievementType === AchievementType.ASPIRATION) {
+    if (achievement.achievementType === AchievementType.ASPIRATION || achievement.achievementType === AchievementType.COLLECTION) {
       const aspiration = achievement as unknown as Aspiration;
       aspiration['completed'] = !aspiration['completed'];
       this.achievementChanged.emit([...this.currentAchievements()]);
     } else {
-      console.warn('Toggle completed is only applicable for aspirations.');
+      console.warn('Toggle completed is only applicable for aspirations and collections.');
     }
   }
   toggleRevived(achievement: T): void {
@@ -118,7 +142,6 @@ export class AchievementSelectionComponent<T extends Achievement> {
     }
   }
   updateLevel(achievement: T, level: number): void {
-    console.log(achievement, level);
 
     if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType === AchievementType.CAREER) {
       const updatedAchievement = achievement as unknown as { level?: number, maxLevel: number } & Achievement;
@@ -128,4 +151,27 @@ export class AchievementSelectionComponent<T extends Achievement> {
       console.warn('Update level is only applicable for skills and carriers.');
     }
   }
+  updateMedalScore<T extends Achievement>(achievement: T, score: MedalScore) {
+    console.log('updateMedalScore', achievement, score);
+  
+    if(achievement.achievementType === AchievementType.MEDAL) {
+      const updatedAchievement = achievement as unknown as { score?: MedalScore } & Achievement;
+      switch (score) {
+        case MedalScore.BRONZE:
+          updatedAchievement.score = MedalScore.BRONZE;
+          break;
+        case MedalScore.SILVER:
+          updatedAchievement.score = MedalScore.SILVER;
+          break;
+        case MedalScore.GOLD:
+          updatedAchievement.score = MedalScore.GOLD;
+          break;
+          default:
+          console.warn('Invalid medal score provided.');
+      }
+      this.achievementChanged.emit([...this.currentAchievements()]);
+    } else {
+      console.warn('Update medal score is only applicable for medals.');
+    }
+}
 }

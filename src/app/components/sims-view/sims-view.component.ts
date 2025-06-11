@@ -3,9 +3,9 @@ import { Component, computed, effect, inject, input, Signal, signal } from '@ang
 import { DataStore } from '../../store/data.store';
 import { SimData } from '../../model/generation.model';
 import { TRAITS } from '../../model/traits.data';
-import { Achievement, AchievementType, Aspiration, Career, Death, GameAchievement, Medal, OccultType, Punishment, Skill, Trait } from '../../model/data.model';
+import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Punishment, Skill, Trait } from '../../model/data.model';
 import { MatInputModule } from '@angular/material/input';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { C, COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
 import { AchievementSelectionComponent } from "../achievement-selection/achievement-selection.component";
 import { SKILLS } from '../../model/skills.data';
@@ -18,6 +18,7 @@ import { PUNISHMENTS } from '../../model/punishments.data';
 import { OCCULTS } from '../../model/occult.data';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { COLLECTIONS } from '../../model/collections.data';
 
 @Component({
   selector: 'app-sims-view',
@@ -83,6 +84,11 @@ export class SimsViewComponent {
       .filter(a => a.achievementType === AchievementType.CUSTOM)
       .map(a => a as Achievement);
   });
+  protected readonly collections: Signal<Collection[]> = computed(() => {
+    return [...COLLECTIONS, ...this.store.customData()
+      .filter(a => a.achievementType === AchievementType.COLLECTION)
+      .map(a => a as Collection)];
+  });
 
   AchievementType = AchievementType;
   saveSim() {
@@ -119,10 +125,17 @@ export class SimsViewComponent {
 
   changeMedals(medals: Medal[]) {
     this.sim().medals = medals;
+  
+    console.log(this.sim().medals);
+    
     this.saveSim();
   }
   changeDeaths(deaths: Death[]) {
     this.sim().deaths = deaths;
+    this.saveSim();
+  }
+  changeCollections(collections: Collection[]) {
+    this.sim().collections = collections;
     this.saveSim();
   }
   changeGameAchievements(gameAchievements: GameAchievement[]) {
