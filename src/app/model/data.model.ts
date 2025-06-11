@@ -7,17 +7,21 @@ export enum AchievementType {
     DEATH = 'DEATH',
     CUSTOM = 'CUSTOM',
     Game = 'GAME',
-    PUNISHMENT = 'PUNISHMENT'
+    PUNISHMENT = 'PUNISHMENT',
+    OCCULT = 'OCCULT',
 }
 export interface Achievement {
     id: string;
     achievementType?: AchievementType,
-    elementId?: string;
-    label: string;
+    elementId?: string,
+    label: string,
     ages?: Age[],
     pack?: ORIGIN,
     description?: string,
     [key: string]: any; // Allows for additional properties
+}
+export interface OccultType extends Achievement {
+    achievementType: AchievementType.OCCULT,
 }
 
 export interface Trait extends Achievement {

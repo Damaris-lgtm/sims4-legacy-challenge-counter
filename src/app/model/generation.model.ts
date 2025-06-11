@@ -1,4 +1,4 @@
-import { Achievement, Aspiration, Career, Death, GameAchievement, Medal, Punishment, Skill, Trait } from "./data.model";
+import { Achievement, Aspiration, Career, Death, GameAchievement, Medal, OccultType, Punishment, Skill, Trait } from "./data.model";
 
 export interface DataSave {
     id: string,
@@ -16,9 +16,9 @@ export interface GenerationData {
 export interface SimData {
     id: string;
     name: string;
-    maidenName?: string;
+    occult?: OccultType[];
     traits: Trait[];
-    aspirations: Aspiration[]
+    aspirations: Aspiration[];
     skills: Skill[];
     careers: Career[];
     medals: Medal[];
