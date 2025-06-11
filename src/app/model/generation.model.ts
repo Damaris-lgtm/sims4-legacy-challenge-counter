@@ -1,10 +1,10 @@
-import { Achievement, Aspiration, Carrier, CustomAchievement, Death, Medal, Skill, Trait } from "./data.model";
+import { Achievement, Aspiration, Carrier, Death, GameAchievement, Medal, Punishment, Skill, Trait } from "./data.model";
 
 export interface DataSave {
     id: string,
     generations: GenerationData[],
     sims: SimData[],
-    customData: CustomAchievement []
+    customData: Achievement[]
 }
 export interface GenerationData {
     founder: string,
@@ -23,6 +23,8 @@ export interface SimData {
     carrier: Carrier[];
     medals: Medal[];
     deaths?: Death[];
-    customAchievements?: string[];
+    punishments?: Punishment[];
+    gameAchievements?: GameAchievement[];
+    customAchievements?: Achievement[];
 }
 

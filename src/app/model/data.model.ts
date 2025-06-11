@@ -1,7 +1,3 @@
-export interface CustomAchievement extends Achievement {
-    description?: string;
-}
-
 export enum AchievementType {
     TRAIT = 'TRAIT',
     ASPIRATION = 'ASPIRATION',
@@ -10,6 +6,8 @@ export enum AchievementType {
     MEDAL = 'MEDAL',
     DEATH = 'DEATH',
     CUSTOM = 'CUSTOM',
+    Game = 'GAME',
+    PUNISHMENT = 'PUNISHMENT'
 }
 export interface Achievement {
     id: string;
@@ -18,6 +16,7 @@ export interface Achievement {
     label: string;
     ages?: Age[],
     pack?: ORIGIN,
+    description?: string,
     [key: string]: any; // Allows for additional properties
 }
 
@@ -50,6 +49,13 @@ export interface Death extends Achievement {
     revived?: boolean,
     ageAtDeath?: Age,
     ageInNumbers?: number,
+}
+
+export interface GameAchievement extends Achievement {
+    achievementType: AchievementType.Game,
+}
+export interface Punishment extends Achievement {
+    achievementType: AchievementType.PUNISHMENT,
 }
 
 export type ORIGIN = 'BASE_GAME' | Expansion_Pack | Game_Pack | Stuff_Pack | Kit | 'CUSTOM' | string;
