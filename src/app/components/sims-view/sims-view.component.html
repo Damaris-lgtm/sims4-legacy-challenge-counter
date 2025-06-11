@@ -24,5 +24,10 @@
     <app-achievement-selection class="col" [label]="'Medal'" [currentAchievements]="sim().medals" [allowMultiple]="true"
       [allAchievements]="medals()" [achievementType]="AchievementType.MEDAL"
       (achievementChanged)="changeMedals($event)" />
+    <app-achievement-selection class="col" [label]="'Death'" [currentAchievements]="sim().deaths || []" [allowMultiple]="true"
+      [allAchievements]="deaths()" [achievementType]="AchievementType.DEATH"
+      (achievementChanged)="changeDeaths($event)" />
+
+    
   </div>
 </div>

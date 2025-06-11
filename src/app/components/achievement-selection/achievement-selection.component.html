@@ -5,6 +5,11 @@
     <mat-chip-row (removed)="deleteAchievement(achievement)" removable="true" class="chip-row">
       <div class="achievement-chip">
         <span class="align-middle">{{achievement.label}}</span>
+        @if( achievement.achievementType === AchievementType.DEATH) {
+        <mat-slide-toggle matTooltip="revived" [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['revived']"
+          (change)="toggleRevived(achievement)">
+        </mat-slide-toggle>
+        }
         @if( achievement.achievementType === AchievementType.ASPIRATION) {
         <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['completed']"
           (change)="toggleCompleted(achievement)">
@@ -27,7 +32,7 @@
   </mat-chip-grid>
 
 
-  <input name="currentAchievement" placeholder="New Achievement..." #achievementInput [(ngModel)]="searchTerm"
+  <input name="currentAchievement" placeholder="New {{label()}}..." #achievementInput [(ngModel)]="searchTerm"
     [matChipInputFor]="chipGrid" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
     (matChipInputTokenEnd)="addAchievementInput($event); achievementInput.value = ''" />
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectAchievement($event); achievementInput.value = ''">

@@ -5,7 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { DataStore } from '../../store/data.store';
 import { SimData } from '../../model/generation.model';
 import { TRAITS } from '../../model/traits.data';
-import { AchievementType, Aspiration, AspirationCategory, Carrier, CarrierType, CustomAchievement, Medal, Skill, Trait, TraitType } from '../../model/data.model';
+import { AchievementType, Aspiration, AspirationCategory, Carrier, CarrierType, CustomAchievement, Death, Medal, Skill, Trait, TraitType } from '../../model/data.model';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +19,7 @@ import { ASPIRATIONS } from '../../model/aspirations.data';
 import { CARRIERS } from '../../model/carriers.data';
 import { MatTreeModule } from '@angular/material/tree';
 import { MEDALS } from '../../model/medals.data';
+import { DEATHS } from '../../model/death.data';
 
 @Component({
   selector: 'app-sims-view',
@@ -57,6 +58,11 @@ export class SimsViewComponent {
       .filter(a => a.achievementType === AchievementType.MEDAL)
       .map(a => a as Medal)];
   });
+  protected readonly deaths: Signal<Death[]> = computed(() => {
+    return [...DEATHS, ...this.store.customData()
+      .filter(a => a.achievementType === AchievementType.DEATH)
+      .map(a => a as Death)];
+  });
   AchievementType = AchievementType;
 
   saveSim() {
@@ -88,6 +94,10 @@ export class SimsViewComponent {
 
   changeMedals(medals: Medal[]) {
     this.sim().medals = medals;
+    this.saveSim();
+  }
+  changeDeaths(deaths: Death[]) {
+    this.sim().deaths = deaths;
     this.saveSim();
   }
  

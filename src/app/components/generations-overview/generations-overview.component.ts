@@ -85,7 +85,9 @@ export class GenerationsOverviewComponent {
       aspirations: [],
       skills: [],
       carrier: [],
-      medals: []
+      medals: [],
+      deaths: [],
+      customAchievements: []
     };
     this.store.updateSim(newSim);
     return simId;
