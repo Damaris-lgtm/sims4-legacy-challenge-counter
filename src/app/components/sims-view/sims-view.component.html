@@ -18,9 +18,9 @@
     <app-achievement-selection class="col" [label]="'Aspiration'" [currentAchievements]="sim().aspirations"
       [allAchievements]="aspirations()" [achievementType]="AchievementType.ASPIRATION"
       (achievementChanged)="changeAspirations($event)" />
-    <app-achievement-selection class="col" [label]="'Carrier'" [currentAchievements]="sim().carrier"
-      [allAchievements]="carriers()" [achievementType]="AchievementType.CARRIER"
-      (achievementChanged)="changeCarriers($event)" />
+    <app-achievement-selection class="col" [label]="'Career'" [currentAchievements]="sim().careers || []" [allowMultiple]="true"
+      [allAchievements]="careers()" [achievementType]="AchievementType.CAREER"
+      (achievementChanged)="changeCareers($event)" />
     <app-achievement-selection class="col" [label]="'Medal'" [currentAchievements]="sim().medals" [allowMultiple]="true"
       [allAchievements]="medals()" [achievementType]="AchievementType.MEDAL"
       (achievementChanged)="changeMedals($event)" />

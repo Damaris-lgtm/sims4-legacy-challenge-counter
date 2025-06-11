@@ -84,7 +84,7 @@ export class GenerationsOverviewComponent {
       traits: [],
       aspirations: [],
       skills: [],
-      carrier: [],
+      careers: [],
       medals: [],
       deaths: [],
       customAchievements: []

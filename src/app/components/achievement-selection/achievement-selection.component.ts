@@ -64,7 +64,7 @@ export class AchievementSelectionComponent<T extends Achievement> {
     if(!achievement) {
     achievement = this.getNewCustomAchievement(achievementId);
     }
-    
+
     if (this.allowMultiple() || !this.currentAchievements().find(a => a.id === achievement.id)) {
       this.achievementChanged.emit([...this.currentAchievements(), {
         ...achievement, elementId: crypto.randomUUID()
@@ -85,7 +85,7 @@ export class AchievementSelectionComponent<T extends Achievement> {
         newAchievement['type'] = TraitType.BASE;
         break;
       case AchievementType.SKILL:
-      case AchievementType.CARRIER:
+      case AchievementType.CAREER:
         newAchievement['maxLevel'] = 10;
         break;
       case AchievementType.ASPIRATION:
@@ -120,7 +120,7 @@ export class AchievementSelectionComponent<T extends Achievement> {
   updateLevel(achievement: T, level: number): void {
     console.log(achievement, level);
 
-    if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType === AchievementType.CARRIER) {
+    if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType === AchievementType.CAREER) {
       const updatedAchievement = achievement as unknown as { level?: number, maxLevel: number } & Achievement;
       updatedAchievement.level = level;
       this.achievementChanged.emit([...this.currentAchievements()]);

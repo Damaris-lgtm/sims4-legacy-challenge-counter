@@ -3,7 +3,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { DataStore } from '../../store/data.store';
 import { SimData } from '../../model/generation.model';
 import { TRAITS } from '../../model/traits.data';
-import { Achievement, AchievementType, Aspiration, Carrier, Death, GameAchievement, Medal, Punishment, Skill, Trait } from '../../model/data.model';
+import { Achievement, AchievementType, Aspiration, Career, Death, GameAchievement, Medal, Punishment, Skill, Trait } from '../../model/data.model';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { AchievementSelectionComponent } from "../achievement-selection/achievement-selection.component";
 import { SKILLS } from '../../model/skills.data';
 import { ASPIRATIONS } from '../../model/aspirations.data';
-import { CARRIERS } from '../../model/carriers.data';
+import { CAREER } from '../../model/career.data';
 import { MatTreeModule } from '@angular/material/tree';
 import { MEDALS } from '../../model/medals.data';
 import { DEATHS } from '../../model/death.data';
@@ -46,10 +46,10 @@ export class SimsViewComponent {
       .filter(a => a.achievementType === AchievementType.ASPIRATION)
       .map(a => a as Aspiration)];
   });
-  protected readonly carriers: Signal<Carrier[]> = computed(() => {
-    return [...CARRIERS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.CARRIER)
-      .map(a => a as Carrier)];
+  protected readonly careers: Signal<Career[]> = computed(() => {
+    return [...CAREER, ...this.store.customData()
+      .filter(a => a.achievementType === AchievementType.CAREER)
+      .map(a => a as Career)];
   });
   protected readonly medals: Signal<Medal[]> = computed(() => {
     return [...MEDALS, ...this.store.customData()
@@ -101,8 +101,8 @@ export class SimsViewComponent {
     this.sim().aspirations = aspirations;
     this.saveSim();
   }
-  changeCarriers(carriers: Carrier[]) {
-    this.sim().carrier = carriers;
+  changeCareers(careers: Career[]) {
+    this.sim().careers = careers;
     this.saveSim();
   }
 

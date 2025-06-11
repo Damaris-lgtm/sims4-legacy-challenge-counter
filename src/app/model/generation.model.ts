@@ -1,4 +1,4 @@
-import { Achievement, Aspiration, Carrier, Death, GameAchievement, Medal, Punishment, Skill, Trait } from "./data.model";
+import { Achievement, Aspiration, Career, Death, GameAchievement, Medal, Punishment, Skill, Trait } from "./data.model";
 
 export interface DataSave {
     id: string,
@@ -20,7 +20,7 @@ export interface SimData {
     traits: Trait[];
     aspirations: Aspiration[]
     skills: Skill[];
-    carrier: Carrier[];
+    careers: Career[];
     medals: Medal[];
     deaths?: Death[];
     punishments?: Punishment[];

@@ -16,7 +16,7 @@
         </mat-slide-toggle>
         }
         @if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType ===
-        AchievementType.CARRIER) {
+        AchievementType.CAREER) {
         <mat-slider class="sm-slider" [attr.aria-label]="'Progress ' + achievement.label" [min]="0" [max]="achievement['maxLevel'] || 10"
           [step]="1" showTickMarks discrete>
           <input matSliderThumb  class="sm-slider"[ngModel]="achievement['level']" (ngModelChange)="updateLevel(achievement, $event)" />
