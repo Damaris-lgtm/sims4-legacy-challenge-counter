@@ -1,5 +1,12 @@
 @use '@angular/material' as mat;
-
+.accordion-body {
+    width: min(700px, calc(100vw - 2rem));
+    max-width: 100%;
+}
+.accordion-item {
+    width: min(700px, calc(100vw - 2rem));
+    max-width: 100%;
+}
 .chip-row {
     height: fit-content;
     padding: 0.5rem;
