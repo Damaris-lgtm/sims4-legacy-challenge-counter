@@ -2,7 +2,7 @@ export enum AchievementType {
     TRAIT = 'TRAIT',
     ASPIRATION = 'ASPIRATION',
     SKILL = 'SKILL',
-    CARRIER = 'CARRIER',
+    CAREER = 'CAREER',
     MEDAL = 'MEDAL',
     DEATH = 'DEATH',
     CUSTOM = 'CUSTOM',
@@ -37,9 +37,9 @@ export interface Skill extends Achievement {
     maxLevel: number
 }
 
-export interface Carrier extends Achievement {
-    achievementType: AchievementType.CARRIER,
-    type: CarrierType,
+export interface Career extends Achievement {
+    achievementType: AchievementType.CAREER,
+    type: CareerType,
     maxLevel: number,
     level?: number
 }
@@ -60,7 +60,7 @@ export interface Punishment extends Achievement {
 
 export type ORIGIN = 'BASE_GAME' | Expansion_Pack | Game_Pack | Stuff_Pack | Kit | 'CUSTOM' | string;
 
-export enum CarrierType {
+export enum CareerType {
     FULL_TIME = 'FULL_TIME',
     ACTIVE = 'ACTIVE',
     PART_TIME = 'PART_TIME',
