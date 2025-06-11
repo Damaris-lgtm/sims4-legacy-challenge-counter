@@ -1,43 +1,62 @@
-<mat-form-field style="width: 300px;">
-  <mat-label>{{label()}}</mat-label>
-  <mat-chip-grid #chipGrid [attr.aria-label]="label() + ' selection'">
-    @for (achievement of currentAchievements(); track achievement.elementId) {
-    <mat-chip-row (removed)="deleteAchievement(achievement)" removable="true" class="chip-row">
-      <div class="achievement-chip">
-        <span class="align-middle">{{achievement.label}}</span>
-        @if( achievement.achievementType === AchievementType.DEATH) {
-        <mat-slide-toggle matTooltip="revived" [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['revived']"
-          (change)="toggleRevived(achievement)">
-        </mat-slide-toggle>
-        }
-        @if( achievement.achievementType === AchievementType.ASPIRATION) {
-        <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['completed']"
-          (change)="toggleCompleted(achievement)">
-        </mat-slide-toggle>
-        }
-        @if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType ===
-        AchievementType.CAREER) {
-        <mat-slider class="sm-slider" [attr.aria-label]="'Progress ' + achievement.label" [min]="0" [max]="achievement['maxLevel'] || 10"
-          [step]="1" showTickMarks discrete>
-          <input matSliderThumb  class="sm-slider"[ngModel]="achievement['level']" (ngModelChange)="updateLevel(achievement, $event)" />
-        </mat-slider>
-        }
-      </div>
+<div class="accordion-item">
+  <h2 class="accordion-header d-flex">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+      [attr.data-bs-target]="'#collapse' + label()" aria-expanded="false" [attr.aria-controls]="'collapse' + label()">
+      {{label()}}
+      @for (achievement of currentAchievements(); track achievement.elementId) {
+    <span class="badge bg-secondary ms-2">{{achievement.label}}</span>
+   }
+    </button>
+   
+  </h2>
+  
+  <div [id]="'collapse' + label()" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionAchievements'">
 
-      <button matChipRemove [attr.aria-label]="'remove ' + achievement.label">
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </mat-chip-row>
-    }
-  </mat-chip-grid>
+    <mat-form-field class="accordion-body" >
+      <mat-label>{{label()}}</mat-label>
+      <mat-chip-grid #chipGrid [attr.aria-label]="label() + ' selection'">
+        @for (achievement of currentAchievements(); track achievement.elementId) {
+        <mat-chip-row (removed)="deleteAchievement(achievement)" removable="true" class="chip-row">
+          <div class="achievement-chip">
+            <span class="align-middle">{{achievement.label}}</span>
+            @if( achievement.achievementType === AchievementType.DEATH) {
+            <mat-slide-toggle matTooltip="revived" [aria-label]="'Toggle ' + achievement.label"
+              [checked]="achievement['revived']" (change)="toggleRevived(achievement)">
+            </mat-slide-toggle>
+            }
+            @if( achievement.achievementType === AchievementType.ASPIRATION) {
+            <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['completed']"
+              (change)="toggleCompleted(achievement)">
+            </mat-slide-toggle>
+            }
+            @if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType ===
+            AchievementType.CAREER) {
+            <mat-slider class="sm-slider" [attr.aria-label]="'Progress ' + achievement.label" [min]="0"
+              [max]="achievement['maxLevel'] || 10" [step]="1" showTickMarks discrete>
+              <input matSliderThumb class="sm-slider" [ngModel]="achievement['level']"
+                (ngModelChange)="updateLevel(achievement, $event)" />
+            </mat-slider>
+            }
+          </div>
+
+          <button matChipRemove [attr.aria-label]="'remove ' + achievement.label">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        }
+      </mat-chip-grid>
 
 
-  <input name="currentAchievement" placeholder="New {{label()}}..." #achievementInput [(ngModel)]="searchTerm"
-    [matChipInputFor]="chipGrid" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-    (matChipInputTokenEnd)="addAchievementInput($event); achievementInput.value = ''" />
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectAchievement($event); achievementInput.value = ''">
-    @for (achievement of allFilteredAchievements(); track achievement.id) {
-    <mat-option [value]="achievement.id">{{achievement.label}}</mat-option>
-    }
-  </mat-autocomplete>
-</mat-form-field>
+      <input name="currentAchievement" placeholder="New {{label()}}..." #achievementInput [(ngModel)]="searchTerm"
+        [matChipInputFor]="chipGrid" [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addAchievementInput($event); achievementInput.value = ''" />
+      <mat-autocomplete #auto="matAutocomplete"
+        (optionSelected)="selectAchievement($event); achievementInput.value = ''">
+        @for (achievement of allFilteredAchievements(); track achievement.id) {
+        <mat-option [value]="achievement.id">{{achievement.label}}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+
+  </div>
+</div>

@@ -1,18 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AchievmentSelectionComponent } from './achievement-selection.component';
+import { AchievementSelectionComponent } from './achievement-selection.component';
+import { Trait } from '../../model/data.model';
 
-describe('AchievmentSelectionComponent', () => {
-  let component: AchievmentSelectionComponent;
-  let fixture: ComponentFixture<AchievmentSelectionComponent>;
+describe('AchievementSelectionComponent', () => {
+  let component: AchievementSelectionComponent<Trait>;
+  let fixture: ComponentFixture<AchievementSelectionComponent<Trait>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AchievmentSelectionComponent]
+      imports: [AchievementSelectionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AchievmentSelectionComponent);
+    fixture = TestBed.createComponent(AchievementSelectionComponent<Trait>);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
