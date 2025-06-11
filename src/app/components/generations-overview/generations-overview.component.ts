@@ -7,6 +7,7 @@ import { DataStore } from '../../store/data.store';
 import { SimsViewComponent } from '../sims-view/sims-view.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { OCCULTS } from '../../model/occult.data';
 
 type DetailGenaration = {
   founder: SimData;
@@ -81,12 +82,15 @@ export class GenerationsOverviewComponent {
     const newSim: SimData = {
       id: simId,
       name: name ?? '',
+      occult: [OCCULTS[0]],
       traits: [],
       aspirations: [],
       skills: [],
       careers: [],
       medals: [],
       deaths: [],
+      punishments: [],
+      gameAchievements: [],
       customAchievements: []
     };
     this.store.updateSim(newSim);

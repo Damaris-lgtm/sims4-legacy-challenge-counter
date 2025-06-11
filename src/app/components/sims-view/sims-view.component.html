@@ -7,6 +7,10 @@
         <button mat-icon-button matSuffix color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
       </mat-form-field>
     </div>
+    <div class="col">
+      <app-achievement-selection class="col" [label]="'Occult'" [currentAchievements]="sim().occult || []"
+      [allAchievements]="occults()" [achievementType]="AchievementType.OCCULT"
+      (achievementChanged)="changeOccults($event)" />
   </div>
   <div class="row">
     <app-achievement-selection class="col" [label]="'Traits'" [currentAchievements]="sim().traits"
