@@ -9,6 +9,7 @@ export enum AchievementType {
     Game = 'GAME',
     PUNISHMENT = 'PUNISHMENT',
     OCCULT = 'OCCULT',
+    COLLECTION = 'COLLECTION',
 }
 export interface Achievement {
     id: string;
@@ -22,6 +23,12 @@ export interface Achievement {
 }
 export interface OccultType extends Achievement {
     achievementType: AchievementType.OCCULT,
+}
+export interface Collection extends Achievement {
+    achievementType: AchievementType.COLLECTION,
+    maxCount: number,
+    currentCount?: number,
+    completed?: boolean,
 }
 
 export interface Trait extends Achievement {
@@ -62,7 +69,7 @@ export interface Punishment extends Achievement {
     achievementType: AchievementType.PUNISHMENT,
 }
 
-export type ORIGIN = 'BASE_GAME' | Expansion_Pack | Game_Pack | Stuff_Pack | Kit | 'CUSTOM' | string;
+export type ORIGIN = 'BASE_GAME' |'LIMITED_TIME' | Expansion_Pack | Game_Pack | Stuff_Pack | Kit | 'CUSTOM' | string;
 
 export enum CareerType {
     FULL_TIME = 'FULL_TIME',
@@ -77,9 +84,9 @@ export interface Medal extends Achievement {
 }
 
 export enum MedalScore {
-    Bronze = 'BRONZE',
-    Silver = 'SILVER',
-    Gold = 'GOLD'
+    BRONZE = "BRONZE",
+    SILVER = "SILVER",
+    GOLD = "GOLD"
 }
 
 export enum TraitType {

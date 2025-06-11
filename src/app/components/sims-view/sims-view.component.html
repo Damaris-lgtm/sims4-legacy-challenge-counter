@@ -28,6 +28,9 @@
       <app-achievement-selection [label]="'GameAchievements'" [currentAchievements]="sim().gameAchievements || []"
         [allowMultiple]="true" [allAchievements]="gameAchievements()" [achievementType]="AchievementType.Game"
         (achievementChanged)="changeGameAchievements($event)" />
+        <app-achievement-selection [label]="'Collections'" [currentAchievements]="sim().collections || []"
+        [allowMultiple]="true" [allAchievements]="collections()" [achievementType]="AchievementType.COLLECTION"
+        (achievementChanged)="changeCollections($event)" />
       <app-achievement-selection [label]="'Death'" [currentAchievements]="sim().deaths || []"
         [allowMultiple]="true" [allAchievements]="deaths()" [achievementType]="AchievementType.DEATH"
         (achievementChanged)="changeDeaths($event)" />

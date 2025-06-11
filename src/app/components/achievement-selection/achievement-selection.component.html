@@ -4,15 +4,15 @@
       [attr.data-bs-target]="'#collapse' + label()" aria-expanded="false" [attr.aria-controls]="'collapse' + label()">
       {{label()}}
       @for (achievement of currentAchievements(); track achievement.elementId) {
-    <span class="badge bg-secondary ms-2">{{achievement.label}}</span>
-   }
+      <span [ngClass]="getBackgroundClass(achievement)" class="badge ms-2">{{achievement.label}}</span>
+      }
     </button>
-   
+
   </h2>
-  
+
   <div [id]="'collapse' + label()" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionAchievements'">
 
-    <mat-form-field class="accordion-body" >
+    <mat-form-field class="accordion-body">
       <mat-label>{{label()}}</mat-label>
       <mat-chip-grid #chipGrid [attr.aria-label]="label() + ' selection'">
         @for (achievement of currentAchievements(); track achievement.elementId) {
@@ -24,7 +24,8 @@
               [checked]="achievement['revived']" (change)="toggleRevived(achievement)">
             </mat-slide-toggle>
             }
-            @if( achievement.achievementType === AchievementType.ASPIRATION) {
+            @if( achievement.achievementType === AchievementType.ASPIRATION ||achievement.achievementType ===
+            AchievementType.COLLECTION) {
             <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['completed']"
               (change)="toggleCompleted(achievement)">
             </mat-slide-toggle>
@@ -36,6 +37,16 @@
               <input matSliderThumb class="sm-slider" [ngModel]="achievement['level']"
                 (ngModelChange)="updateLevel(achievement, $event)" />
             </mat-slider>
+            }
+
+            @if (achievement.achievementType === AchievementType.MEDAL) {
+            <mat-button-toggle-group appearance="legacy"
+              [attr.aria-label]="'Medal score for ' + achievement.label"
+            (change)="updateMedalScore(achievement, $event.value)">
+              <mat-button-toggle [value]="MedalScore.BRONZE">Bronze</mat-button-toggle>
+              <mat-button-toggle [value]="MedalScore.SILVER">Silver</mat-button-toggle>
+              <mat-button-toggle [value]="MedalScore.GOLD">Gold</mat-button-toggle>
+            </mat-button-toggle-group>
             }
           </div>
 
