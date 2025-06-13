@@ -12,15 +12,16 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { NgClass } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-achievement-selection',
-  imports: [NgClass, FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule, MatSliderModule, MatTooltipModule, MatButtonToggleModule],
+  imports: [NgTemplateOutlet, NgClass, FormsModule, MatAutocompleteModule, MatInputModule, MatButtonModule, MatIconModule, MatChipsModule, MatSlideToggleModule, MatSliderModule, MatTooltipModule, MatButtonToggleModule],
   templateUrl: './achievement-selection.component.html',
   styleUrl: './achievement-selection.component.scss'
 })
 export class AchievementSelectionComponent<T extends Achievement> {
+
   getBackgroundClass<T extends Achievement>(achievement: T): string|string[]|Set<string>|{ [klass: string]: any; }|null|undefined {
     switch (achievement['score']) {
       case MedalScore.GOLD:
@@ -30,10 +31,9 @@ export class AchievementSelectionComponent<T extends Achievement> {
       case MedalScore.BRONZE:
         return 'bg-bronze';
     }
-    if( achievement['completed']) {
-      return 'bg-success';
-    }
-    if( achievement['maxLevel'] && achievement['level'] && achievement['level'] >= achievement['maxLevel']) {
+    if( achievement['completed'] || achievement['like']
+      || (achievement['maxLevel'] && achievement['level'] && achievement['level'] >= achievement['maxLevel'])
+    ) {
       return 'bg-success';
     }
     if( achievement['revived']) {
@@ -123,24 +123,12 @@ export class AchievementSelectionComponent<T extends Achievement> {
     this.achievementChanged.emit(this.currentAchievements().filter(a => a.elementId !== achievement.elementId));
   }
 
-  toggleCompleted(achievement: T): void {
-    if (achievement.achievementType === AchievementType.ASPIRATION || achievement.achievementType === AchievementType.COLLECTION) {
+  toggleSlider(achievement: T, fieldId: string): void {
       const aspiration = achievement as unknown as Aspiration;
-      aspiration['completed'] = !aspiration['completed'];
+      aspiration[fieldId] = !aspiration[fieldId];
       this.achievementChanged.emit([...this.currentAchievements()]);
-    } else {
-      console.warn('Toggle completed is only applicable for aspirations and collections.');
-    }
   }
-  toggleRevived(achievement: T): void {
-    if (achievement.achievementType === AchievementType.DEATH) {
-      const death = achievement as unknown as Death;
-      death['revived'] = !death['revived'];
-      this.achievementChanged.emit([...this.currentAchievements()]);
-    } else {
-      console.warn('Toggle revived is only applicable for deaths.');
-    }
-  }
+
   updateLevel(achievement: T, level: number): void {
 
     if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType === AchievementType.CAREER) {

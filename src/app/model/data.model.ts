@@ -10,6 +10,7 @@ export enum AchievementType {
     PUNISHMENT = 'PUNISHMENT',
     OCCULT = 'OCCULT',
     COLLECTION = 'COLLECTION',
+    PREFERENCE = 'PREFERENCE',
 }
 export interface Achievement {
     id: string;
@@ -88,6 +89,22 @@ export enum MedalScore {
     SILVER = "SILVER",
     GOLD = "GOLD"
 }
+
+export interface Preference extends Achievement {
+    achievementType: AchievementType.PREFERENCE,
+    preferenceType: PreferenceType | string,
+    like?: boolean
+}
+export enum PreferenceType {
+    ACTIVITY = 'ACTIVITY',
+    COLOR = 'COLOR',
+    CONVERSATION_TOPIC = 'CONVERSATION_TOPIC',
+    DECOR= 'DECOR',
+    FASHION = 'FASHION',
+    SIM_CHARACTERISTIC = 'SIM_CHARACTERISTIC',
+    MUSIC = 'MUSIC',
+}
+
 
 export enum TraitType {
     BASE = 'BASE',
