@@ -20,15 +20,14 @@
           <div class="achievement-chip">
             <span class="align-middle">{{achievement.label}}</span>
             @if( achievement.achievementType === AchievementType.DEATH) {
-            <mat-slide-toggle matTooltip="revived" [aria-label]="'Toggle ' + achievement.label"
-              [checked]="achievement['revived']" (change)="toggleRevived(achievement)">
-            </mat-slide-toggle>
+           <ng-container *ngTemplateOutlet="sliderToggle; context: {field: 'revived', achievement: achievement}"></ng-container>
+            }
+            @if( achievement.achievementType === AchievementType.PREFERENCE) {
+           <ng-container *ngTemplateOutlet="sliderToggle; context: {field: 'like', achievement: achievement}"></ng-container>
             }
             @if( achievement.achievementType === AchievementType.ASPIRATION ||achievement.achievementType ===
             AchievementType.COLLECTION) {
-            <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement['completed']"
-              (change)="toggleCompleted(achievement)">
-            </mat-slide-toggle>
+            <ng-container *ngTemplateOutlet="sliderToggle; context: {field: 'completed', achievement: achievement}"></ng-container>
             }
             @if (achievement.achievementType === AchievementType.SKILL || achievement.achievementType ===
             AchievementType.CAREER) {
@@ -71,3 +70,9 @@
 
   </div>
 </div>
+
+<ng-template #sliderToggle let-field="field" let-achievement="achievement">
+  <mat-slide-toggle [aria-label]="'Toggle ' + achievement.label" [checked]="achievement[field]"
+              (change)="toggleSlider(achievement, field)">
+            </mat-slide-toggle>
+</ng-template>

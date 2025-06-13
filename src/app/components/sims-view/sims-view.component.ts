@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, input, Signal, signal } from '@ang
 import { DataStore } from '../../store/data.store';
 import { SimData } from '../../model/generation.model';
 import { TRAITS } from '../../model/traits.data';
-import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Punishment, Skill, Trait } from '../../model/data.model';
+import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Preference, Punishment, Skill, Trait } from '../../model/data.model';
 import { MatInputModule } from '@angular/material/input';
 import { C, COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +19,7 @@ import { OCCULTS } from '../../model/occult.data';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { COLLECTIONS } from '../../model/collections.data';
+import { PREFERENCES } from '../../model/preferences.data';
 
 @Component({
   selector: 'app-sims-view',
@@ -89,8 +90,13 @@ export class SimsViewComponent {
       .filter(a => a.achievementType === AchievementType.COLLECTION)
       .map(a => a as Collection)];
   });
+  protected readonly preferences: Signal<Preference[]> = computed(() => {
+    return [...PREFERENCES, ...this.store.customData()
+      .filter(a => a.achievementType === AchievementType.PREFERENCE)
+      .map(a => a as Preference)];
+  });
 
-  AchievementType = AchievementType;
+  protected readonly AchievementType = AchievementType;
   saveSim() {
     this.store.updateSim(this.sim());
   }
@@ -120,6 +126,10 @@ export class SimsViewComponent {
   }
   changeCareers(careers: Career[]) {
     this.sim().careers = careers;
+    this.saveSim();
+  }
+  changePreferences(preferences: Preference[]) {
+    this.sim().preferences = preferences;
     this.saveSim();
   }
 
