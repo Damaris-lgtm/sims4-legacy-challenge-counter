@@ -1,16 +1,18 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RequirementsStore } from '../../store/requirements.store';
 import { ALL_ACHIEVEMENTS_TEMPLATE } from '../../model/requirements.all.data';
 import { RequirementType } from '../../model/requirements.model';
 import { CountResultsComponent } from "./count-results/count-results.component";
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-results',
-  imports: [CountResultsComponent],
+  imports: [CountResultsComponent, NgClass],
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss'
 })
 export class ResultsComponent {
+
   private store = inject(RequirementsStore);
 
   protected readonly countRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.COUNT));
@@ -18,6 +20,8 @@ export class ResultsComponent {
   protected readonly singleRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.SINGLE));
   protected readonly generationRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.GENERATION));
 
+  protected readonly showOpenRequirements = signal<boolean>(true);
+  protected readonly showCompletedRequirements = signal<boolean>(true);
   createNewRuleSet() {
     // Logic to create a new RuleSet
     const newRuleSet = {
@@ -26,6 +30,11 @@ export class ResultsComponent {
       requirements: [...ALL_ACHIEVEMENTS_TEMPLATE.requirements]
     };
     this.store.updateData(newRuleSet);
+  }
+
+   toggleViewMode(open: boolean, completed: boolean) {
+    this.showOpenRequirements.set(open);
+    this.showCompletedRequirements.set(completed);
   }
 
 }

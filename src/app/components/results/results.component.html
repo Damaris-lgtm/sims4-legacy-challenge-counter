@@ -2,8 +2,13 @@
 
 <button type="button" class="btn btn-primary" (click)="createNewRuleSet()">Add new RuleSet</button>
 }
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary" [ngClass]="{'active': showOpenRequirements() && !showCompletedRequirements()}" (click)="toggleViewMode(true, false)">Open</button>
+  <button type="button" class="btn btn-secondary" [ngClass]="{'active': showOpenRequirements() && showCompletedRequirements()}" (click)="toggleViewMode(true, true)">Both</button>
+  <button type="button" class="btn btn-secondary" [ngClass]="{'active': !showOpenRequirements() && showCompletedRequirements()}" (click)="toggleViewMode(false, true)">Completed</button>
+</div>
 <div class="accordion" id="accordionResults">
     <div class="accordion-item">
-        <app-count-results></app-count-results>
+        <app-count-results [showOpen]="showOpenRequirements()" [showCompleted]="showCompletedRequirements()"></app-count-results>
     </div>
 </div>

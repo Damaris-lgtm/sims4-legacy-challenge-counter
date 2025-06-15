@@ -28,12 +28,14 @@
                         @for(achievement of (allAchievements()| filter:
                         isAchievementTypeMethod(requirement.achievementType)); track
                         $index) {
-
-                        <span class="badge bg-secondary mx-1"
-                            [ngClass]="hasOneAchieved(achievement) ? 'bg-success' : 'bg-secondary'">
+                        @if(showOpen() && !hasOneAchieved(achievement)) {
+                        <span class="badge bg-secondary mx-1">{{ achievement.label }}</span>
+                        }
+                        @else if(showCompleted() && hasOneAchieved(achievement)) {
+                        <span class="badge bg-success mx-1">
                             {{ achievement.label }}
                         </span>
-                        }
+                        }}
                     </div>
                 </div>
             </div>

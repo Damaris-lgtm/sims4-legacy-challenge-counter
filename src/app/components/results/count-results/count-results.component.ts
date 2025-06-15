@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject, input, Signal } from '@angular/core';
 import { RequirementsStore } from '../../../store/requirements.store';
 import { CountRequirement, RequirementType } from '../../../model/requirements.model';
 import { DataStore } from '../../../store/data.store';
@@ -30,6 +30,8 @@ export class CountResultsComponent {
   isCompleted = isCompleted;
   achievementEquals = achievementEquals;
 
+  showOpen = input<boolean>(true);
+  showCompleted = input<boolean>(true);
 
   private store = inject(RequirementsStore);
   private dataStore = inject(DataStore);
