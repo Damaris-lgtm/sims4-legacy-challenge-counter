@@ -61,10 +61,7 @@ export class GenerationsOverviewComponent {
       generations
     });
   };
-
-  constructor() {
-    this.store.loadData();
-  }
+  
   getNameFromInput(id?: string): string {
     const name = id ?? this.formName.value ?? '';
     this.resetForm();

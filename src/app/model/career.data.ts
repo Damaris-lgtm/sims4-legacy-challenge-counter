@@ -1,4 +1,4 @@
-import { Career as Career, Age, CareerType, AchievementType } from "./data.model";
+import { Career as Career, Age, CareerType, AchievementType } from "./achievement.model";
 
   export const CAREER: Career[] = [
   // Astronaut

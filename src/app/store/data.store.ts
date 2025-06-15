@@ -1,6 +1,17 @@
-import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
+import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
 import { DataSave, SimData } from "../model/generation.model";
-import { Achievement, AchievementType } from "../model/data.model";
+import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, MedalScore, Preference, Punishment, Skill, Trait } from "../model/achievement.model";
+import { TRAITS } from "../model/traits.data";
+import { computed } from "@angular/core";
+import { SKILLS } from "../model/skills.data";
+import { ASPIRATIONS } from "../model/aspirations.data";
+import { CAREER } from "../model/career.data";
+import { MEDALS } from "../model/medals.data";
+import { GAME_ACHIEVEMENTS } from "../model/game-achievements.data";
+import { DEATHS } from "../model/death.data";
+import { PUNISHMENTS } from "../model/punishments.data";
+import { COLLECTIONS } from "../model/collections.data";
+import { PREFERENCES } from "../model/preferences.data";
 
 const storageKey = 'simsave';
 
@@ -91,8 +102,8 @@ export const DataStore = signalStore(
             this.updateLocalStorage();
             return achievement;
         },
-        updateCustomAchievement(achievement: Achievement){
-             const customData = store.customData();
+        updateCustomAchievement(achievement: Achievement) {
+            const customData = store.customData();
             const existingIndex = customData.findIndex(d => d.id === achievement.id);
             if (existingIndex !== -1) {
                 customData[existingIndex] = achievement;
@@ -102,5 +113,66 @@ export const DataStore = signalStore(
             patchState(store, { customData });
             this.updateLocalStorage();
         }
-    }))
-);
+    })),
+    withComputed((store) => ({
+        traits: computed(() => {
+            return [...TRAITS, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.TRAIT)
+                .map(a => a as Trait)];
+        }),
+        skills: computed(() => {
+            return [...SKILLS, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.SKILL)
+                .map(a => a as Skill)];
+        }),
+        aspirations: computed(() => {
+            return [...ASPIRATIONS, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.ASPIRATION)
+                .map(a => a as Aspiration)]
+                .map(a => ({ ...a, maxLevel: a["completed"] || false} as Aspiration));
+        }),
+        careers: computed(() => {
+            return [...CAREER, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.CAREER)
+                .map(a => (a as Career))
+                ].map(a => ({ ...a, level: a["level"] || 0 } as Career));
+        }),
+        medals: computed(() => {
+            return [...MEDALS, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.MEDAL)
+                .map(a => a as Medal)]
+                .map(a => ({ ...a, score: a["score"] || MedalScore.BRONZE } as Medal));
+        }),
+        deaths: computed(() => {
+            return [...DEATHS, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.DEATH)
+                .map(a => a as Death)];
+        }),
+        gameAchievements: computed(() => {
+            return [...GAME_ACHIEVEMENTS, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.Game)
+                .map(a => a as GameAchievement)];
+        }),
+        punishments: computed(() => {
+            return [...PUNISHMENTS, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.PUNISHMENT)
+                .map(a => a as Punishment)];
+        }),
+        customAchievements: computed(() => {
+            return store.customData()
+                .filter(a => a.achievementType === AchievementType.CUSTOM)
+                .map(a => a as Achievement);
+        }),
+        collections: computed(() => {
+            return [...COLLECTIONS, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.COLLECTION)
+                .map(a => a as Collection)]
+                .map(a => ({ ...a, currentCount: a["currentCount"] || 0, completed: a["completed"] || false } as Collection));
+        }),
+        preferences: computed(() => {
+            return [...PREFERENCES, ...store.customData()
+                .filter(a => a.achievementType === AchievementType.PREFERENCE)
+                .map(a => a as Preference)]
+                .map(a => ({ ...a, like: a["like"] || false } as Preference));
+        })
+    })));

@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, input, Signal, signal } from '@ang
 import { DataStore } from '../../store/data.store';
 import { SimData } from '../../model/generation.model';
 import { TRAITS } from '../../model/traits.data';
-import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Preference, Punishment, Skill, Trait } from '../../model/data.model';
+import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Preference, Punishment, Skill, Trait } from '../../model/achievement.model';
 import { MatInputModule } from '@angular/material/input';
 import { C, COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
@@ -39,62 +39,19 @@ export class SimsViewComponent {
       .filter(a => a.achievementType === AchievementType.OCCULT)
       .map(a => a as OccultType)];
   });
-  protected readonly traits: Signal<Trait[]> = computed(() => {
-    return [...TRAITS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.TRAIT)
-      .map(a => a as Trait)];
-  });
-  protected readonly skills: Signal<Skill[]> = computed(() => {
-    return [...SKILLS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.SKILL)
-      .map(a => a as Skill)];
-  });
-  protected readonly aspirations: Signal<Aspiration[]> = computed(() => {
-    return [...ASPIRATIONS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.ASPIRATION)
-      .map(a => a as Aspiration)];
-  });
-  protected readonly careers: Signal<Career[]> = computed(() => {
-    return [...CAREER, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.CAREER)
-      .map(a => a as Career)];
-  });
-  protected readonly medals: Signal<Medal[]> = computed(() => {
-    return [...MEDALS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.MEDAL)
-      .map(a => a as Medal)];
-  });
-  protected readonly deaths: Signal<Death[]> = computed(() => {
-    return [...DEATHS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.DEATH)
-      .map(a => a as Death)];
-  });
-  protected readonly gameAchievements: Signal<GameAchievement[]> = computed(() => {
-    return [...GAME_ACHIEVEMENTS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.Game)
-      .map(a => a as GameAchievement)];
-  });
-  protected readonly punishments: Signal<Punishment[]> = computed(() => {
-    return [...PUNISHMENTS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.PUNISHMENT)
-      .map(a => a as Punishment)];
-  });
+  protected readonly traits: Signal<Trait[]> = this.store.traits;
 
-  protected readonly customAchievements: Signal<Achievement[]> = computed(() => {
-    return this.store.customData()
-      .filter(a => a.achievementType === AchievementType.CUSTOM)
-      .map(a => a as Achievement);
-  });
-  protected readonly collections: Signal<Collection[]> = computed(() => {
-    return [...COLLECTIONS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.COLLECTION)
-      .map(a => a as Collection)];
-  });
-  protected readonly preferences: Signal<Preference[]> = computed(() => {
-    return [...PREFERENCES, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.PREFERENCE)
-      .map(a => a as Preference)];
-  });
+  protected readonly skills: Signal<Skill[]> = this.store.skills;
+  protected readonly aspirations: Signal<Aspiration[]> = this.store.aspirations;
+  protected readonly careers: Signal<Career[]> = this.store.careers;
+  protected readonly medals: Signal<Medal[]> = this.store.medals;
+  protected readonly deaths: Signal<Death[]> = this.store.deaths;
+  protected readonly gameAchievements: Signal<GameAchievement[]> = this.store.gameAchievements;
+  protected readonly punishments: Signal<Punishment[]> = this.store.punishments;
+  protected readonly customAchievements: Signal<Achievement[]> = this.store.customAchievements;
+  protected readonly collections: Signal<Collection[]> = this.store.collections;
+  protected readonly preferences: Signal<Preference[]> = this.store.preferences;
+
 
   protected readonly AchievementType = AchievementType;
   saveSim() {

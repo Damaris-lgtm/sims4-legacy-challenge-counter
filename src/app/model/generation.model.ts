@@ -1,10 +1,11 @@
-import { Achievement, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Preference, Punishment, Skill, Trait } from "./data.model";
+import { Achievement, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Preference, Punishment, Skill, Trait } from "./achievement.model";
 
 export interface DataSave {
     id: string,
     generations: GenerationData[],
     sims: SimData[],
-    customData: Achievement[]
+    customData: Achievement[],
+    requirementRules?: string
 }
 export interface GenerationData {
     founder: string,

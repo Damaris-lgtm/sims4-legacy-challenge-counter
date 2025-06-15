@@ -1,4 +1,4 @@
-import { AchievementType, Age, Trait, TraitType } from "./data.model";
+import { AchievementType, Age, Trait, TraitType } from "./achievement.model";
 
 export const TRAITS: Trait[] = [
     {

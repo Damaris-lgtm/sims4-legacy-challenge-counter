@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AchievementSelectionComponent } from './achievement-selection.component';
-import { Trait } from '../../model/data.model';
+import { Trait } from '../../model/achievement.model';
 
 describe('AchievementSelectionComponent', () => {
   let component: AchievementSelectionComponent<Trait>;

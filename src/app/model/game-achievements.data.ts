@@ -1,4 +1,4 @@
-import { AchievementType, Achievement, Age, GameAchievement } from "./data.model";
+import { AchievementType, Achievement, Age, GameAchievement } from "./achievement.model";
 
 export const GAME_ACHIEVEMENTS: GameAchievement[] = [
   {
