@@ -1,4 +1,4 @@
-import { AchievementType, OccultType } from "./data.model";
+import { AchievementType, OccultType } from "./achievement.model";
 
 export const OCCULTS: OccultType[] = [
     {

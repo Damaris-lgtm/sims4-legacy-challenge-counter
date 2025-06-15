@@ -1,3 +1,22 @@
+export function achievementEquals(a: Achievement, b: Achievement): boolean {
+    return a.id === b.id && a.achievementType === b.achievementType && a['like'] === b['like'];
+};
+
+export function isCompleted(achievement: Achievement): boolean {
+    switch (achievement.achievementType) {
+        case AchievementType.ASPIRATION:
+        case AchievementType.COLLECTION:
+            return achievement['completed'] === true;
+        case AchievementType.CAREER:
+        case AchievementType.SKILL:
+            return achievement['level'] === achievement['maxLevel'];
+        case AchievementType.COLLECTION:
+            return achievement['currentCount'] === achievement['maxCount'];
+        default:
+            return true;
+    }
+}
+
 export enum AchievementType {
     TRAIT = 'TRAIT',
     ASPIRATION = 'ASPIRATION',
@@ -70,7 +89,7 @@ export interface Punishment extends Achievement {
     achievementType: AchievementType.PUNISHMENT,
 }
 
-export type ORIGIN = 'BASE_GAME' |'LIMITED_TIME' | Expansion_Pack | Game_Pack | Stuff_Pack | Kit | 'CUSTOM' | string;
+export type ORIGIN = 'BASE_GAME' | 'LIMITED_TIME' | Expansion_Pack | Game_Pack | Stuff_Pack | Kit | 'CUSTOM' | string;
 
 export enum CareerType {
     FULL_TIME = 'FULL_TIME',
@@ -99,12 +118,11 @@ export enum PreferenceType {
     ACTIVITY = 'ACTIVITY',
     COLOR = 'COLOR',
     CONVERSATION_TOPIC = 'CONVERSATION_TOPIC',
-    DECOR= 'DECOR',
+    DECOR = 'DECOR',
     FASHION = 'FASHION',
     SIM_CHARACTERISTIC = 'SIM_CHARACTERISTIC',
     MUSIC = 'MUSIC',
 }
-
 
 export enum TraitType {
     BASE = 'BASE',

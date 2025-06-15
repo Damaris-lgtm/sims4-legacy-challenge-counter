@@ -1,0 +1,9 @@
+@if(!countRequirements() && !simRequirements() && !singleRequirements() || !generationRequirements()) {
+
+<button type="button" class="btn btn-primary" (click)="createNewRuleSet()">Add new RuleSet</button>
+}
+<div class="accordion" id="accordionResults">
+    <div class="accordion-item">
+        <app-count-results></app-count-results>
+    </div>
+</div>

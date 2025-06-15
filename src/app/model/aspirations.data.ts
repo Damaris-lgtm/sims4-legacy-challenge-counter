@@ -1,4 +1,4 @@
-import { Aspiration, Age, AspirationCategory, AchievementType } from "./data.model";
+import { Aspiration, Age, AspirationCategory, AchievementType } from "./achievement.model";
 
 export const ASPIRATIONS: Aspiration[] = [
     {

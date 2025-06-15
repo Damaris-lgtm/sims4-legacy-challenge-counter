@@ -1,4 +1,4 @@
-import { Death, AchievementType, Age } from "./data.model";
+import { Death, AchievementType, Age } from "./achievement.model";
 
 export const DEATHS: Death[] = [
   {

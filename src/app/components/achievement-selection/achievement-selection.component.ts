@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Achievement, AchievementType,MedalScore, Aspiration, AspirationCategory, Death, TraitType } from '../../model/data.model';
+import { Achievement, AchievementType,MedalScore, Aspiration, AspirationCategory, Death, TraitType } from '../../model/achievement.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { DataStore } from '../../store/data.store';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -91,8 +91,8 @@ export class AchievementSelectionComponent<T extends Achievement> {
 
     if (this.allowMultiple() || !this.currentAchievements().find(a => a.id === achievement.id)) {
       this.achievementChanged.emit([...this.currentAchievements(), {
-        ...achievement, elementId: crypto.randomUUID()
-      }]);
+        ...achievement, elementId: crypto.randomUUID(),
+        }]);
     } else {
       alert(`${this.label()} with id ${achievementId} already exists in the current ${this.label()}s.`);
     }

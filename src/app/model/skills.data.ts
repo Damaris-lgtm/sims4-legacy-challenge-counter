@@ -1,4 +1,4 @@
-import { Skill, Age, AchievementType } from "./data.model";
+import { Skill, Age, AchievementType } from "./achievement.model";
 
 export const SKILLS: Skill[] = [
     {

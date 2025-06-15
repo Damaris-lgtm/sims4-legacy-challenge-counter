@@ -1,0 +1,31 @@
+import { Component, computed, inject } from '@angular/core';
+import { RequirementsStore } from '../../store/requirements.store';
+import { ALL_ACHIEVEMENTS_TEMPLATE } from '../../model/requirements.all.data';
+import { RequirementType } from '../../model/requirements.model';
+import { CountResultsComponent } from "./count-results/count-results.component";
+
+@Component({
+  selector: 'app-results',
+  imports: [CountResultsComponent],
+  templateUrl: './results.component.html',
+  styleUrl: './results.component.scss'
+})
+export class ResultsComponent {
+  private store = inject(RequirementsStore);
+
+  protected readonly countRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.COUNT));
+  protected readonly simRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.SIM));
+  protected readonly singleRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.SINGLE));
+  protected readonly generationRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.GENERATION));
+
+  createNewRuleSet() {
+    // Logic to create a new RuleSet
+    const newRuleSet = {
+      id: crypto.randomUUID(),
+      label: 'New Rule Set',
+      requirements: [...ALL_ACHIEVEMENTS_TEMPLATE.requirements]
+    };
+    this.store.updateData(newRuleSet);
+  }
+
+}

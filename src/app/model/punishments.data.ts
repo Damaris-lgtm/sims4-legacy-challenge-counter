@@ -1,4 +1,4 @@
-import { Punishment, AchievementType } from "./data.model";
+import { Punishment, AchievementType } from "./achievement.model";
 
 export const PUNISHMENTS: Punishment[] = [
   {

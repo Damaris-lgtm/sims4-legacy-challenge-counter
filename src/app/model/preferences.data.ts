@@ -1,4 +1,4 @@
-import { Preference, PreferenceType, AchievementType } from "./data.model";
+import { Preference, PreferenceType, AchievementType } from "./achievement.model";
 
 export const PREFERENCES: Preference[] = [
   // Colors (Base Game)

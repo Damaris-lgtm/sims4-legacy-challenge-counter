@@ -1,4 +1,4 @@
-import { Collection, AchievementType } from "./data.model";
+import { Collection, AchievementType } from "./achievement.model";
 
 export const COLLECTIONS: Collection[] = [
   {
