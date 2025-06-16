@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { RequirementsStore } from '../../store/requirements.store';
-import { ALL_ACHIEVEMENTS_TEMPLATE } from '../../model/requirements.all.data';
-import { RequirementType } from '../../model/requirements.model';
+import { ALL_ACHIEVEMENTS_TEMPLATE } from '../../shared/model/requirements.all.data';
+import { RequirementType } from '../../shared/model/requirements.model';
 import { CountResultsComponent } from "./count-results/count-results.component";
 import { NgClass } from '@angular/common';
 

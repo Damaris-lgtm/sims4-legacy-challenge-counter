@@ -1,6 +1,8 @@
+<app-game-change-selection />
+@if(saveSelected()){
 <div class="content">
   @if(simToEdit() && sims().includes(simToEdit()!)) {
-  
+
   <app-sims-view [sim]="simToEdit()!"></app-sims-view>
   }
   <div>
@@ -27,8 +29,8 @@
         @else {
         <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
         <button mat-icon-button type="button" color="primary" (click)="markHeir(generation, child.id)">
-            <mat-icon>edit</mat-icon>
-          </button>
+          <mat-icon>edit</mat-icon>
+        </button>
         }
 
         }
@@ -51,3 +53,4 @@
   </button>
 
 </ng-template>
+}

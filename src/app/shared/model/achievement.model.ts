@@ -10,8 +10,6 @@ export function isCompleted(achievement: Achievement): boolean {
         case AchievementType.CAREER:
         case AchievementType.SKILL:
             return achievement['level'] === achievement['maxLevel'];
-        case AchievementType.COLLECTION:
-            return achievement['currentCount'] === achievement['maxCount'];
         default:
             return true;
     }

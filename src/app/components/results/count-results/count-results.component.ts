@@ -1,27 +1,26 @@
 import { Component, computed, inject, input, Signal } from '@angular/core';
 import { RequirementsStore } from '../../../store/requirements.store';
-import { CountRequirement, RequirementType } from '../../../model/requirements.model';
+import { CountRequirement, RequirementType } from '../../../shared/model/requirements.model';
 import { DataStore } from '../../../store/data.store';
-import { TRAITS } from '../../../model/traits.data';
-import { ASPIRATIONS } from '../../../model/aspirations.data';
-import { CAREER } from '../../../model/career.data';
-import { COLLECTIONS } from '../../../model/collections.data';
-import { DEATHS } from '../../../model/death.data';
-import { GAME_ACHIEVEMENTS } from '../../../model/game-achievements.data';
-import { MEDALS } from '../../../model/medals.data';
-import { OCCULTS } from '../../../model/occult.data';
-import { PREFERENCES } from '../../../model/preferences.data';
-import { PUNISHMENTS } from '../../../model/punishments.data';
-import { Achievement, AchievementType, isCompleted } from '../../../model/achievement.model';
-import { NgClass } from '@angular/common';
-import { SKILLS } from '../../../model/skills.data';
-import { DistinctPipe } from "../../../shared/distinct.pipe";
-import { achievementEquals } from '../../../model/achievement.model';
-import { FilterPipe } from "../../../shared/filter.pipe";
+import { TRAITS } from '../../../shared/model/traits.data';
+import { ASPIRATIONS } from '../../../shared/model/aspirations.data';
+import { CAREER } from '../../../shared/model/career.data';
+import { COLLECTIONS } from '../../../shared/model/collections.data';
+import { DEATHS } from '../../../shared/model/death.data';
+import { GAME_ACHIEVEMENTS } from '../../../shared/model/game-achievements.data';
+import { MEDALS } from '../../../shared/model/medals.data';
+import { OCCULTS } from '../../../shared/model/occult.data';
+import { PREFERENCES } from '../../../shared/model/preferences.data';
+import { PUNISHMENTS } from '../../../shared/model/punishments.data';
+import { Achievement, AchievementType, isCompleted } from '../../../shared/model/achievement.model';
+import { SKILLS } from '../../../shared/model/skills.data';
+import { DistinctPipe } from "../../../shared/pipe/distinct.pipe";
+import { achievementEquals } from '../../../shared/model/achievement.model';
+import { FilterPipe } from "../../../shared/pipe/filter.pipe";
 
 @Component({
   selector: 'app-count-results',
-  imports: [NgClass, DistinctPipe, FilterPipe],
+  imports: [ DistinctPipe, FilterPipe],
   templateUrl: './count-results.component.html',
   styleUrl: './count-results.component.scss'
 })
