@@ -1,13 +1,14 @@
 import { Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
-import { DataSave, GenerationData, SimData } from '../../model/generation.model';
+import { DataSave, GenerationData, SimData } from '../../shared/model/generation.model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataStore } from '../../store/data.store';
-import { SimsViewComponent } from '../sims-view/sims-view.component';
+import { SimsViewComponent } from './sims-view/sims-view.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { OCCULTS } from '../../model/occult.data';
+import { OCCULTS } from '../../shared/model/occult.data';
+import { GameChangeSelectionComponent } from "./game-change-selection/game-change-selection.component";
 
 type DetailGenaration = {
   founder: SimData;
@@ -18,13 +19,15 @@ type DetailGenaration = {
 
 @Component({
   selector: 'app-generations-overview',
-  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule, SimsViewComponent, MatButtonModule, MatIconModule],
+  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule, SimsViewComponent, MatButtonModule, MatIconModule, GameChangeSelectionComponent],
   templateUrl: './generations-overview.component.html',
   styleUrl: './generations-overview.component.scss'
 })
 export class GenerationsOverviewComponent {
+
   //TODO create option to delete save, create new save, load save
   private store = inject(DataStore);
+  saveSelected: Signal<boolean> = computed(() => !!this.store.current());
 
   protected sims = computed(() => this.store.sims());
   protected generations: Signal<DetailGenaration[]> = computed(() => this.store.generations().map(gen => ({

@@ -2,6 +2,7 @@ import { Achievement, Aspiration, Career, Collection, Death, GameAchievement, Me
 
 export interface DataSave {
     id: string,
+    name?: string,
     generations: GenerationData[],
     sims: SimData[],
     customData: Achievement[],

@@ -1,74 +1,107 @@
 import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
-import { DataSave, SimData } from "../model/generation.model";
-import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, MedalScore, Preference, Punishment, Skill, Trait } from "../model/achievement.model";
-import { TRAITS } from "../model/traits.data";
+import { DataSave, SimData } from "../shared/model/generation.model";
+import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, MedalScore, OccultType, Preference, Punishment, Skill, Trait } from "../shared/model/achievement.model";
+import { TRAITS } from "../shared/model/traits.data";
 import { computed } from "@angular/core";
-import { SKILLS } from "../model/skills.data";
-import { ASPIRATIONS } from "../model/aspirations.data";
-import { CAREER } from "../model/career.data";
-import { MEDALS } from "../model/medals.data";
-import { GAME_ACHIEVEMENTS } from "../model/game-achievements.data";
-import { DEATHS } from "../model/death.data";
-import { PUNISHMENTS } from "../model/punishments.data";
-import { COLLECTIONS } from "../model/collections.data";
-import { PREFERENCES } from "../model/preferences.data";
+import { SKILLS } from "../shared/model/skills.data";
+import { ASPIRATIONS } from "../shared/model/aspirations.data";
+import { CAREER } from "../shared/model/career.data";
+import { MEDALS } from "../shared/model/medals.data";
+import { GAME_ACHIEVEMENTS } from "../shared/model/game-achievements.data";
+import { DEATHS } from "../shared/model/death.data";
+import { PUNISHMENTS } from "../shared/model/punishments.data";
+import { COLLECTIONS } from "../shared/model/collections.data";
+import { PREFERENCES } from "../shared/model/preferences.data";
+import { OCCULTS } from "../shared/model/occult.data";
 
-const storageKey = 'simsave';
+export const simSaveStorageKey = 'simsave';
 
-const initialData: DataSave = {
-    id: 'initial',
-    generations: [],
-    sims: [],
-    customData: []
+type DataStoreType = {
+    current: string | undefined;
+    saves: Record<string, DataSave | undefined>;
+}
+
+const initialData: DataStoreType = {
+    current: undefined,
+    saves: {}
 };
 
 export const DataStore = signalStore(
     { providedIn: 'root' },
-    withState<DataSave>(initialData),
+    withState<DataStoreType>(initialData),
     withMethods((store) => ({
-        loadData: (id?: string) => {
-            const storage = localStorage.getItem(storageKey);
+        loadData: () => {
+            const storage = localStorage.getItem(simSaveStorageKey);
             if (storage) {
                 const data = JSON.parse(storage) as DataSave[];
-                if (id && data.find(d => d.id === id)) {
-                    return patchState(store, data.find(d => d.id === id) || initialData);
-                }
-                patchState(store, data[0] || initialData);
+                const saves: Record<string, DataSave> = {};
+                data.forEach(item => {
+                    saves[item.id] = item;
+                });
+                const current: string | undefined = data.length === 1 ? data[0].id : store.current();
+                patchState(store, { saves, current });
             } else {
-                patchState(store, initialData);
+                patchState(store, { saves: {}, current: undefined });
             }
         },
-
+        addNewSave(_data?: DataSave) {
+            const data = _data || {
+                id: crypto.randomUUID(),
+                    generations: [],
+                    sims: [],
+                    customData: []
+                };
+    
+            if (store.saves()[data.id]) {
+                console.warn('Save with id ', data.id, ' already exists.');
+                return;
+            }
+            this.updateData(data);
+        },
+        changeCurrent(current: string) {
+            if (!store.saves()[current]) {
+                console.warn('No save found with id ', current);
+                return;
+            };
+            patchState(store, { current });
+        },
         updateData(data: DataSave) {
-            patchState(store, data);
+            patchState(store, { saves: { ...store.saves(), [data.id]: data }, current: data.id });
             this.updateLocalStorage();
         },
+        deleteSave(id: string) {
+            const current = store.current() === id ? undefined : store.current();
+            patchState(store, { saves: { ...store.saves(), [id]: undefined }, current });
+        },
+
         updateLocalStorage() {
-            const storeData = { id: store.id(), generations: store.generations(), sims: store.sims(), customData: store.customData() };
-            const currentData = localStorage.getItem(storageKey);
-            const dataList = currentData ? JSON.parse(currentData) as DataSave[] : [];
-            const existingIndex = dataList.findIndex(d => d.id === store.id());
-            if (existingIndex !== -1) {
-                dataList[existingIndex] = storeData;
-            } else {
-                dataList.push(storeData);
-            }
-            localStorage.setItem(storageKey, JSON.stringify(dataList));
+            localStorage.setItem(simSaveStorageKey, JSON.stringify(Object.values(store.saves())));
         },
 
         updateSim(sim: SimData) {
-            const sims = store.sims();
+            if (!store.current()) {
+                alert('No save selected. Please select or create a save first.');
+            }
+            const sims = store.saves()[store.current()!]?.sims || [];
             const existingIndex = sims.findIndex(s => s.id === sim.id);
             if (existingIndex !== -1) {
                 sims[existingIndex] = sim;
             } else {
                 sims.push(sim);
             }
-            patchState(store, { sims });
+            patchState(store, {
+                saves: {
+                    ...store.saves(),
+                    [store.current()!]: {
+                        ...store.saves()[store.current()!]!,
+                        sims
+                    }
+                }
+            });
             this.updateLocalStorage();
         },
         deleteSim(sim: SimData) {
-            let generations = store.generations();
+            let generations = getSave(store.current(), store.saves())?.generations || [];
             const founderGeneration = generations.find(generation => generation.founder === sim.id);
             if ((founderGeneration?.children.length ?? 0) > 0 || (founderGeneration?.spouse.length ?? 0) > 0 || founderGeneration?.heir) {
                 alert('Cannot delete sim that is a founder of a generation with other sims. Please remove other sims from the generation first.');
@@ -86,93 +119,141 @@ export const DataStore = signalStore(
                 generation.spouse = generation.spouse.filter(s => s !== sim.id);
                 generation.children = generation.children.filter(c => c !== sim.id);
             });
-            const sims = store.sims().filter(s => s.id !== sim.id);
-            patchState(store, { sims, generations });
+            const sims = store.saves()[store.current()!]?.sims.filter(s => s.id !== sim.id) || [];
+            patchState(store, {
+                saves: {
+                    ...store.saves(),
+                    [store.current()!]: {
+                        ...store.saves()[store.current()!]!,
+                        sims
+                    }
+                }
+            });
             this.updateLocalStorage();
         },
         addCustomAchievement(achievement: Achievement, type: AchievementType): Achievement {
-            const existingItem = store.customData().filter(custom => custom.achievementType === type)
+            const customData = getCustomData(store.current(), store.saves());
+            const existingItem = customData
+                .filter(custom => custom.achievementType === type)
                 .find(custom => custom.id === achievement.id || custom.label === achievement.label);
             if (existingItem) {
                 return existingItem;
             }
-            const customData = store.customData();
+
             customData.push({ ...achievement, achievementType: type });
-            patchState(store, { customData })
+            patchState(store, {
+                saves: {
+                    ...store.saves(),
+                    [store.current()!]: {
+                        ...store.saves()[store.current()!]!,
+                        customData
+                    }
+                }
+            });
             this.updateLocalStorage();
             return achievement;
         },
         updateCustomAchievement(achievement: Achievement) {
-            const customData = store.customData();
+            const customData = getCustomData(store.current(), store.saves());
             const existingIndex = customData.findIndex(d => d.id === achievement.id);
             if (existingIndex !== -1) {
                 customData[existingIndex] = achievement;
             } else {
                 customData.push(achievement);
             }
-            patchState(store, { customData });
+            patchState(store, {
+                saves: {
+                    ...store.saves(),
+                    [store.current()!]: {
+                        ...store.saves()[store.current()!]!,
+                        customData
+                    }
+                }
+            });
             this.updateLocalStorage();
         }
     })),
-    withComputed((store) => ({
+    withComputed(({ saves, current }) => ({
+        id: computed(() => getSave(current(), saves())?.id || ''),
+        sims: computed(() => getSave(current(), saves())?.sims || []),
+        generations: computed(() => getSave(current(), saves())?.generations || []),
+        customData: computed(() => getSave(current(), saves())?.customData || []),
         traits: computed(() => {
-            return [...TRAITS, ...store.customData()
+            return [...TRAITS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.TRAIT)
                 .map(a => a as Trait)];
         }),
         skills: computed(() => {
-            return [...SKILLS, ...store.customData()
+            return [...SKILLS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.SKILL)
                 .map(a => a as Skill)];
         }),
+        occults: computed(() => {
+            return [...OCCULTS, ...getCustomData(current(), saves())
+                .filter(a => a.achievementType === AchievementType.OCCULT)
+                .map(a => a as OccultType)];
+        }),
         aspirations: computed(() => {
-            return [...ASPIRATIONS, ...store.customData()
+            return [...ASPIRATIONS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.ASPIRATION)
                 .map(a => a as Aspiration)]
-                .map(a => ({ ...a, maxLevel: a["completed"] || false} as Aspiration));
+                .map(a => ({ ...a, maxLevel: a["completed"] || false } as Aspiration));
         }),
         careers: computed(() => {
-            return [...CAREER, ...store.customData()
+            return [...CAREER, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.CAREER)
                 .map(a => (a as Career))
-                ].map(a => ({ ...a, level: a["level"] || 0 } as Career));
+            ].map(a => ({ ...a, level: a["level"] || 0 } as Career));
         }),
         medals: computed(() => {
-            return [...MEDALS, ...store.customData()
+            return [...MEDALS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.MEDAL)
                 .map(a => a as Medal)]
                 .map(a => ({ ...a, score: a["score"] || MedalScore.BRONZE } as Medal));
         }),
         deaths: computed(() => {
-            return [...DEATHS, ...store.customData()
+            return [...DEATHS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.DEATH)
                 .map(a => a as Death)];
         }),
         gameAchievements: computed(() => {
-            return [...GAME_ACHIEVEMENTS, ...store.customData()
+            return [...GAME_ACHIEVEMENTS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.Game)
                 .map(a => a as GameAchievement)];
         }),
         punishments: computed(() => {
-            return [...PUNISHMENTS, ...store.customData()
+            return [...PUNISHMENTS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.PUNISHMENT)
                 .map(a => a as Punishment)];
         }),
         customAchievements: computed(() => {
-            return store.customData()
+            return getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.CUSTOM)
                 .map(a => a as Achievement);
         }),
         collections: computed(() => {
-            return [...COLLECTIONS, ...store.customData()
+            return [...COLLECTIONS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.COLLECTION)
                 .map(a => a as Collection)]
                 .map(a => ({ ...a, currentCount: a["currentCount"] || 0, completed: a["completed"] || false } as Collection));
         }),
         preferences: computed(() => {
-            return [...PREFERENCES, ...store.customData()
+            return [...PREFERENCES, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.PREFERENCE)
                 .map(a => a as Preference)]
                 .map(a => ({ ...a, like: a["like"] || false } as Preference));
         })
     })));
+
+function getSave(
+    current: string | undefined,
+    saves: Record<string, DataSave | undefined>): DataSave | undefined {
+    if (!current) {
+        alert('No save selected. Please select or create a save first.');
+    }
+    return saves[current!];
+}
+function getCustomData(current: string | undefined,
+    saves: Record<string, DataSave | undefined>): Achievement[] {
+    return getSave(current, saves)?.customData || [];
+}

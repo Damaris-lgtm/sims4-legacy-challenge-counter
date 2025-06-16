@@ -1,5 +1,5 @@
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
-import { Requirement, RequirementsSave } from "../model/requirements.model";
+import { Requirement, RequirementsSave } from "../shared/model/requirements.model";
 import { last } from "rxjs";
 
 const storageKey = 'requirementsData';

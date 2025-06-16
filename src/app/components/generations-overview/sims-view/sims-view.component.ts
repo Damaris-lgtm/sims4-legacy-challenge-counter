@@ -1,25 +1,16 @@
 import { Component, computed, effect, inject, input, Signal, signal } from '@angular/core';
 
-import { DataStore } from '../../store/data.store';
-import { SimData } from '../../model/generation.model';
-import { TRAITS } from '../../model/traits.data';
-import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Preference, Punishment, Skill, Trait } from '../../model/achievement.model';
+import { DataStore } from '../../../store/data.store';
+import { SimData } from '../../../shared/model/generation.model';
+import { TRAITS } from '../../../shared/model/traits.data';
+import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Preference, Punishment, Skill, Trait } from '../../../shared/model/achievement.model';
 import { MatInputModule } from '@angular/material/input';
 import { C, COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
 import { AchievementSelectionComponent } from "../achievement-selection/achievement-selection.component";
-import { SKILLS } from '../../model/skills.data';
-import { ASPIRATIONS } from '../../model/aspirations.data';
-import { CAREER } from '../../model/career.data';
-import { MEDALS } from '../../model/medals.data';
-import { DEATHS } from '../../model/death.data';
-import { GAME_ACHIEVEMENTS } from '../../model/game-achievements.data';
-import { PUNISHMENTS } from '../../model/punishments.data';
-import { OCCULTS } from '../../model/occult.data';
+import { OCCULTS } from '../../../shared/model/occult.data';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { COLLECTIONS } from '../../model/collections.data';
-import { PREFERENCES } from '../../model/preferences.data';
 
 @Component({
   selector: 'app-sims-view',
@@ -34,13 +25,8 @@ export class SimsViewComponent {
 
   sim = input.required<SimData>();
 
-  protected readonly occults: Signal<OccultType[]> = computed(() => {
-    return [...OCCULTS, ...this.store.customData()
-      .filter(a => a.achievementType === AchievementType.OCCULT)
-      .map(a => a as OccultType)];
-  });
+  protected readonly occults: Signal<OccultType[]> = this.store.occults;
   protected readonly traits: Signal<Trait[]> = this.store.traits;
-
   protected readonly skills: Signal<Skill[]> = this.store.skills;
   protected readonly aspirations: Signal<Aspiration[]> = this.store.aspirations;
   protected readonly careers: Signal<Career[]> = this.store.careers;
