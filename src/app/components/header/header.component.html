@@ -1,8 +1,11 @@
-<nav class="d-flex gap-3 justify-content-center align-items-center">
-    <a class="btn btn-primary" routerLink="/">
+
+<nav class="d-flex mt-3 gap-3 justify-content-center align-baseline">
+  <app-game-change-selection />
+    <button type="button" class="btn btn-secondary" routerLink="/">
     Home    
-    </a>
-  <a class="btn btn-primary" routerLink="/results">
+    </button>
+  <button type="button" class="btn btn-secondary" routerLink="/results">
     Results
-  </a>
+  </button>
+<app-results-selection/>
 </nav>

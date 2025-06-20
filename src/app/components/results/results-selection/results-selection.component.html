@@ -1,18 +1,23 @@
-<div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {{ currentName() || 'RulesSet' }}
-    </button>
-    @if(current()) {
-         <button mat-icon-button matSuffix color="warn" (click)="deleteRulesSet()"><mat-icon>delete</mat-icon></button>
-    }
-    <ul class="dropdown-menu">
-        @for (item of saves(); track $index) {
-        <li (click)="selectRulesSet(item)"><button type="button" class="dropdown-item">{{ item.label }}</button></li>
-        }
-        <li>
-            <hr class="dropdown-divider">
-        </li>
-        <li (click)="addRulesSet()"><span class="dropdown-item">Add</span></li>
+<div class="d-flex">
 
-    </ul>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ currentName() || 'RulesSet' }}
+        </button>
+
+        <ul class="dropdown-menu">
+            @for (item of saves(); track $index) {
+            <li (click)="selectRulesSet(item)"><button type="button" class="dropdown-item">{{ item.label }}</button>
+            </li>
+            }
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li (click)="addRulesSet()"><span class="dropdown-item">Add</span></li>
+
+        </ul>
+    </div>
+    @if(current()) {
+    <button mat-icon-button matSuffix color="warn" (click)="deleteRulesSet()"><mat-icon>delete</mat-icon></button>
+    }
 </div>
