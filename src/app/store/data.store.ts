@@ -41,7 +41,7 @@ export const DataStore = signalStore(
                 const current: string | undefined = data.length === 1 ? data[0].id : store.current();
                 patchState(store, { saves, current });
             } else {
-                patchState(store, { saves: {}, current: undefined });
+                patchState(store, initialData);
             }
         },
         addNewSave(_data?: DataSave) {
@@ -69,18 +69,21 @@ export const DataStore = signalStore(
             patchState(store, { saves: { ...store.saves(), [data.id]: data }, current: data.id });
             this.updateLocalStorage();
         },
+    
         deleteSave(id: string) {
             const current = store.current() === id ? undefined : store.current();
             patchState(store, { saves: { ...store.saves(), [id]: undefined }, current });
+            this.updateLocalStorage();
         },
 
         updateLocalStorage() {
-            localStorage.setItem(simSaveStorageKey, JSON.stringify(Object.values(store.saves())));
+            localStorage.setItem(simSaveStorageKey, JSON.stringify(Object.values(store.saves()).filter(s => s !== undefined)));
         },
 
         updateSim(sim: SimData) {
             if (!store.current()) {
                 alert('No save selected. Please select or create a save first.');
+                return
             }
             const sims = store.saves()[store.current()!]?.sims || [];
             const existingIndex = sims.findIndex(s => s.id === sim.id);
@@ -250,6 +253,7 @@ function getSave(
     saves: Record<string, DataSave | undefined>): DataSave | undefined {
     if (!current) {
         alert('No save selected. Please select or create a save first.');
+        return undefined;
     }
     return saves[current!];
 }

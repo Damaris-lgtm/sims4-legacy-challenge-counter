@@ -4,16 +4,22 @@ import { ALL_ACHIEVEMENTS_TEMPLATE } from '../../shared/model/requirements.all.d
 import { RequirementType } from '../../shared/model/requirements.model';
 import { CountResultsComponent } from "./count-results/count-results.component";
 import { NgClass } from '@angular/common';
+import { ResultsSelectionComponent } from "./results-selection/results-selection.component";
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-results',
-  imports: [CountResultsComponent, NgClass],
+  imports: [CountResultsComponent, NgClass, ResultsSelectionComponent, FormsModule],
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss'
 })
 export class ResultsComponent {
 
+
   private store = inject(RequirementsStore);
+
+  protected readonly hasCurrent = computed(() => !!this.store.current());
 
   protected readonly countRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.COUNT));
   protected readonly simRequirements = computed(() => this.store.requirements().filter(req => req.requirementType === RequirementType.SIM));
@@ -22,6 +28,7 @@ export class ResultsComponent {
 
   protected readonly showOpenRequirements = signal<boolean>(true);
   protected readonly showCompletedRequirements = signal<boolean>(true);
+  protected readonly current = this.store.currentSave
   createNewRuleSet() {
     // Logic to create a new RuleSet
     const newRuleSet = {
@@ -32,9 +39,13 @@ export class ResultsComponent {
     this.store.updateData(newRuleSet);
   }
 
-   toggleViewMode(open: boolean, completed: boolean) {
+  toggleViewMode(open: boolean, completed: boolean) {
     this.showOpenRequirements.set(open);
     this.showCompletedRequirements.set(completed);
+  }
+
+  changeName(name: string) {
+    this.store.updateLabel(name)
   }
 
 }
