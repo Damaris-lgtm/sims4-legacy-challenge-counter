@@ -1,4 +1,4 @@
-import { Component, computed, inject, Pipe, PipeTransform, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { DataStore } from '../../../store/data.store';
 import { DataSave } from '../../../shared/model/generation.model';
 import { getDataSaveName, SaveNamePipe } from "../../../shared/pipe/data-save-name.pipe";
@@ -14,11 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 export class GameChangeSelectionComponent {
 
   private dataStore = inject(DataStore);
-  saves: Signal<DataSave[]> = computed(() => {
-    console.log(this.dataStore.saves());
+  saves: Signal<DataSave[]> = computed(() => Object.values(this.dataStore.saves()).filter(save => !!save));
 
-    return Object.values(this.dataStore.saves()).filter(save => !!save);
-  });
   currentSave: Signal<string | undefined> = this.dataStore.current;
   currentName: Signal<string | undefined> = computed(() => this.dataStore.current() && this.dataStore.saves()[this.dataStore.current()!] ?
     getDataSaveName(this.dataStore.saves()[this.dataStore.current()!]!) : undefined);
