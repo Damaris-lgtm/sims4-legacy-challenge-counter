@@ -17,10 +17,11 @@ import { SKILLS } from '../../../shared/model/skills.data';
 import { DistinctPipe } from "../../../shared/pipe/distinct.pipe";
 import { achievementEquals } from '../../../shared/model/achievement.model';
 import { FilterPipe } from "../../../shared/pipe/filter.pipe";
+import { MILESTONES } from '../../../shared/model/milestone.data';
 
 @Component({
   selector: 'app-count-results',
-  imports: [ DistinctPipe, FilterPipe],
+  imports: [DistinctPipe, FilterPipe],
   templateUrl: './count-results.component.html',
   styleUrl: './count-results.component.scss'
 })
@@ -46,16 +47,23 @@ export class CountResultsComponent {
     ...GAME_ACHIEVEMENTS,
     ...MEDALS,
     ...OCCULTS,
-    // Add preferences with like and dislike
-    ...PREFERENCES.map(pref => ({ ...pref, like: true, label: `${pref.label} +` })),
-    ...PREFERENCES.map(pref => ({ ...pref, like: false, label: `${pref.label} -` })),
+    ...MILESTONES,
     ...PUNISHMENTS,
+    ...this.dataStore.customData().filter(ach => ach.achievementType !== AchievementType.PREFERENCE),
+    // Add preferences with like and dislike
+    ...[...PREFERENCES,
     ...this.dataStore.customData()
-  ].filter(this.onlyRequiredAchievements)
+      .filter(ach => ach.achievementType === AchievementType.PREFERENCE)]
+      .map(pref => ({ ...pref, like: true, label: `${pref.label} +` })),
+    ...[...PREFERENCES,
+    ...this.dataStore.customData()
+      .filter(ach => ach.achievementType === AchievementType.PREFERENCE)]
+      .map(pref => ({ ...pref, like: false, label: `${pref.label} -` })),
+     ].filter(this.onlyRequiredAchievements)
 
   );
   protected readonly achieved: Signal<Achievement[]> = computed(() => this.dataStore.sims()
-    .map(sim => [...sim.aspirations, ...sim.customAchievements || [], ...sim.skills, ...sim.traits, ...sim.careers, ...sim.collections || [], ...sim.deaths || [], ...sim.gameAchievements || [], ...sim.medals, ...sim.occult || [], ...sim.preferences || [], ...sim.punishments || []])
+    .map(sim => [...sim.aspirations, ...sim.customAchievements || [], ...sim.skills, ...sim.traits, ...sim.careers, ...sim.collections || [], ...sim.deaths || [], ...sim.gameAchievements || [], ...sim.medals, ...sim.occult || [], ...sim.preferences || [], ...sim.punishments || [], ...sim.milestones || []])
     .flat()
     .filter(this.onlyRequiredAchievements)
     .filter((achievement: Achievement) => isCompleted(achievement))

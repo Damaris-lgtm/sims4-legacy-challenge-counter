@@ -8,6 +8,7 @@ export const ALL_ACHIEVEMENTS_TEMPLATE: RequirementsSave = {
         new CountRequirement("ALL_TRAITS", "All Traits", AchievementType.TRAIT),
         new CountRequirement("ALL_ASPIRATIONS", "All Aspirations", AchievementType.ASPIRATION),
         new CountRequirement("ALL_SKILLS", "All Skills", AchievementType.SKILL),
+         new CountRequirement("ALL_MILESTONES", "All Milestones", AchievementType.MILESTONE),
         new CountRequirement("ALL_CAREERS", "All Careers", AchievementType.CAREER),
         new CountRequirement("ALL_MEDALS", "All Medals", AchievementType.MEDAL),
         new CountRequirement("ALL_DEATHS", "All Deaths", AchievementType.DEATH),

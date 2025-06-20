@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, input, Signal, signal } from '@ang
 import { DataStore } from '../../../store/data.store';
 import { SimData } from '../../../shared/model/generation.model';
 import { TRAITS } from '../../../shared/model/traits.data';
-import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, OccultType, Preference, Punishment, Skill, Trait } from '../../../shared/model/achievement.model';
+import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, Milestone, OccultType, Preference, Punishment, Skill, Trait } from '../../../shared/model/achievement.model';
 import { MatInputModule } from '@angular/material/input';
 import { C, COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-sims-view',
-  imports: [ MatInputModule, FormsModule, AchievementSelectionComponent, MatIconModule, MatButtonModule],
+  imports: [MatInputModule, FormsModule, AchievementSelectionComponent, MatIconModule, MatButtonModule],
   templateUrl: './sims-view.component.html',
   styleUrl: './sims-view.component.scss'
 })
@@ -30,6 +30,7 @@ export class SimsViewComponent {
   protected readonly skills: Signal<Skill[]> = this.store.skills;
   protected readonly aspirations: Signal<Aspiration[]> = this.store.aspirations;
   protected readonly careers: Signal<Career[]> = this.store.careers;
+  protected readonly milestones: Signal<Milestone[]> = this.store.milestones;
   protected readonly medals: Signal<Medal[]> = this.store.medals;
   protected readonly deaths: Signal<Death[]> = this.store.deaths;
   protected readonly gameAchievements: Signal<GameAchievement[]> = this.store.gameAchievements;
@@ -78,9 +79,9 @@ export class SimsViewComponent {
 
   changeMedals(medals: Medal[]) {
     this.sim().medals = medals;
-  
+
     console.log(this.sim().medals);
-    
+
     this.saveSim();
   }
   changeDeaths(deaths: Death[]) {
@@ -101,6 +102,10 @@ export class SimsViewComponent {
   }
   changeCustomAchievements(customAchievements: Achievement[]) {
     this.sim().customAchievements = customAchievements;
+    this.saveSim();
+  }
+  changeMilestones(milesstones: Milestone[]) {
+    this.sim().milestones = milesstones;
     this.saveSim();
   }
 

@@ -12,6 +12,8 @@
       [achievementType]="AchievementType.TRAIT" (achievementChanged)="changeTraits($event)" />
     <app-achievement-selection [label]="'Skills'" [currentAchievements]="sim().skills" [allAchievements]="skills()"
       [achievementType]="AchievementType.SKILL" (achievementChanged)="changeSkills($event)" />
+      <app-achievement-selection [label]="'Milestones'" [currentAchievements]="sim().milestones || []" [allAchievements]="milestones()"
+      [achievementType]="AchievementType.MILESTONE" (achievementChanged)="changeMilestones($event)" />
 
     <app-achievement-selection [label]="'Aspiration'" [currentAchievements]="sim().aspirations"
       [allAchievements]="aspirations()" [achievementType]="AchievementType.ASPIRATION"

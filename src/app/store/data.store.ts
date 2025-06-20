@@ -1,6 +1,6 @@
 import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
 import { DataSave, SimData } from "../shared/model/generation.model";
-import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, MedalScore, OccultType, Preference, Punishment, Skill, Trait } from "../shared/model/achievement.model";
+import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, MedalScore, Milestone, OccultType, Preference, Punishment, Skill, Trait } from "../shared/model/achievement.model";
 import { TRAITS } from "../shared/model/traits.data";
 import { computed } from "@angular/core";
 import { SKILLS } from "../shared/model/skills.data";
@@ -13,6 +13,7 @@ import { PUNISHMENTS } from "../shared/model/punishments.data";
 import { COLLECTIONS } from "../shared/model/collections.data";
 import { PREFERENCES } from "../shared/model/preferences.data";
 import { OCCULTS } from "../shared/model/occult.data";
+import { MILESTONES } from "../shared/model/milestone.data";
 
 export const simSaveStorageKey = 'simsave';
 
@@ -218,6 +219,11 @@ export const DataStore = signalStore(
             return [...DEATHS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.DEATH)
                 .map(a => a as Death)];
+        }),
+        milestones: computed(() => {
+            return [...MILESTONES, ...getCustomData(current(), saves())
+                .filter(a => a.achievementType === AchievementType.MILESTONE)
+                .map(a => a as Milestone)];
         }),
         gameAchievements: computed(() => {
             return [...GAME_ACHIEVEMENTS, ...getCustomData(current(), saves())

@@ -630,7 +630,7 @@ export const TRAITS: Trait[] = [
       "label": "Top-Notch Infant",
       "ages": [Age.TODDLER, Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
+      "type": TraitType.UPBRINGING,
       "achievementType": AchievementType.TRAIT
     },
     {
@@ -638,71 +638,8 @@ export const TRAITS: Trait[] = [
       "label": "Top-Notch Toddler",
       "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
       "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
-      "achievementType": AchievementType.TRAIT
-    },
-    {
-      "id": "FIRST_CHILDHOOD_FRIEND",
-      "label": "First Childhood Friend",
-      "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
-      "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
-      "achievementType": AchievementType.TRAIT
-    },
-    {
-      "id": "FIRST_LOST_TOOTH",
-      "label": "First Lost Tooth",
-      "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
-      "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
-      "achievementType": AchievementType.TRAIT
-    },
-    {
-      "id": "LEARNED_TO_RIDE_BIKE",
-      "label": "Learned to Ride a Bike",
-      "ages": [Age.CHILD, Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
-      "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
-      "achievementType": AchievementType.TRAIT
-    },
-    {
-      "id": "FIRST_KISS",
-      "label": "First Kiss",
-      "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
-      "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
-      "achievementType": AchievementType.TRAIT
-    },
-    {
-      "id": "FIRST_JOB",
-      "label": "First Job",
-      "ages": [Age.TEENAGER, Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
-      "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
-      "achievementType": AchievementType.TRAIT
-    },
-    {
-      "id": "FIRST_PROMOTION",
-      "label": "First Promotion",
-      "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
-      "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
-      "achievementType": AchievementType.TRAIT
-    },
-    {
-      "id": "FIRST_MARRIAGE",
-      "label": "First Marriage",
-      "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
-      "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
-      "achievementType": AchievementType.TRAIT
-    },
-    {
-      "id": "FIRST_CHILD_BORN",
-      "label": "First Child Born",
-      "ages": [Age.YOUNG_ADULT, Age.ADULT, Age.ELDER],
-      "pack": "GROWING_TOGETHER",
-      "type": TraitType.MILESTONE,
+      "type": TraitType.UPBRINGING,
       "achievementType": AchievementType.TRAIT
     }
+    
   ];

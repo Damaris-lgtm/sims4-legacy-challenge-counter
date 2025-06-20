@@ -3,6 +3,9 @@ export function achievementEquals(a: Achievement, b: Achievement): boolean {
 };
 
 export function isCompleted(achievement: Achievement): boolean {
+    if(achievement.achievementType === AchievementType.MILESTONE){
+        console.log("MILESTONE ACHIEVEMENT", achievement);
+    }
     switch (achievement.achievementType) {
         case AchievementType.ASPIRATION:
         case AchievementType.COLLECTION:
@@ -28,6 +31,7 @@ export enum AchievementType {
     OCCULT = 'OCCULT',
     COLLECTION = 'COLLECTION',
     PREFERENCE = 'PREFERENCE',
+    MILESTONE = 'MILESTONE'
 }
 export interface Achievement {
     id: string;
@@ -71,6 +75,9 @@ export interface Career extends Achievement {
     type: CareerType,
     maxLevel: number,
     level?: number
+}
+export interface Milestone extends Achievement {
+    achievementType: AchievementType.MILESTONE
 }
 
 export interface Death extends Achievement {
