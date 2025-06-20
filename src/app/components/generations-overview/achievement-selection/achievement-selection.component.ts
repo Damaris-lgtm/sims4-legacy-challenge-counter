@@ -81,7 +81,8 @@ export class AchievementSelectionComponent<T extends Achievement> {
   }
 
   addAchievement(achievementId: string): void {
-    let achievement = (this.allAchievements().find(a => a.id === achievementId));
+    let achievement = (this.allAchievements().find(a => a.id.toLocaleLowerCase() === achievementId.toLocaleLowerCase()) ||  
+      this.allAchievements().find(a => a.label.toLocaleLowerCase() === achievementId.toLocaleLowerCase()));
     if(!this.allowNewCustom() && !achievement) {
      return alert(`Achievement with id ${achievementId} does not exist in the current ${this.label()}s.`);
     }
