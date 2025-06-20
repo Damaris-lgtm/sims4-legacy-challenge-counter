@@ -8,7 +8,6 @@ import { SimsViewComponent } from './sims-view/sims-view.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { OCCULTS } from '../../shared/model/occult.data';
-import { GameChangeSelectionComponent } from "./game-change-selection/game-change-selection.component";
 
 type DetailGenaration = {
   founder: SimData;
@@ -19,7 +18,7 @@ type DetailGenaration = {
 
 @Component({
   selector: 'app-generations-overview',
-  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule, SimsViewComponent, MatButtonModule, MatIconModule, GameChangeSelectionComponent],
+  imports: [MatExpansionModule, ReactiveFormsModule, CommonModule, SimsViewComponent, MatButtonModule, MatIconModule],
   templateUrl: './generations-overview.component.html',
   styleUrl: './generations-overview.component.scss'
 })

@@ -4,13 +4,11 @@ import { ALL_ACHIEVEMENTS_TEMPLATE } from '../../shared/model/requirements.all.d
 import { RequirementType } from '../../shared/model/requirements.model';
 import { CountResultsComponent } from "./count-results/count-results.component";
 import { NgClass } from '@angular/common';
-import { ResultsSelectionComponent } from "./results-selection/results-selection.component";
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-results',
-  imports: [CountResultsComponent, NgClass, ResultsSelectionComponent, FormsModule],
+  imports: [CountResultsComponent, NgClass, FormsModule],
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss'
 })
