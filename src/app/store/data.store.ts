@@ -165,12 +165,42 @@ export const DataStore = signalStore(
             } else {
                 customData.push(achievement);
             }
+             const sims = store.saves()[store.current()!]?.sims || [];
+            sims.forEach(sim => {
+                const index: string = achievement.achievementType.toLocaleLowerCase() +'s';
+                (sim[index] as Achievement[]).forEach(a => {
+                    if (a.id === achievement.id) {
+                        Object.assign(a, achievement);
+                    }
+                });
+            });
             patchState(store, {
                 saves: {
                     ...store.saves(),
                     [store.current()!]: {
                         ...store.saves()[store.current()!]!,
+                        sims,
                         customData
+                    }
+                }
+            });
+            this.updateLocalStorage();
+        },
+        deleteCustomAchievement(achievement: Achievement) {
+            const customData = getCustomData(store.current(), store.saves());
+            const updatedData = customData.filter(d => d.id !== achievement.id);
+            const sims = store.saves()[store.current()!]?.sims || [];
+            sims.forEach(sim => {
+                const index: string = achievement.achievementType.toLocaleLowerCase() +'s';
+                sim[index] = (sim[index] as Achievement[])?.filter(a => a.id !== achievement.id);
+            });
+            patchState(store, {
+                saves: {
+                    ...store.saves(),
+                    [store.current()!]: {
+                        ...store.saves()[store.current()!]!,
+                        sims,
+                        customData: updatedData
                     }
                 }
             });
@@ -181,7 +211,24 @@ export const DataStore = signalStore(
         id: computed(() => getSave(current(), saves())?.id || ''),
         sims: computed(() => getSave(current(), saves())?.sims || []),
         generations: computed(() => getSave(current(), saves())?.generations || []),
-        customData: computed(() => getSave(current(), saves())?.customData || []),
+        customData: computed(() => getCustomData(current(), saves())),
+        allAchievements: computed(() => {
+            return [
+                ...TRAITS,
+                ...SKILLS,
+                ...ASPIRATIONS,
+                ...CAREER,
+                ...MEDALS,
+                ...GAME_ACHIEVEMENTS,
+                ...DEATHS,
+                ...PUNISHMENTS,
+                ...COLLECTIONS,
+                ...PREFERENCES,
+                ...OCCULTS,
+                ...MILESTONES,
+                ...getCustomData(current(), saves())
+            ];
+        }),
         traits: computed(() => {
             return [...TRAITS, ...getCustomData(current(), saves())
                 .filter(a => a.achievementType === AchievementType.TRAIT)

@@ -5,45 +5,11 @@
     <button mat-icon-button matSuffix color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
   </mat-form-field>
   <div class="accordion accordion-flush" id="accordionAchievements">
-    <app-achievement-selection [label]="'Occult'" [currentAchievements]="sim().occult || []"
-      [allAchievements]="occults()" [achievementType]="AchievementType.OCCULT"
-      (achievementChanged)="changeOccults($event)" />
-    <app-achievement-selection [label]="'Traits'" [currentAchievements]="sim().traits" [allAchievements]="traits()"
-      [achievementType]="AchievementType.TRAIT" (achievementChanged)="changeTraits($event)" />
-    <app-achievement-selection [label]="'Skills'" [currentAchievements]="sim().skills" [allAchievements]="skills()"
-      [achievementType]="AchievementType.SKILL" (achievementChanged)="changeSkills($event)" />
-      <app-achievement-selection [label]="'Milestones'" [currentAchievements]="sim().milestones || []" [allAchievements]="milestones()"
-      [achievementType]="AchievementType.MILESTONE" (achievementChanged)="changeMilestones($event)" />
-
-    <app-achievement-selection [label]="'Aspiration'" [currentAchievements]="sim().aspirations"
-      [allAchievements]="aspirations()" [achievementType]="AchievementType.ASPIRATION"
-      (achievementChanged)="changeAspirations($event)" />
-
-    <app-achievement-selection [label]="'Career'" [currentAchievements]="sim().careers || []" [allowMultiple]="true"
-      [allAchievements]="careers()" [achievementType]="AchievementType.CAREER"
-      (achievementChanged)="changeCareers($event)" />
-    <app-achievement-selection [label]="'Medal'" [currentAchievements]="sim().medals" [allowMultiple]="true"
-      [allAchievements]="medals()" [achievementType]="AchievementType.MEDAL"
-      (achievementChanged)="changeMedals($event)" />
-    <app-achievement-selection [label]="'GameAchievements'" [currentAchievements]="sim().gameAchievements || []"
-      [allowMultiple]="true" [allAchievements]="gameAchievements()" [achievementType]="AchievementType.Game"
-      (achievementChanged)="changeGameAchievements($event)" />
-    <app-achievement-selection [label]="'Collections'" [currentAchievements]="sim().collections || []"
-      [allowMultiple]="true" [allAchievements]="collections()" [achievementType]="AchievementType.COLLECTION"
-      (achievementChanged)="changeCollections($event)" />
-    <app-achievement-selection [label]="'Preferences'" [currentAchievements]="sim().preferences || []"
-      [allowMultiple]="true" [allAchievements]="preferences()" [achievementType]="AchievementType.PREFERENCE"
-      (achievementChanged)="changePreferences($event)" />
-    <app-achievement-selection [label]="'Death'" [currentAchievements]="sim().deaths || []" [allowMultiple]="true"
-      [allAchievements]="deaths()" [achievementType]="AchievementType.DEATH"
-      (achievementChanged)="changeDeaths($event)" />
-    <app-achievement-selection [label]="'Punishments'" [currentAchievements]="sim().punishments || []"
-      [allowMultiple]="true" [allAchievements]="punishments()" [achievementType]="AchievementType.PUNISHMENT"
-      (achievementChanged)="changePunishments($event)" />
-
-    <app-achievement-selection [label]="'Custom'" [currentAchievements]="sim().customAchievements || []"
-      [allowMultiple]="true" [allAchievements]="customAchievements()" [achievementType]="AchievementType.CUSTOM"
-      (achievementChanged)="changeCustomAchievements($event)" />
+    @for (type of achievementTypesMap(); track $index) {
+      <app-achievement-selection [label]="type.label" [currentAchievements]="type.current"
+      [allAchievements]="type.data" [achievementType]="type.type"
+      (achievementChanged)="changeAchievements($event, type.type)" />
+    }
 
   </div>
 </div>
