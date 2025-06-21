@@ -18,7 +18,7 @@ export interface GenerationData {
 export interface SimData {
     id: string;
     name: string;
-    occult?: OccultType[];
+    occults?: OccultType[];
     traits: Trait[];
     aspirations: Aspiration[];
     milestones?: Milestone[];
@@ -31,5 +31,6 @@ export interface SimData {
     gameAchievements?: GameAchievement[];
     customAchievements?: Achievement[];
     preferences?: Preference[];
+    [key: string]: Achievement[] | string | undefined;
 }
 

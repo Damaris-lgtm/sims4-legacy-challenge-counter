@@ -5,13 +5,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Achievement, AchievementType,MedalScore, Aspiration, AspirationCategory, Death, TraitType } from '../../../shared/model/achievement.model';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Achievement, AchievementType, MedalScore, Aspiration, AspirationCategory, Death, TraitType } from '../../../shared/model/achievement.model';
+import { COMMA, ENTER, T } from '@angular/cdk/keycodes';
 import { DataStore } from '../../../store/data.store';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 @Component({
@@ -22,7 +22,7 @@ import { NgClass, NgTemplateOutlet } from '@angular/common';
 })
 export class AchievementSelectionComponent<T extends Achievement> {
 
-  getBackgroundClass<T extends Achievement>(achievement: T): string|string[]|Set<string>|{ [klass: string]: any; }|null|undefined {
+  getBackgroundClass<T extends Achievement>(achievement: T): string | string[] | Set<string> | { [klass: string]: any; } | null | undefined {
     switch (achievement['score']) {
       case MedalScore.GOLD:
         return 'bg-gold';
@@ -31,12 +31,12 @@ export class AchievementSelectionComponent<T extends Achievement> {
       case MedalScore.BRONZE:
         return 'bg-bronze';
     }
-    if( achievement['completed'] || achievement['like']
+    if (achievement['completed'] || achievement['like']
       || (achievement['maxLevel'] && achievement['level'] && achievement['level'] >= achievement['maxLevel'])
     ) {
       return 'bg-success';
     }
-    if( achievement['revived']) {
+    if (achievement['revived']) {
       return 'bg-primary';
     }
     return 'bg-secondary';
@@ -81,26 +81,26 @@ export class AchievementSelectionComponent<T extends Achievement> {
   }
 
   addAchievement(achievementId: string): void {
-    let achievement = (this.allAchievements().find(a => a.id.toLocaleLowerCase() === achievementId.toLocaleLowerCase()) ||  
+    let achievement = (this.allAchievements().find(a => a.id.toLocaleLowerCase() === achievementId.toLocaleLowerCase()) ||
       this.allAchievements().find(a => a.label.toLocaleLowerCase() === achievementId.toLocaleLowerCase()));
-    if(!this.allowNewCustom() && !achievement) {
-     return alert(`Achievement with id ${achievementId} does not exist in the current ${this.label()}s.`);
+    if (!this.allowNewCustom() && !achievement) {
+      return alert(`Achievement with id ${achievementId} does not exist in the current ${this.label()}s.`);
     }
-    if(!achievement) {
-    achievement = this.getNewCustomAchievement(achievementId);
+    if (!achievement) {
+      achievement = this.getNewCustomAchievement(achievementId);
     }
 
     if (this.allowMultiple() || !this.currentAchievements().find(a => a.id === achievement.id)) {
       this.achievementChanged.emit([...this.currentAchievements(), {
         ...achievement, elementId: crypto.randomUUID(),
-        }]);
+      }]);
     } else {
       alert(`${this.label()} with id ${achievementId} already exists in the current ${this.label()}s.`);
     }
   }
   private getNewCustomAchievement(label: string): T {
     const newAchievement: Achievement = {
-      id: label.toLocaleUpperCase().replace(' ', '_'),
+      id: this.achievementType() + '_' + label.toLocaleUpperCase().replace(' ', '_'),
       label: label,
       pack: 'CUSTOM',
       achievementType: this.achievementType()
@@ -125,9 +125,9 @@ export class AchievementSelectionComponent<T extends Achievement> {
   }
 
   toggleSlider(achievement: T, fieldId: string): void {
-      const aspiration = achievement as unknown as Aspiration;
-      aspiration[fieldId] = !aspiration[fieldId];
-      this.achievementChanged.emit([...this.currentAchievements()]);
+    const aspiration = achievement as unknown as Aspiration;
+    aspiration[fieldId] = !aspiration[fieldId];
+    this.achievementChanged.emit([...this.currentAchievements()]);
   }
 
   updateLevel(achievement: T, level: number): void {
@@ -142,8 +142,8 @@ export class AchievementSelectionComponent<T extends Achievement> {
   }
   updateMedalScore<T extends Achievement>(achievement: T, score: MedalScore) {
     console.log('updateMedalScore', achievement, score);
-  
-    if(achievement.achievementType === AchievementType.MEDAL) {
+
+    if (achievement.achievementType === AchievementType.MEDAL) {
       const updatedAchievement = achievement as unknown as { score?: MedalScore } & Achievement;
       switch (score) {
         case MedalScore.BRONZE:
@@ -155,12 +155,12 @@ export class AchievementSelectionComponent<T extends Achievement> {
         case MedalScore.GOLD:
           updatedAchievement.score = MedalScore.GOLD;
           break;
-          default:
+        default:
           console.warn('Invalid medal score provided.');
       }
       this.achievementChanged.emit([...this.currentAchievements()]);
     } else {
       console.warn('Update medal score is only applicable for medals.');
     }
-}
+  }
 }

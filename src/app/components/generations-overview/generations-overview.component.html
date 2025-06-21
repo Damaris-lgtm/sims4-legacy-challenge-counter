@@ -1,9 +1,5 @@
 @if(saveSelected()){
-<div class="content">
-  @if(simToEdit() && sims().includes(simToEdit()!)) {
-
-  <app-sims-view [sim]="simToEdit()!"></app-sims-view>
-  }
+<div class="d-flex flex-wrap-reverse gap-1 justify-content-center">
   <div>
     @for(generation of generations(); track generation.founder.id){
     <div class="generation">
@@ -44,6 +40,11 @@
     <button type="button" mat-button color="primary" (click)="addGeneration()">Add Generation</button>
     }
   </div>
+
+  @if(simToEdit() && sims().includes(simToEdit()!)) {
+    <div class="vr"></div>
+  <app-sims-view [sim]="simToEdit()!"></app-sims-view>
+  }
 
 </div>
 <ng-template #simTile let-simData="simData">

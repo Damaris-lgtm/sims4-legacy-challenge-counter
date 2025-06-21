@@ -63,7 +63,7 @@ export class CountResultsComponent {
 
   );
   protected readonly achieved: Signal<Achievement[]> = computed(() => this.dataStore.sims()
-    .map(sim => [...sim.aspirations, ...sim.customAchievements || [], ...sim.skills, ...sim.traits, ...sim.careers, ...sim.collections || [], ...sim.deaths || [], ...sim.gameAchievements || [], ...sim.medals, ...sim.occult || [], ...sim.preferences || [], ...sim.punishments || [], ...sim.milestones || []])
+    .map(sim => [...sim.aspirations, ...sim.customAchievements || [], ...sim.skills, ...sim.traits, ...sim.careers, ...sim.collections || [], ...sim.deaths || [], ...sim.gameAchievements || [], ...sim.medals, ...sim.occults || [], ...sim.preferences || [], ...sim.punishments || [], ...sim.milestones || []])
     .flat()
     .filter(this.onlyRequiredAchievements)
     .filter((achievement: Achievement) => isCompleted(achievement))

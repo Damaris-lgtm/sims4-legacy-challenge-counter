@@ -19,23 +19,23 @@ export function isCompleted(achievement: Achievement): boolean {
 }
 
 export enum AchievementType {
+    OCCULT = 'OCCULT',
     TRAIT = 'TRAIT',
     ASPIRATION = 'ASPIRATION',
     SKILL = 'SKILL',
     CAREER = 'CAREER',
+    MILESTONE = 'MILESTONE',
     MEDAL = 'MEDAL',
     DEATH = 'DEATH',
-    CUSTOM = 'CUSTOM',
-    Game = 'GAME',
-    PUNISHMENT = 'PUNISHMENT',
-    OCCULT = 'OCCULT',
-    COLLECTION = 'COLLECTION',
     PREFERENCE = 'PREFERENCE',
-    MILESTONE = 'MILESTONE'
+    COLLECTION = 'COLLECTION',
+     CUSTOM = 'CUSTOM',
+    Game = 'GAME',
+    PUNISHMENT = 'PUNISHMENT'
 }
 export interface Achievement {
     id: string;
-    achievementType?: AchievementType,
+    achievementType: AchievementType,
     elementId?: string,
     label: string,
     ages?: Age[],

@@ -1,0 +1,40 @@
+<div class="d-flex flex-wrap-reverse gap-2">
+    <div class="accordion col-6" id="accordionExample">
+        @for(type of achievementTypesMap(); track type.type) {
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    [attr.data-bs-target]="'#collapse' + type.type" aria-expanded="true"
+                    [attr.aria-controls]="'collapse' + type.type">
+                    {{type.label}}
+                </button>
+            </h2>
+            <div [id]="'collapse' + type.type" class="accordion-collapse collapse" [attr.aria-labelledby]="type.label"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="list-group">
+                        @for (item of type.data; track item.id) {
+                        <button type="button" class="list-group-item list-group-item-action" [attr.aria-current]="
+                            currentAchievemnt()?.id === item.id ? 'true' : null"
+                            [ngClass]=" { 'active' : currentAchievemnt()?.id === item.id } "
+                            (click)="selectAchievement(item)">
+                            {{item.label}}
+                        </button>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+    @if(currentAchievemnt()){
+    <div class="vr"></div>
+    <div>
+        <app-achievement-settings [achievement]="currentAchievemnt()!"
+            (achievementChanged)="updateAchievement($event)" (closed)="currentAchievemnt.set(undefined)"/>
+
+    </div>
+    }
+</div>

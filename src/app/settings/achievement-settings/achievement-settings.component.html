@@ -1,0 +1,19 @@
+<div class="d-flex flex-column gap-2">
+<mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" [(ngModel)]="achievement().label" (ngModelChange)="saveAchievemnt()" />
+    <button mat-icon-button matSuffix color="warn" (click)="deleteAchievement()"><mat-icon>delete</mat-icon></button>
+</mat-form-field>
+@if(achievement()['maxCount'] ) {
+ <mat-form-field>
+    <mat-label>Max Count</mat-label>
+    <input matInput placeholder="Max Count" [(ngModel)]="achievement()['maxCount']" (ngModelChange)="saveAchievemnt()" />
+   </mat-form-field>
+}
+@if(achievement()['maxLevel'] ) {
+ <mat-form-field>
+    <mat-label>Max Level</mat-label>
+    <input matInput placeholder="Max Level" [(ngModel)]="achievement()['maxLevel']" (ngModelChange)="saveAchievemnt()" />
+   </mat-form-field>
+}
+</div>
