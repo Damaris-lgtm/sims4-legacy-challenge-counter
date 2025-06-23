@@ -77,7 +77,15 @@ export interface Career extends Achievement {
     level?: number
 }
 export interface Milestone extends Achievement {
-    achievementType: AchievementType.MILESTONE
+    achievementType: AchievementType.MILESTONE,
+    type?: MilestoneType
+}
+export enum MilestoneType {
+    FIRSTS = 'FIRSTS',
+    LIFE = 'LIFE',
+    FINE_MOTOR = 'FINE_MOTOR',
+    GROSS_MOTOR = 'GROSS_MOTOR',
+    SOCIAL = 'SOCIAL',
 }
 
 export interface Death extends Achievement {
