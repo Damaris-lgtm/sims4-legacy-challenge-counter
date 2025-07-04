@@ -1,8 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+$primary: #c2185b;
+$secondary: #6c757d;
+$border-width: 0;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .sm-slider .mdc-slider__thumb {
-        height: 2rem;
-    }
+    height: 2rem;
+}

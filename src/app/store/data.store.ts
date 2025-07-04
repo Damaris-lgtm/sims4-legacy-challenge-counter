@@ -1,5 +1,5 @@
 import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
-import { DataSave, SimData } from "../shared/model/generation.model";
+import { DataSave, GenerationData, SimData } from "../shared/model/generation.model";
 import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, MedalScore, Milestone, OccultType, Preference, Punishment, Skill, Trait } from "../shared/model/achievement.model";
 import { TRAITS } from "../shared/model/traits.data";
 import { computed } from "@angular/core";
@@ -48,11 +48,11 @@ export const DataStore = signalStore(
         addNewSave(_data?: DataSave) {
             const data = _data || {
                 id: crypto.randomUUID(),
-                    generations: [],
-                    sims: [],
-                    customData: []
-                };
-    
+                generations: [],
+                sims: [],
+                customData: []
+            };
+
             if (store.saves()[data.id]) {
                 console.warn('Save with id ', data.id, ' already exists.');
                 return;
@@ -70,7 +70,7 @@ export const DataStore = signalStore(
             patchState(store, { saves: { ...store.saves(), [data.id]: data }, current: data.id });
             this.updateLocalStorage();
         },
-    
+
         deleteSave(id: string) {
             const current = store.current() === id ? undefined : store.current();
             patchState(store, { saves: { ...store.saves(), [id]: undefined }, current });
@@ -135,6 +135,41 @@ export const DataStore = signalStore(
             });
             this.updateLocalStorage();
         },
+        markHeir(simId: string) {
+            const save = getSave(store.current(), store.saves());
+            if (!save) {
+                alert('No save selected. Please select or create a save first.');
+                return;
+            }
+
+            const generations = [...(save?.generations || [])];
+            const generation = generations.find(gen => gen.children.some(child => child === simId))!;
+
+            const genIndex = generations.findIndex(gen => gen.founder === generation.founder);
+            if (genIndex !== -1) {
+                generations[genIndex].heir = simId;
+            }
+
+            if (genIndex === generations.length - 1) {
+                // If this is the last generation, add a new generation for the heir
+                const newGeneration: GenerationData = {
+                    founder: simId,
+                    spouse: [],
+                    children: []
+                };
+                this.updateData({
+                    ...save,
+                    generations: [...generations, newGeneration]
+                });
+            } else {
+                // Otherwise, just update the existing generation
+                generations[genIndex + 1].founder = simId;
+                this.updateData({
+                    ...save,
+                    generations: [...generations]
+                });
+            }
+        },
         addCustomAchievement(achievement: Achievement, type: AchievementType): Achievement {
             const customData = getCustomData(store.current(), store.saves());
             const existingItem = customData
@@ -165,9 +200,9 @@ export const DataStore = signalStore(
             } else {
                 customData.push(achievement);
             }
-             const sims = store.saves()[store.current()!]?.sims || [];
+            const sims = store.saves()[store.current()!]?.sims || [];
             sims.forEach(sim => {
-                const index: string = achievement.achievementType.toLocaleLowerCase() +'s';
+                const index: string = achievement.achievementType.toLocaleLowerCase() + 's';
                 (sim[index] as Achievement[]).forEach(a => {
                     if (a.id === achievement.id) {
                         Object.assign(a, achievement);
@@ -191,7 +226,7 @@ export const DataStore = signalStore(
             const updatedData = customData.filter(d => d.id !== achievement.id);
             const sims = store.saves()[store.current()!]?.sims || [];
             sims.forEach(sim => {
-                const index: string = achievement.achievementType.toLocaleLowerCase() +'s';
+                const index: string = achievement.achievementType.toLocaleLowerCase() + 's';
                 sim[index] = (sim[index] as Achievement[])?.filter(a => a.id !== achievement.id);
             });
             patchState(store, {

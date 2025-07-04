@@ -5,29 +5,20 @@
     <div class="generation">
       <h2>{{$index}} - {{generation.founder.name}}</h2>
       <div class="parents">
-        <ng-container *ngTemplateOutlet="simTile; context: {simData: generation.founder}"></ng-container>
+        <ng-container
+          *ngTemplateOutlet="simTile; context: {simData: generation.founder, color: 'primary'}"></ng-container>
         @for(spouse of generation.spouse; track spouse.id) {
-        <ng-container *ngTemplateOutlet="simTile; context: {simData: spouse}"></ng-container>
+        <ng-container *ngTemplateOutlet="simTile; context: {simData: spouse, color: 'secondary'}"></ng-container>
         }
-        <button type="button" mat-icon-button color="primary" (click)="addSpouse(generation)">
+        <button type="button" mat-icon-button color="secondary" (click)="addSpouse(generation)">
           <mat-icon>add</mat-icon>
         </button>
       </div>
+      <br>
 
       <div class="children">
         @for(child of generation.children; track child.id) {
-        @if(generation.heir === child?.id) {
-        <div style="background-color: lightcoral;">
-          <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
-        </div>
-        }
-        @else {
-        <ng-container *ngTemplateOutlet="simTile; context: {simData: child}"></ng-container>
-        <button mat-icon-button type="button" color="primary" (click)="markHeir(generation, child.id)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        }
-
+        <ng-container *ngTemplateOutlet="simTile; context: {simData: child, color: 'primary'}"></ng-container>
         }
         <button mat-icon-button type="button" color="primary" (click)="addChild(generation)">
           <mat-icon>add</mat-icon>
@@ -42,13 +33,14 @@
   </div>
 
   @if(simToEdit() && sims().includes(simToEdit()!)) {
-    <div class="vr"></div>
-  <app-sims-view [sim]="simToEdit()!"></app-sims-view>
+  <div class="vr"></div>
+  <app-sims-view [sim]="simToEdit()!" (closed)="simToEdit.set(undefined)"></app-sims-view>
   }
 
 </div>
-<ng-template #simTile let-simData="simData">
-  <button type="button" mat-button color="primary" [attr.aria-label]="'Edit '+ simData.name" (click)="editSim(simData)">
+<ng-template #simTile let-simData="simData" let-color="color">
+  <button type="button" class="btn" [ngClass]="'btn-outline-' + color" [attr.aria-label]="'Edit '+ simData.name"
+    (click)="editSim(simData)">
     {{simData.name || simData.id}}
   </button>
 

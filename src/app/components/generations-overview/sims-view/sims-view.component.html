@@ -4,11 +4,16 @@
     <input matInput placeholder="Name" [(ngModel)]="sim().name" (ngModelChange)="saveSim()" />
     <button mat-icon-button matSuffix color="warn" (click)="deleteSim()"><mat-icon>delete</mat-icon></button>
   </mat-form-field>
+  <button mat-icon-button type="button" color="primary" (click)="markHeir()">
+    <mat-icon>star</mat-icon>
+  </button>
+  <button mat-icon-button type="button" color="primary" (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
   <div class="accordion accordion-flush" id="accordionAchievements">
     @for (type of achievementTypesMap(); track $index) {
-      <app-achievement-selection [label]="type.label" [currentAchievements]="type.current"
-      [allAchievements]="type.data" [achievementType]="type.type"
-      (achievementChanged)="changeAchievements($event, type.type)" />
+    <app-achievement-selection [label]="type.label" [currentAchievements]="type.current" [allAchievements]="type.data"
+      [achievementType]="type.type" (achievementChanged)="changeAchievements($event, type.type)" />
     }
 
   </div>

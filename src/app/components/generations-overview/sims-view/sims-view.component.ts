@@ -1,14 +1,12 @@
-import { Component, computed, effect, inject, input, Signal, signal } from '@angular/core';
+import { Component, computed, effect, inject, input, output, Signal, signal } from '@angular/core';
 
 import { DataStore } from '../../../store/data.store';
 import { SimData } from '../../../shared/model/generation.model';
-import { TRAITS } from '../../../shared/model/traits.data';
-import { Achievement, AchievementType, Aspiration, Career, Collection, Death, GameAchievement, Medal, Milestone, OccultType, Preference, Punishment, Skill, Trait } from '../../../shared/model/achievement.model';
+import { Achievement, AchievementType} from '../../../shared/model/achievement.model';
 import { MatInputModule } from '@angular/material/input';
-import { C, COMMA, ENTER } from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormsModule } from '@angular/forms';
 import { AchievementSelectionComponent } from "../achievement-selection/achievement-selection.component";
-import { OCCULTS } from '../../../shared/model/occult.data';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -24,6 +22,7 @@ export class SimsViewComponent {
   private store = inject(DataStore);
 
   sim = input.required<SimData>();
+  closed = output<void>();
 
   protected readonly achievementTypesMap = computed(() => Object.values(AchievementType).map(type => ({
     type: type as AchievementType,
@@ -44,6 +43,13 @@ export class SimsViewComponent {
   changeAchievements(achievements: Achievement[], type: AchievementType) {
     this.sim()[type.toLocaleLowerCase() + 's'] = achievements;
     this.saveSim();
+  }
+
+  markHeir() {
+    this.store.markHeir(this.sim().id);
+  }
+  close() {
+    this.closed.emit();
   }
 
 }

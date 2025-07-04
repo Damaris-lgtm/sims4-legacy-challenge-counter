@@ -118,27 +118,4 @@ export class GenerationsOverviewComponent {
   editSim(simdata: SimData) {
     this.simToEdit.set(simdata);
   }
-
-  markHeir(generation: DetailGenaration, simId: string) {
-    const generations = [...this.store.generations()];
-
-    const genIndex = generations.findIndex(gen => gen.founder === generation.founder?.id);
-    if (genIndex !== -1) {
-      generations[genIndex].heir = simId;
-    }
-    
-    if (genIndex === generations.length - 1) {
-      // If this is the last generation, add a new generation for the heir
-      const newGeneration: GenerationData = {
-        founder: simId,
-        spouse: [],
-        children: []
-      };
-      this.updateGenerations([...generations, newGeneration]);
-    } else {
-      // Otherwise, just update the existing generation
-      generations[genIndex + 1].founder = simId;
-      this.updateGenerations(generations);
-    }
-  }
 }
