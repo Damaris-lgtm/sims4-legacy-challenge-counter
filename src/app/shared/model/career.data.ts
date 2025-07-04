@@ -365,7 +365,7 @@ import { Career as Career, Age, CareerType, AchievementType } from "./achievemen
       "pack": "SEASONS",
       "type": CareerType.CLUB,
       achievementType: AchievementType.CAREER,
-      maxLevel: 10
+      maxLevel: 5
     },
     {
       "id": "DRAMA_CLUB",
@@ -375,5 +375,23 @@ import { Career as Career, Age, CareerType, AchievementType } from "./achievemen
       "type": CareerType.CLUB,
       achievementType: AchievementType.CAREER,
       maxLevel: 10
+    },
+     {
+      "id": "GRADE_SCHOOL",
+      "label": "Grade School",
+      "ages": [Age.CHILD],
+      "pack": "BASE_GAME",
+      "type": CareerType.CLUB,
+      achievementType: AchievementType.CAREER,
+      maxLevel: 5
+    },
+     {
+      "id": "HIGH_SCHOOL",
+      "label": "High School",
+      "ages": [Age.TEENAGER],
+      "pack": "BASE_GAME",
+      "type": CareerType.CLUB,
+      achievementType: AchievementType.CAREER,
+      maxLevel: 5
     }
   ]

@@ -140,9 +140,14 @@ export enum PreferenceType {
 export enum TraitType {
     BASE = 'BASE',
     ASPIRATION = 'ASPIRATION',
-    LIFE_STYLE = 'LIFE_STYLE',
+    LIFESTYLE = 'LIFESTYLE',
     MILESTONE = 'MILESTONE',
-    UPBRINGING = 'UPBRINGING'
+    UPBRINGING = 'UPBRINGING',
+    INFANT_QUIRK = 'INFANT_QUIRK',
+    TODDLER_QUIRK = 'TODDLER_QUIRK',
+    FAMOUSE_QUIRK = 'FAMOUSE_QUIRK',
+    FEAR = 'FEAR',
+    GRIEF = 'GRIEF',
 }
 export enum AspirationCategory {
     CREATIVITY = 'CREATIVITY',
